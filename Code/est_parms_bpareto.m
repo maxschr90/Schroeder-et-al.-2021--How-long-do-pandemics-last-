@@ -1,7 +1,7 @@
-%% This Function fits the model
+%% This Function fits the model of the bounded pareto distribution
 %% x is a vector of mortality rates 
 %% dmin and dmax are the bounds of the bounded pareto distribution
-%% if no bounds are supplied the function will estimate them as well
+%% if no bounds are supplied the function will fit them as well
 function [Calibrated_Model] = est_parms_bpareto(x,dmax,dmin,name)
 t = [1:size(x,1)]'-1;
 ms = MultiStart('UseParallel', true);

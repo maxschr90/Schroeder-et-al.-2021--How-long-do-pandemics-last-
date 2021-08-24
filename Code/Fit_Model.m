@@ -86,6 +86,8 @@ years = years(1:end);
 
 %%% 8. Model Summary Table
 % Base Model
+
+   Obs = [sum(Influenza_UK(26:end,:)==Influenza_UK(26:end,:)), sum(Influenza_US(1,21:end)==Influenza_US(1,21:end)),sum(Influenza_RUS(1,55:80)==Influenza_RUS(1,55:80))];
    Parameters =[];
 
     for n=1:11
@@ -95,10 +97,10 @@ years = years(1:end);
     names = {'All Cities', 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield','US','England & Wales'};
     
     for b =1:11
-        T1(:,b) = table(Parameters(:,b));
+        T1(:,b) = table([Parameters(:,b);Obs(b)]);
     end
     T1.Properties.VariableNames = names;
-    T1 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}'}') T1];
+    T1 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations'}') T1];
     writetable(T1,'../Figures/Table_1.xlsx', 'Sheet', 'Base Model')
 
     % Model with common bounds
@@ -109,10 +111,10 @@ years = years(1:end);
     names = {'All Cities', 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield','US','England & Wales'};
     
     for b =1:11
-        T2(:,b) = table(Parameters(:,b));
+        T2(:,b) = table([Parameters(:,b);Obs(b)]);
     end
     T2.Properties.VariableNames = names;
-    T2 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}'}') T2];
+    T2 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations'}') T2];
     writetable(T2,'../Figures/Table_1.xlsx', 'Sheet', 'Common Bounds Model')
     
     % Model with estimated bounds
@@ -123,10 +125,10 @@ years = years(1:end);
     names = {'All Cities', 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield','US','England & Wales'};
     
     for b =1:11
-        T3(:,b) = table(Parameters(:,b));
+        T3(:,b) = table([Parameters(:,b);Obs(b)]);
     end
     T3.Properties.VariableNames = names;
-    T3 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', }') T3];
+    T3 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations' }') T3];
     writetable(T3,'../Figures/Table_1.xlsx', 'Sheet', 'Estimated Bounds Model')
     
     % Model with theoretical bounds
@@ -137,10 +139,10 @@ years = years(1:end);
     names = {'All Cities', 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield','US','England & Wales'};
     
     for b =1:11
-        T4(:,b) = table(Parameters(:,b));
+        T4(:,b) = table([Parameters(:,b);Obs(b)]);
     end
     T4.Properties.VariableNames = names;
-    T4 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}'}') T4];
+    T4 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations'}') T4];
     writetable(T4,'../Figures/Table_1.xlsx', 'Sheet', 'Theoretical Bounds Model')
     
    % Weibull
@@ -152,10 +154,10 @@ years = years(1:end);
     names = {'All Cities', 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield','US','England & Wales'};
     
     for b =1:11
-        T5(:,b) = table(Parameters(:,b));
+        T5(:,b) = table([Parameters(:,b);Obs(b)]);
     end
     T5.Properties.VariableNames = names;
-    T5 = [table({ '\lambda', '\eta_{0}'}') T5];
+    T5 = [table({ '\lambda', '\eta_{0}', 'Observations'}') T5];
     writetable(T5,'../Figures/Table_1.xlsx', 'Sheet', 'Weibull Model')
 
     %%% Save Results        

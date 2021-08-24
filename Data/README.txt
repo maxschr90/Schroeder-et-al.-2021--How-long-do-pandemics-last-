@@ -15,3 +15,4 @@ and our main object of interest are mortality rates, this does not affect the an
 own analysis are encouraged to be cautious in these cases.
 Population density refers to persons/acre. Influenza in the ""data"" sheets refers to mortality per million."
 Sources refer to the variable in the line immidiately above.
+"." indicates missing information.

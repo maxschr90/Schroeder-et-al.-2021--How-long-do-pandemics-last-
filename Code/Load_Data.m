@@ -11,7 +11,7 @@ London = readtable('../Data/UK_Cities_Mortality_Data.xlsx', 'Sheet', ['London da
 Manchester = readtable('../Data/UK_Cities_Mortality_Data.xlsx', 'Sheet', ['Manchester data'], 'Range', 'A1:D57');
 Sheffield = readtable('../Data/UK_Cities_Mortality_Data.xlsx', 'Sheet', ['Sheffield data'], 'Range', 'A1:D57');
 
-Influenza = table(Belfast.Influenza, Birmingham.Influenza ,Cardiff.Influenza, Glasgow.Influenza, Liverpool.Influenza, London.Influenza, Manchester.Influenza, Sheffield.Influenza,'VariableNames', citynames);
+Influenza = table(Belfast.Influenza_rate, Birmingham.Influenza_rate ,Cardiff.Influenza_rate, Glasgow.Influenza_rate, Liverpool.Influenza_rate, London.Influenza_rate, Manchester.Influenza_rate, Sheffield.Influenza_rate,'VariableNames', citynames);
 
 A = [mean(Belfast.Population(26:35), 'omitnan'),mean(Birmingham.Population(26:35), 'omitnan'),mean(Cardiff.Population(26:35), 'omitnan'),mean(Glasgow.Population(26:35), 'omitnan'),mean(Liverpool.Population(26:35), 'omitnan'),mean(London.Population(26:35), 'omitnan'),mean(Manchester.Population(26:35), 'omitnan'),mean(Sheffield.Population(26:35), 'omitnan')];
 B = [mean(Belfast.Population(36:45), 'omitnan'),mean(Birmingham.Population(36:45), 'omitnan'),mean(Cardiff.Population(36:45), 'omitnan'),mean(Glasgow.Population(36:45), 'omitnan'),mean(Liverpool.Population(36:45), 'omitnan'),mean(London.Population(36:45), 'omitnan'),mean(Manchester.Population(36:45), 'omitnan'),mean(Sheffield.Population(36:45), 'omitnan')];

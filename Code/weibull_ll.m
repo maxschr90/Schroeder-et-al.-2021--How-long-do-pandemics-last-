@@ -6,9 +6,9 @@ function [ll] = weibull_ll(lam,x)
     w = lam(2)*exp(-t*lam(1));
 %% Replace missing values & calculate likelihood
     x(isnan(x))=pi;
-    lik = (((log(w)/log(3))./(log(w)-2)).*(x.*(x+1)).*w.^x);
+    lik = (((log(w).^3)./(log(w)-2)).*(x.*(x+1)).*w.^x);
 %% Drop missing values
     lik(x==pi)=[];
 %% Calculate average ll
-    ll=-sum(log(lik))/size(lik,1);
+    ll=-mean(log(lik));
 end

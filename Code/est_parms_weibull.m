@@ -8,6 +8,7 @@ function [Calibrated_Model] = est_parms_weibull(x, name)
     [theta_hat,Fval] = run(ms,problem,1000);
     t = [1:size(x,1)]'-1;
     w = theta_hat(2)*exp(-t*theta_hat(1));
-    Calibrated_Model = struct('Model', name,'lambda', theta_hat(1),'eta_zero', theta_hat(2), 'w', w,  'LL',-Fval,'Problem', problem);
+    SE = se_weibull(theta_hat,x);
+    Calibrated_Model = struct('Model', name,'lambda', theta_hat(1),'eta_zero', theta_hat(2), 'w', w,  'LL',-Fval,'Problem', problem, 'SE', SE);
 
 end

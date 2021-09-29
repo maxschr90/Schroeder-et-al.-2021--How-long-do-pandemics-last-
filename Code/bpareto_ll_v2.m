@@ -14,6 +14,6 @@ function ll = bpareto_ll_v2(y,x)
 %% Drop missing values
     lik(x==pi)=[];
 %% Calculate average ll
-    ll = - sum(log(lik))/size(lik,1);
+    ll = - mean(log(lik));
 
 end

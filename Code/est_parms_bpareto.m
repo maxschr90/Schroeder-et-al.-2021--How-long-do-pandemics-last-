@@ -10,13 +10,16 @@ if max(isempty(dmax),isempty(dmin)) == 0
     problem = createOptimProblem('fmincon', 'objective',@(y)bpareto_ll(y,x,dmax,dmin), 'lb',[0,0], 'ub', [2,10000], 'x0',[0,2.5], 'options', options);
     [theta_hat,Fval] = run(ms,problem,1000);
     alpha = 1./(theta_hat(2)*exp(-t*theta_hat(1)));
-    Calibrated_Model = struct('Model', name,'lambda', theta_hat(1),'eta_zero', theta_hat(2), 'alpha', alpha, 'dmin',dmin, 'dmax', dmax, 'LL',-Fval, 'Estimated_Bounds',0,'Problem', problem);
+    SE = se_bpareto(theta_hat,x);
+    Calibrated_Model = struct('Model', name,'lambda', theta_hat(1),'eta_zero', theta_hat(2), 'alpha', alpha, 'dmin',dmin, 'dmax', dmax, 'LL',-Fval, 'Estimated_Bounds',0,'Problem', problem, 'SE', SE);
 
 else
     problem = createOptimProblem('fmincon', 'objective',@(y)bpareto_ll_v2(y,x), 'lb',[0,0, max(x),0], 'ub', [2,1000000,10000000, min(x)], 'x0',[0, 2.5, max(x), min(x)], 'options', options);
     [theta_hat,Fval] = run(ms,problem,1000);
     alpha = 1./(theta_hat(2)*exp(-t*theta_hat(1)));
-    Calibrated_Model = struct('Model', name,'lambda', theta_hat(1),'eta_zero', theta_hat(2), 'alpha', alpha, 'dmin',theta_hat(4), 'dmax', theta_hat(3), 'LL',-Fval, 'Estimated_Bounds',1,'Problem', problem);
+    hess = hessian(@(y)-bpareto_ll_v2(y,x),theta_hat);
+    SE = sqrt(diag(inv(-hess)/sum(~isnan(x))));
+    Calibrated_Model = struct('Model', name,'lambda', theta_hat(1),'eta_zero', theta_hat(2), 'alpha', alpha, 'dmin',theta_hat(4), 'dmax', theta_hat(3), 'LL',-Fval, 'Estimated_Bounds',1,'Problem', problem, 'SE', SE);
 end
 
 end

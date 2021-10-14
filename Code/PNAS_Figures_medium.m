@@ -108,15 +108,21 @@ figure(2)
         leg = legend({ 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield', 'US'},'FontSize',6, 'Location','best', 'NumColumns',1);
         leg.ItemTokenSize = [3,1.5];
         legend boxoff
-        xlim([1920,1953])
+        xlim([1920,1950])
         xticks([1920:5:1950])
         xticklabels({'1920','1925', '1930','1935','1940','1945','1950'})
+        yticks([0:0.05:0.4])
+        yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4'})
         a = get(gca,'XTickLabel');
         set(gca,'XTickLabel',a,'fontsize',6)        
         aa = get(gca,'YTickLabel');
         set(gca,'YTickLabel',aa,'fontsize',6)
 
         pb = subplot(2,4,[3 4])
+        p = get(pb, 'position');
+        p(1) = p(1) + 0.03;
+        p(3) = p(3) - 0.03;
+        set(pb, 'position', p);        
         for n=2:9
             hold on
             plot(years(26:end), bpareto_outbreakprob(Base_Model(n).alpha',Base_Model(n).dmax,Base_Model(n).dmin,1000), Linemarkertypes{n}, 'Linewidth', 0.5, 'Markersize', 1.5 , 'Color', 'black')
@@ -149,6 +155,9 @@ figure(2)
         set(gca,'YTickLabel',aa,'fontsize',6)
         xticks([1892:5:1917])
         xticklabels({'1892','1897', '1902','1907','1912','1917'})
+        yticks([0:0.05:0.4])
+        yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4'})
+
         pd = subplot(2,4,7)
          hold on
         shadedplot(1:size(Covid_Sim(:,:,1),2), prctile([Covid_Sim(:,:,1)],10), prctile([Covid_Sim(:,:,1)],90), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
@@ -172,6 +181,7 @@ figure(2)
         hb = plot(median(Covid_Sim(:,:,2),'omitnan'),'-', 'Linewidth', 1,'Color','black')
         xticks([1 11  21  31])
         xticklabels({'2022', '2032','2042','2052'}) 
+        yticks([0:0.025:0.15])
         ylabel(sprintf('Probability of exceeding 1,000 deaths per million'),'FontSize',6)
         a = get(gca,'XTickLabel');
         set(gca,'XTickLabel',a,'fontsize',6)        

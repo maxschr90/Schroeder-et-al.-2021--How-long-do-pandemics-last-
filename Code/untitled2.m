@@ -1,100 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%% Main Paper Figures  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-clear
-clc
-close all
-load('Fitted_Models')
-Linemarkertypes = {'-p','-x','-h','-s','-d','-*','-v','-^','-+','-o'};
-Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%% Figure 1  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    figure(1)
-    for b = 2:size(Influenza_UK,2)
-        subplot((size(Influenza_UK,2)-1)/2+3,2,b-1)
-        plot(years,Influenza_UK(:,b), '-.o',  'Linewidth', 0.5, 'Color','black', 'Markersize', 1.5 )
-        ylim([0,max(Influenza_UK(:,b))*1.05])
-        yticks([1000,round(max(Influenza_UK(:,b)),0)])
-        xlim([1895,1950])
-        a = get(gca,'XTickLabel');
-        set(gca,'XTickLabel',a,'fontsize',6)        
-        aa = get(gca,'YTickLabel');
-        set(gca,'YTickLabel',aa,'fontsize',6)
-        title(citynames(b),'FontSize',6,'FontWeight','bold');
-    end
-        subplot((size(Influenza_UK,2)-1)/2+3,2,b)
-        plot(Influenza_US(2,:),Influenza_US(1,:), '-.o',  'Linewidth', 0.5, 'Color','black', 'Markersize', 1.5 )
-        ylim([0,max(Influenza_US(1,:))*1.05])
-        yticks([1000,round(max(Influenza_US(1,:)),0)])
-        xlim([1895,1950])
-        a = get(gca,'XTickLabel');
-        set(gca,'XTickLabel',a,'fontsize',6)        
-        aa = get(gca,'YTickLabel');
-        set(gca,'YTickLabel',aa,'fontsize',6)
-        title('United States','FontSize',6,'FontWeight','bold')
-        subplot((size(Influenza_UK,2)-1)/2+3,2,b+1)
-        plot(Influenza_RUS(2,1:80),Influenza_RUS(1,1:80), '-.o',  'Linewidth', 0.5, 'Color','black', 'Markersize', 1.5 )
-        ylim([0,max(Influenza_RUS(1,1:80))*1.05])
-        yticks([250,round(max(Influenza_RUS(1,1:80)),0)])
-        xlim([1838,1917])
-        a = get(gca,'XTickLabel');
-        set(gca,'XTickLabel',a,'fontsize',6)        
-        aa = get(gca,'YTickLabel');
-        set(gca,'YTickLabel',aa,'fontsize',6)
-        title('England & Wales','FontSize',6,'FontWeight','bold')
-
-        subplot((size(Influenza_UK,2)-1)/2+3,2,[b+2 b+5])
-        rng(1001)
-        Simulation = simulate_bpareto(1000000,Base_Model(1).alpha',Base_Model(1).dmax,Base_Model(1).dmin);
-        shadedplot(1:size(Simulation(:,:,1),2), prctile([Simulation(:,:,1)],10), prctile([Simulation(:,:,1)],90), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
-        hold on
-        shadedplot(1:size(Simulation(:,:,1),2), prctile([Simulation(:,:,1)],25), prctile([Simulation(:,:,1)],75), [0.9 0.9 0.9],[0.9 0.9 0.9]); 
-
-        for b = 2:size(Influenza_UK,2)
-           hold on
-           hc(b) = plot(Influenza_UK(26:end,b), Linemarkertypes{b}, 'Linewidth', 0.01,'Color',[[230, 33, 11]/sum([230, 33, 11]),0.3], 'Markersize', 1.5 );
-        end
-        hold on
-        hd = plot(median(Simulation(:,:,1)),'-', 'Linewidth', 0.5,'Color','black')
-        hold on
-        he = plot(median(Influenza_UK(26:end,2:end)','omitnan'),'-', 'Linewidth',0.5, 'Color',[[230, 33, 11]/sum([230, 33, 11]),1])
-        yticks([0 500 1000 1500])
-        xticklabels({'0', '500', '1000', '1500'}) 
-        xlim([0,31])
-        xticks([1 6 11 16 21 26 31])
-        xticklabels({'1920','1925', '1930','1935','1940','1945','1950'})
-        a = get(gca,'XTickLabel');
-        set(gca,'XTickLabel',a,'fontsize',6)        
-        aa = get(gca,'YTickLabel');
-        set(gca,'YTickLabel',aa,'fontsize',6)
-        
-        [leg] = legend([hc(2:end) he hd], 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield','Median (cities)', 'Median (model)','FontSize',6,'NumColumns',5,'location','southoutside');
-        leg.ItemTokenSize = [15,9];
-        AddLetters2Plots(figure(1), {'a', 'c', 'e', 'g', 'i', 'k', 'b', 'd', 'f', 'h', 'j'}, 'HShift', -0.07, 'VShift', -0.035, 'Direction', 'TopDown','Fontsize',6)
-
-        set(figure(1), 'Units', 'centimeters', 'Position', [20,10,12.95,12.95],'PaperPositionMode','auto');
-        exportgraphics(figure(1),'../Figures/Figure_medium_1.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(figure(1),'../Figures/Figure_medium_1.emf','BackgroundColor','none','Resolution', 900)
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %% Monte Carlo to simulate Model Uncertainty
-t = [1:31]'-1;
-Covid_Sim = [];
-parfor i=1:size(Rand_Parms,1)
-    alpha_sim(i,:) =  1./(Rand_Parms(i,2)*exp(-t*Rand_Parms(i,1)));
-    temp_1(i,:) = bpareto_outbreakprob(alpha_sim(i,:),1858,24,500)';
-    temp_2(i,:) = bpareto_outbreakprob(alpha_sim(i,:),1858,24,1000)';
-end
-    Covid_Sim(:,:,1) =temp_1;
-    Covid_Sim(:,:,2) =temp_2;
+close all
 
 figure(2)
         pa = subplot(2,4,[1 2])
@@ -108,15 +16,21 @@ figure(2)
         leg = legend({ 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield', 'US'},'FontSize',6, 'Location','best', 'NumColumns',1);
         leg.ItemTokenSize = [3,1.5];
         legend boxoff
-        xlim([1920,1953])
+        xlim([1920,1950])
         xticks([1920:5:1950])
         xticklabels({'1920','1925', '1930','1935','1940','1945','1950'})
+        yticks([0:0.05:0.4])
+        yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4'})
         a = get(gca,'XTickLabel');
         set(gca,'XTickLabel',a,'fontsize',6)        
         aa = get(gca,'YTickLabel');
         set(gca,'YTickLabel',aa,'fontsize',6)
 
         pb = subplot(2,4,[3 4])
+        p = get(pb, 'position');
+        p(1) = p(1) + 0.03;
+        p(3) = p(3) - 0.03;
+        set(pb, 'position', p);        
         for n=2:9
             hold on
             plot(years(26:end), bpareto_outbreakprob(Base_Model(n).alpha',Base_Model(n).dmax,Base_Model(n).dmin,1000), Linemarkertypes{n}, 'Linewidth', 0.5, 'Markersize', 1.5 , 'Color', 'black')

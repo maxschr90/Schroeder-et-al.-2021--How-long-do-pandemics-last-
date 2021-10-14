@@ -70,7 +70,7 @@ Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
         aa = get(gca,'YTickLabel');
         set(gca,'YTickLabel',aa,'fontsize',6)
         
-        [leg] = legend([hc(2:end) he hd], 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield','Median (cities)', 'Median (model)','FontSize',6,'NumColumns',5,'location','southoutside');
+        [leg] = legend([hc(2:end)], 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield','FontSize',6,'NumColumns',4,'location','southoutside');
         leg.ItemTokenSize = [15,9];
         AddLetters2Plots(figure(1), {'a', 'c', 'e', 'g', 'i', 'k', 'b', 'd', 'f', 'h', 'j'}, 'HShift', -0.07, 'VShift', -0.035, 'Direction', 'TopDown','Fontsize',6)
 
@@ -104,18 +104,12 @@ figure(2)
         end
             hold on
         plot(Influenza_US(2,21:end),bpareto_outbreakprob(Base_Model(n+1).alpha',Base_Model(n+1).dmax,Base_Model(n+1).dmin,500),  Linemarkertypes{n+1}, 'Linewidth', 0.5, 'Markersize', 1.5 , 'Color', 'black')
-        ylabel(sprintf('Probability of exceeding 500 deaths per million'),'FontSize',6)
-        leg = legend({ 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield', 'US'},'FontSize',6, 'Location','best', 'NumColumns',1);
-        leg.ItemTokenSize = [3,1.5];
-        legend boxoff
-        xlim([1920,1953])
-        xticks([1920:5:1950])
-        xticklabels({'1920','1925', '1930','1935','1940','1945','1950'})
+        title(sprintf('Probability of exceeding 500 deaths deaths per million'),'FontSize',4,'FontWeight','bold')
+        legend({ 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield', 'US'},'FontSize',3, 'Location','southwest')
         a = get(gca,'XTickLabel');
-        set(gca,'XTickLabel',a,'fontsize',6)        
+        set(gca,'XTickLabel',a,'fontsize',4)        
         aa = get(gca,'YTickLabel');
-        set(gca,'YTickLabel',aa,'fontsize',6)
-
+        set(gca,'YTickLabel',aa,'fontsize',4)
         pb = subplot(2,4,[3 4])
         for n=2:9
             hold on
@@ -123,32 +117,26 @@ figure(2)
         end
             hold on
         plot(Influenza_US(2,21:end),bpareto_outbreakprob(Base_Model(n+1).alpha',Base_Model(n+1).dmax,Base_Model(n+1).dmin,1000), Linemarkertypes{n+1}, 'Linewidth', 0.5, 'Markersize', 1.5 , 'Color', 'black' )
-        ylabel(sprintf('Probability of exceeding 1,000 deaths per million'),'FontSize',6)
+        title(sprintf('Probability of exceeding 1,000 deaths per million'),'FontSize',4,'FontWeight','bold')
          a = get(gca,'XTickLabel');
-        set(gca,'XTickLabel',a,'fontsize',6)        
+        set(gca,'XTickLabel',a,'fontsize',4)        
         aa = get(gca,'YTickLabel');
-        set(gca,'YTickLabel',aa,'fontsize',6)
-        xlim([1920,1950])
-        xticks([1920:5:1950])
-        xticklabels({'1920','1925', '1930','1935','1940','1945','1950'})
-        
+        set(gca,'YTickLabel',aa,'fontsize',4)
         pc = subplot(2,4,[5 6])
-        plot(Influenza_RUS(2,55:80),bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,300), '-+', 'Linewidth', .5, 'Markersize', 1.5,  'Color' ,'black')
+        plot(Influenza_RUS(2,55:80),bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,300), '-', 'Linewidth', .5, 'Color' ,'black')
         hold on        
-        plot(Influenza_RUS(2,55:80),bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,400), '-o', 'Linewidth', .5, 'Markersize', 1.5, 'Color' ,'black')
+        plot(Influenza_RUS(2,55:80),bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,400), '--', 'Linewidth', .5, 'Color' ,'black')
         hold on
-        plot(Influenza_RUS(2,55:80),bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,500), '-d', 'Linewidth', .5, 'Markersize', 1.5, 'Color' ,'black')
-        leg=legend('300 deaths/million', '400 deaths/million', '500 deaths/million','FontSize',6, 'location', 'best', 'NumColumns' ,1)
-        legend boxoff
-        leg.ItemTokenSize = [3,1.5];
-
-        ylabel(sprintf('Probability of exceeding threshold'),'FontSize',6)
+        plot(Influenza_RUS(2,55:80),bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,500), '.', 'Linewidth', .5, 'Color' ,'black')
+        leg=legend('300 deaths per million', '400 deaths per million', '500 deaths per million','FontSize',3)
+        title(leg, 'Threshold')
+        ylabel(sprintf('Probability of exceeding threshold'),'FontSize',4,'FontWeight','bold')
         a = get(gca,'XTickLabel');
-        set(gca,'XTickLabel',a,'fontsize',6)        
+        set(gca,'XTickLabel',a,'fontsize',4)        
         aa = get(gca,'YTickLabel');
-        set(gca,'YTickLabel',aa,'fontsize',6)
-        xticks([1892:5:1917])
-        xticklabels({'1892','1897', '1902','1907','1912','1917'})
+        set(gca,'YTickLabel',aa,'fontsize',4)
+
+
         pd = subplot(2,4,7)
          hold on
         shadedplot(1:size(Covid_Sim(:,:,1),2), prctile([Covid_Sim(:,:,1)],10), prctile([Covid_Sim(:,:,1)],90), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
@@ -158,12 +146,12 @@ figure(2)
         ha = plot(median(Covid_Sim(:,:,1),'omitnan'),'-', 'Linewidth', 1,'Color','black')
         xticks([1 11  21  31])
         xticklabels({'2022', '2032','2042','2052'}) 
-        ylabel(sprintf('Probability of exceeding 500 deaths per million'),'FontSize',6)
+        ylabel(sprintf('Probability of exceeding 500 deaths per million'),'FontSize',4,'FontWeight','bold')
         a = get(gca,'XTickLabel');
-        set(gca,'XTickLabel',a,'fontsize',6)        
+        set(gca,'XTickLabel',a,'fontsize',4)        
         aa = get(gca,'YTickLabel');
-        set(gca,'YTickLabel',aa,'fontsize',6)
-        pe = subplot(2,4,8)
+        set(gca,'YTickLabel',aa,'fontsize',4)
+        subplot(2,4,8)
         hold on
         shadedplot(1:size(Covid_Sim(:,:,2),2), prctile([Covid_Sim(:,:,2)],10), prctile([Covid_Sim(:,:,2)],90), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
         hold on
@@ -172,12 +160,12 @@ figure(2)
         hb = plot(median(Covid_Sim(:,:,2),'omitnan'),'-', 'Linewidth', 1,'Color','black')
         xticks([1 11  21  31])
         xticklabels({'2022', '2032','2042','2052'}) 
-        ylabel(sprintf('Probability of exceeding 1,000 deaths per million'),'FontSize',6)
+        ylabel(sprintf('Probability of exceeding 1,000 deaths per million'),'FontSize',4,'FontWeight','bold')
         a = get(gca,'XTickLabel');
-        set(gca,'XTickLabel',a,'fontsize',6)        
+        set(gca,'XTickLabel',a,'fontsize',4)        
         aa = get(gca,'YTickLabel');
-        set(gca,'YTickLabel',aa,'fontsize',6)
-        AddLetters2Plots({pa, pb, pc, pd, pe},{'a','b','c','d', 'e'}, 'HShift', -0.06, 'VShift', -0.065, 'Direction', 'TopDown') 
+        set(gca,'YTickLabel',aa,'fontsize',4)
+        AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.06, 'VShift', -0.055, 'Direction', 'TopDown') 
 
         set(figure(2), 'Units', 'centimeters', 'Position', [20,10,12.95,12.95], 'PaperPositionMode','auto');
         exportgraphics(figure(2),'../Figures/Figure_medium_2.pdf','BackgroundColor','none','Resolution', 900)

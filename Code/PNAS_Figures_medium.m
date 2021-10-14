@@ -48,9 +48,9 @@ Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
         subplot((size(Influenza_UK,2)-1)/2+3,2,[b+2 b+5])
         rng(1001)
         Simulation = simulate_bpareto(1000000,Base_Model(1).alpha',Base_Model(1).dmax,Base_Model(1).dmin);
-        [ha,~,~] = shadedplot(1:size(Simulation(:,:,1),2), prctile([Simulation(:,:,1)],10), prctile([Simulation(:,:,1)],90), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
+        shadedplot(1:size(Simulation(:,:,1),2), prctile([Simulation(:,:,1)],10), prctile([Simulation(:,:,1)],90), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
         hold on
-        [hb,~,~] = shadedplot(1:size(Simulation(:,:,1),2), prctile([Simulation(:,:,1)],25), prctile([Simulation(:,:,1)],75), [0.9 0.9 0.9],[0.9 0.9 0.9]); 
+        shadedplot(1:size(Simulation(:,:,1),2), prctile([Simulation(:,:,1)],25), prctile([Simulation(:,:,1)],75), [0.9 0.9 0.9],[0.9 0.9 0.9]); 
 
         for b = 2:size(Influenza_UK,2)
            hold on
@@ -72,13 +72,9 @@ Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
         legend([hc(2:end)  he hd], 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield','Median (cities)', 'Median (model)','FontSize',4,'NumColumns',2)
         AddLetters2Plots(figure(1), {'a', 'c', 'e', 'g', 'i', 'k', 'b', 'd', 'f', 'h', 'j'}, 'HShift', -0.08, 'VShift', -0.055, 'Direction', 'TopDown')
 
-        set (figure(1), 'Units', 'centimeters', 'Position', [0.16,0,11,11]);
-        h = figure(1);
-        set(h,'Units','centimeters');
-        pos = get(h,'Position');
-        set(h,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)])
-        exportgraphics(h,'../Figures/Figure_medium_1.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(h,'../Figures/Figure_medium_1.emf','BackgroundColor','none','Resolution', 900)
+        set(figure(1), 'Units', 'centimeters', 'Position', [20,10,12.95,12.95],'PaperPositionMode','auto');
+        exportgraphics(figure(1),'../Figures/Figure_medium_1.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(figure(1),'../Figures/Figure_medium_1.emf','BackgroundColor','none','Resolution', 900)
 
 
 
@@ -169,10 +165,6 @@ figure(2)
         set(gca,'YTickLabel',aa,'fontsize',4)
         AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.06, 'VShift', -0.055, 'Direction', 'TopDown') 
 
-        set (figure(2), 'Units', 'centimeters', 'Position', [0.16,0,11,11]);
-        h = figure(2);
-        set(h,'Units','centimeters');
-        pos = get(h,'Position');
-        set(h,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)])
-        exportgraphics(h,'../Figures/Figure_medium_2.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(h,'../Figures/Figure_medium_2.emf','BackgroundColor','none','Resolution', 900)
+        set(figure(2), 'Units', 'centimeters', 'Position', [20,10,12.95,12.95], 'PaperPositionMode','auto');
+        exportgraphics(figure(2),'../Figures/Figure_medium_2.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(figure(2),'../Figures/Figure_medium_2.emf','BackgroundColor','none','Resolution', 900)

@@ -348,7 +348,7 @@ figure(1)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
      figure(11)
-        subplot(2,2,1)
+        subplot(3,2,1)
        [f, fx,bw] = ksdensity(exp(Parms(:,1)));
        plot(fx,f,'Color', 'black')
         for b=1:10
@@ -356,33 +356,36 @@ figure(1)
             plot(exp(Parms(b,1)),0.3, Markertypes{b},'Color', 'black')
         end
         ylabel('\lambda','FontSize',12,'FontWeight','bold')
-        subplot(2,2,2)
+        subplot(3,2,2)
         [f, fx,bw] =ksdensity(exp(Parms(:,2)));
         plot(fx,f,'Color', 'black')
         for b=1:10
             hold on
-           ha(b) = plot(exp(Parms(b,2)),0.0001, Markertypes{b},'Color', 'black')
+            plot(exp(Parms(b,2)),0.0001, Markertypes{b},'Color', 'black')
         end
         ylabel('\eta_{0}','FontSize',12,'FontWeight','bold')
-         legend(ha(:),{ 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield', 'US', 'England & Wales'})
-        subplot(2,2,3)
+        subplot(3,2,3)
         [f, fx,bw]=ksdensity((Parms(:,1)));
         plot(fx,f,'Color', 'black')
         for b=1:10
             hold on
-            plot((Parms(b,1)),0.05, Markertypes{b},'Color', 'black')
+           plot((Parms(b,1)),0.05, Markertypes{b},'Color', 'black')
         end
         ylabel('log(\lambda)','FontSize',12,'FontWeight','bold')
-        subplot(2,2,4)
+        pa = subplot(3,2,4)
         [f, fx,bw]=ksdensity((Parms(:,2)));
         plot(fx,f,'Color', 'black')
         for b=1:10
             hold on
-            plot((Parms(b,2)),0.01, Markertypes{b},'Color', 'black')
+            ha(b)=plot((Parms(b,2)),0.01, Markertypes{b},'Color', 'black')
         end
         ylabel('log(\eta_{0})','FontSize',12,'FontWeight','bold')
-       
-        set (figure(11), 'Units', 'normalized', 'Position', [0.16,0,0.66,0.6]);
+        subplot(3,2,[5 6])
+        axis off
+ 
+        legend(ha,{ 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield', 'US', 'England & Wales'},'FontSize',6,'NumColumns',4,'Orientation','horizontal')
+
+        set(figure(11), 'Units', 'centimeters', 'Position', [20,10,12.95,12.95],'PaperPositionMode','auto');
         h = figure(11);
         set(h,'Units','Inches');
         pos = get(h,'Position');

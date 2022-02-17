@@ -2,12 +2,11 @@ clear
 close all
 clc
 load("MC_save_v1.mat")
-% trueparms = [0.150617556415627,4.34207591955514];
-% for i=1:10000
-%     eta(i,:) =Estimate(i).eta_zero;
-%     lambda(i,:) =Estimate(i).lambda;
-% end
 
+i = 1;
+trueparms = Estimates(i,1:2);
+lambda = theta_hat(:,1,i);
+eta = theta_hat(:,2,i);
 
 figure(1)
 subplot(1,2,1)  

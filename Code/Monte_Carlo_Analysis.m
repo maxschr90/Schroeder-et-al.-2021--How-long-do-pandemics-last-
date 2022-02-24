@@ -5,9 +5,11 @@ load("MC_save_v1.mat")
 
 i = 1;
 trueparms = Estimates(i,1:2);
+ind = theta_hat(:,2,i)>0.99999999*max(theta_hat(:,2,i)) | theta_hat(:,1,i) ==0;
 lambda = theta_hat(:,1,i);
 eta = theta_hat(:,2,i);
-
+lambda(ind) = [];
+eta(ind) = [];
 figure(1)
 subplot(1,2,1)  
 hold on
@@ -32,7 +34,7 @@ legend('Kernel Density of Estimated Parameters', 'True Parameter', 'Mean of Esti
         set(h,'Units','Inches');
         pos = get(h,'Position');
         set(h,'PaperPositionMode','Auto','PaperUnits','Inches','PaperSize',[pos(3), pos(4)])
-        exportgraphics(h,'../Figures/Monte_Carlo_v1.pdf','BackgroundColor','none')
+        exportgraphics(h,'../Figures/Monte_Carlo_v1.eps','BackgroundColor','none')
 
 figure(2)
 subplot(1,2,1)  
@@ -59,7 +61,7 @@ legend('Kernel Density of Estimated Parameters', 'True Parameter', 'Mean of Esti
         set(h,'Units','Inches');
         pos = get(h,'Position');
         set(h,'PaperPositionMode','Auto','PaperUnits','Inches','PaperSize',[pos(3), pos(4)])
-        exportgraphics(h,'../Figures/Monte_Carlo_v2.pdf','BackgroundColor','none')
+        exportgraphics(h,'../Figures/Monte_Carlo_v2.eps','BackgroundColor','none')
 
 
 %% Test for Log Normality

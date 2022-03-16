@@ -1,5 +1,5 @@
 
-This repository contains the replication files for the paper mentioned in the title.
+This repository contains the replication files for "How do pandemics end? Two decades of recurrent outbreak risk following the main waves. Two Decades of Recurrent Outbreak Risk Following the Main Waves." by Schroeder, M., Lazarakis, S., Mancy, R., & Angelopoulos, K. (2021).
 
 The subfolder "Data" contains an excel file with the historical mortality data for the UK cities.
 The subfolder "Code" contains the MATLAB code used in the data analysis.

@@ -54,13 +54,15 @@ Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
         exportgraphics(h,'../Figures/Presentation_Figure_2.eps','BackgroundColor','none')
 
     figure(3)
-        ylim([0,max(Influenza_US(1,:))*1.05])
+        ylim([0,max(Influenza_RUS(1,1:79))*1.05])
         hold on
         plot(Influenza_RUS(2,:),Influenza_RUS(1,:), '-.o',  'Linewidth', 1., 'Color','black', 'Markersize', 3 )
+        area([1846.5,1849.5],[max(ylim), max(ylim)], 'FaceColor',[0.6 0.6 0.6])
+        area([1849.5,1869.5],[max(ylim), max(ylim)], 'FaceColor',[0.7 0.7 0.7])        
         area([1889.5,1892.5],[max(ylim), max(ylim)], 'FaceColor',[0.6 0.6 0.6])
-        area([1892.5,1910.5],[max(ylim), max(ylim)], 'FaceColor',[0.7 0.7 0.7])
+        area([1892.5,1915.5],[max(ylim), max(ylim)], 'FaceColor',[0.7 0.7 0.7])
         plot(Influenza_RUS(2,:),Influenza_RUS(1,:), '-.o',  'Linewidth', 1., 'Color','black', 'Markersize', 3 )
-        yticks([1000,round(max(Influenza_US(1,:)),0)])
+        yticks([250,round(max(Influenza_RUS(1,1:79)),0)])
         xlim([1838,1917])
         ylabel('Influenza (deaths/million)','FontSize',12,'FontWeight','bold')
         title('England & Wales','FontSize',18,'FontWeight','bold')

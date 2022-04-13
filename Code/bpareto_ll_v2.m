@@ -5,7 +5,7 @@ function ll = bpareto_ll_v2(y,x)
     ozero =y(2);
     lambda = y(1);
     t = [1:size(x,1)]'-1;
-    alpha = 1./(ozero*exp(-t*lambda));
+    alpha = 1./(exp(ozero)*exp(-t*lambda));
     dmax = y(3);
     dmin = y(4);
 %% Replace missing values & calculate likelihood

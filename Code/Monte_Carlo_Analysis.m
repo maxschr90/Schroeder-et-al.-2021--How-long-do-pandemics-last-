@@ -1,29 +1,26 @@
-% clear
+clear
 close all
 clc
-% load("MC_save_v3.mat")
+load("MC_save_v1.mat")
 
 
-i = 1;
+i = 11;
 trueparms = Estimates(i,1:2);
 dmin = Estimates (i,3);
 dmax = Estimates (i,4);
 
-ind =  theta_hat(:,2,i) ==10000;
+ind =  theta_hat(:,2,i) >34;
 lambda = theta_hat(:,1,i);
 eta = theta_hat(:,2,i);
 
 % lambda(ind) = [];
 % eta(ind) = [];
-alpha_true = 1./(trueparms(2)*exp(-trueparms(1)*[0:37]));
-alpha= 1./(eta.*exp(-lambda.*[0:37]));
-rng(1001) %% Seed
-Simulation = simulate_bpareto(100000,alpha_true, dmax, dmin);
+
 
 figure(1)
 subplot(1,2,1)  
 hold on
-ksdensity(lambda)
+ksdensity(lambda,'BoundaryCorrection','log')
 dims = get(gca,'ylim');
 line([trueparms(1),trueparms(1)],[dims],'Color','red','LineStyle','--')
 line([mean(lambda),mean(lambda)],[dims],'LineStyle','--')
@@ -31,7 +28,7 @@ line([median(lambda),median(lambda)],[dims],'LineStyle','-.')
 ylabel('\lambda')
 subplot(1,2,2)  
 hold on
-ksdensity(eta)
+ksdensity(eta,'BoundaryCorrection','log')
 dims = get(gca,'ylim');
 line([trueparms(2),trueparms(2)],[dims],'Color','red','LineStyle','--')
 line([mean(eta),mean(eta)],[dims],'LineStyle','--')

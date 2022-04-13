@@ -4,7 +4,7 @@ function ll = bpareto_ll(y,x,dmax,dmin)
     ozero = y(2);
     lambda = y(1);
     t = [1:size(x,1)]'-1;
-    alpha = 1./(ozero*exp(-t*lambda));
+    alpha = 1./(exp(ozero)*exp(-t*lambda));
 %% Replace missing values & calculate likelihood
     x(isnan(x))=pi;
     lik = (alpha.*dmin.^alpha.*x.^(-alpha-1))./(1-(dmin/dmax).^alpha);

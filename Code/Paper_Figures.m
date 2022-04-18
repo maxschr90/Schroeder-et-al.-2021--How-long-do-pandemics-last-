@@ -13,33 +13,52 @@ Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     figure(1)
     for b = 2:size(Influenza_UK,2)
-        subplot((size(Influenza_UK,2)-1)/2+1,2,b-1)
-        plot(years,Influenza_UK(:,b), '-.o',  'Linewidth', 1., 'Color','black', 'Markersize', 4 )
+        subplot(5,2,b-1)
+        plot(years,Influenza_UK(:,b), '-o',  'Linewidth', 0.5, 'Color','black', 'Markersize', 3 ,'MarkerEdgeColor','red')
         ylim([0,max(Influenza_UK(:,b))*1.05])
         yticks([1000,round(max(Influenza_UK(:,b)),0)])
-        xlim([1895,1956])
-        title(citynames(b),'FontSize',10,'FontWeight','bold');
+        xlim([1895,1950])
+        a = get(gca,'XTickLabel');
+        set(gca,'XTickLabel',a,'fontsize',8)        
+        aa = get(gca,'YTickLabel');
+        set(gca,'YTickLabel',aa,'fontsize',8) 
+        title(citynames(b),'FontSize',11,'FontWeight','bold');
+        box off
     end
-        subplot((size(Influenza_UK,2)-1)/2+1,2,b)
-        plot(Influenza_US(2,:),Influenza_US(1,:), '-.o',  'Linewidth', 1., 'Color','black', 'Markersize', 4 )
+        subplot(5,2,b)
+        plot(Influenza_US(2,:),Influenza_US(1,:), '-o',  'Linewidth', 0.5, 'Color','black', 'Markersize', 3  ,'MarkerEdgeColor','red')
         ylim([0,max(Influenza_US(1,:))*1.05])
         yticks([1000,round(max(Influenza_US(1,:)),0)])
-        xlim([1895,1956])
-        title('United States','FontSize',10,'FontWeight','bold')
-        subplot((size(Influenza_UK,2)-1)/2+1,2,b+1)
-        plot(Influenza_RUS(2,1:80),Influenza_RUS(1,1:80), '-.o',  'Linewidth', 1., 'Color','black', 'Markersize', 4 )
+        xlim([1895,1950])
+        a = get(gca,'XTickLabel');
+        set(gca,'XTickLabel',a,'fontsize',8)        
+        aa = get(gca,'YTickLabel');
+        set(gca,'YTickLabel',aa,'fontsize',8) 
+        title('United States','FontSize',11,'FontWeight','bold')
+        box off
+
+
+
+        subplot(5,2,b+1)
+        plot(Influenza_RUS(2,1:80),Influenza_RUS(1,1:80), '-o',  'Linewidth', 0.5, 'Color','black', 'Markersize',3  ,'MarkerEdgeColor','red')
         ylim([0,max(Influenza_RUS(1,1:80))*1.05])
         yticks([250,round(max(Influenza_RUS(1,1:80)),0)])
         xlim([1838,1917])
-        title('England & Wales','FontSize',10,'FontWeight','bold')
-        set (figure(1), 'Units', 'normalized', 'Position', [0.16,0,0.66,0.6]);
-        h = figure(1);
-        set(h,'Units','Inches');
-        pos = get(h,'Position');
-        set(h,'PaperPositionMode','Auto','PaperUnits','Inches','PaperSize',[pos(3), pos(4)])
-        exportgraphics(h,'../Figures/Figure_1.pdf','BackgroundColor','none')
-        exportgraphics(h,'../Figures/Figure_1.emf','BackgroundColor','none')
-        
+        xticks([1840:20:1900,1917])
+        a = get(gca,'XTickLabel');
+        set(gca,'XTickLabel',a,'fontsize',8)        
+        aa = get(gca,'YTickLabel');
+        set(gca,'YTickLabel',aa,'fontsize',8) 
+        title('England & Wales','FontSize',11,'FontWeight','bold')
+        box off
+        AddLetters2Plots(figure(1), {'a', 'c', 'e', 'g', 'i', 'b', 'd', 'f', 'h', 'j'}, 'HShift', -0.07, 'VShift', -0.035, 'Direction', 'TopDown','fontsize',8) 
+
+                    h = figure(1);
+            %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
+            h.Units='centimeters';
+            h.OuterPosition=[0 0 19 25];
+        exportgraphics(figure(1),'../Figures/Figure_1.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(figure(1),'../Figures/Figure_1.emf','BackgroundColor','none','Resolution', 900)        
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -100,7 +119,7 @@ figure(3)
             hd = plot(InvCdf_RUS_1848(3,:),'-', 'Linewidth', 1,'Color','black')
             hold on
             hf = plot((Influenza_RUS(1,12:52)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 4)
-            xlim([0,26])
+            xlim([0,41])
             ylim([0,max(max(InvCdf_RUS_1848(5,:),Influenza_RUS(1,12:52)))*1.05])
 
             xticks([1 6 11 16 21 26 31 36 41])
@@ -202,7 +221,7 @@ figure(6)
         end
             hold on
         plot(Influenza_US(2,21:end),bpareto_outbreakprob(Base_Model(n+1).alpha',Base_Model(n+1).dmax,Base_Model(n+1).dmin,1000), Linemarkertypes{n+1}, 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black' )
-        ylabel(sprintf('Probability of exceeding 1,000 deathsmillion'),'fontsize',8) 
+        ylabel(sprintf('Probability of exceeding 1,000 deaths/million'),'fontsize',8) 
          a = get(gca,'XTickLabel');
         set(gca,'XTickLabel',a,'fontsize',8)        
         aa = get(gca,'YTickLabel');

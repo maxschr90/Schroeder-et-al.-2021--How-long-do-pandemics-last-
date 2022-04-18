@@ -72,12 +72,12 @@ years = years(1:end);
     for n=1:11
         Parms(n,:) = [(Base_Model(n+1).lambda) (Base_Model(n+1).eta_zero)];
     end
-    [g1,g2] = meshgrid(linspace(0.9*min(Parms(:,1)),1.1*max(Parms(:,1)),1000),linspace(0.9*min(Parms(:,2)),1.1*max(Parms(:,2)),1000));
-    kdensity_estimate = mvksdensity(Parms,[g1(:),g2(:)],'Kernel','normal');
+    myu = mean(Parms)';
+    sig = cov(Parms);
     rng(1001)
-    randindexes = randsample(size(kdensity_estimate,1),1000000,true,kdensity_estimate);
-    Rand_Parms = [g1(randindexes),g2(randindexes)];
-
+    Rand_Parms = exp(mvnrnd(myu,sig,1000000));
+    Table_2 = table({'log(\lambda)','log(\eta_{0}'}',myu, sig, 'VariableNames',{'Parameter', 'Mean', 'Variance Covariance'});
+    writetable(Table_2,'../Figures/Table_3.xlsx')
 
 %%% 8. Model Summary Table
 % Base Model
@@ -157,7 +157,7 @@ years = years(1:end);
 
     %%% Save Results        
 
-    save('Fitted_Models_v1')
+    save('Fitted_Models_v2')
 
 
 

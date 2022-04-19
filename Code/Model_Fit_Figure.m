@@ -10,7 +10,7 @@ subplot(2,2,1)
             ylim([0,max(InvCdf(5,:)*1.05)])
             xticks([1 6 11 16 21 26 31 36])
             xticklabels({'1920','1925', '1930','1935','1940','1945','1950','1955'}) 
-            yticks((round(max(Influenza_UK(26:end,7)),0)))
+            yticks([(round(max(Influenza_UK(26:end,7)),0)),round(max(InvCdf(5,:)))])
             ax = gca;
             c = ax.FontSize;
             ax.FontSize =8;
@@ -29,7 +29,7 @@ subplot(2,2,2)
             ylim([0,max(InvCdf(5,:)*1.05)])
             xticks([1 6 11 16 21 26 31 36])
             xticklabels({'1920','1925', '1930','1935','1940','1945','1950','1955'}) 
-            yticks((round(max(Influenza_UK(26:end,5)),0)))
+            yticks([(round(max(Influenza_UK(26:end,5)),0)),round(max(InvCdf(5,:)))])
             ax = gca;
             c = ax.FontSize;
             ax.FontSize =8;
@@ -50,12 +50,12 @@ subplot(2,2,3)
 
             xticks([1 6 11 16 21 26 31 36])
             xticklabels({'1920','1925', '1930','1935','1940','1945','1950','1955'}) 
-            yticks(round(max(Influenza_US(1,21:end)),0))
+            yticks([round(max(Influenza_US(1,21:end)),0),round(max(InvCdf_US(5,:)))])
             ax = gca;
             c = ax.FontSize;
             ax.FontSize =8;
             ax.XTickLabelRotation = 0;
-            title('US','FontSize',11)
+            title('United States','FontSize',11)
             box off
 
 subplot(2,2,4)
@@ -71,7 +71,7 @@ subplot(2,2,4)
 
             xticks([1 6 11 16 21 26 31 36 41])
             xticklabels({'1849','1854', '1859','1864','1869','1874','1879','1884','1889'}) 
-            yticks(round(max(Influenza_RUS(1,55:80)),0))
+            yticks([round(max(Influenza_RUS(1,12:52)),0),round(max(InvCdf_RUS_1848(5,:)))])
             ax = gca;
             c = ax.FontSize;
             ax.FontSize =8;
@@ -82,12 +82,6 @@ subplot(2,2,4)
             h = figure(3);
             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
             h.Units='centimeters';
-            h.OuterPosition=[0 0 19 19];
-            
-            %set(h,'Units','centimeters');
-            %pos = get(h,'Position');
-            %set(h,'PaperPositionMode','Auto','Units','centimeters','PaperSize',[pos(3), pos(4)])
-            % saveas(h,'../Figures/Figure_3.emf')
-             % saveas(h,'../Figures/Figure_3.pdf')
-            exportgraphics(h,'../Figures/Figure_3.pdf','BackgroundColor','none')
-            exportgraphics(h,'../Figures/Figure_3.emf','BackgroundColor','none')
+            h.OuterPosition=[0 0 19 25];
+        exportgraphics(h,'../Figures/Figure_3.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(h,'../Figures/Figure_3.emf','BackgroundColor','none','Resolution', 900)   

@@ -2,13 +2,13 @@
 clear
 close all
 clc
-load("MC_save_v1.mat")
+load("MC_save_v2.mat")
 close all
 
 figure(1)
 subplot(2,2,1)    
-    C = theta_hat(:,:,2);
-    trueparms = Estimates(2,1:2);
+    C = theta_hat(:,:,6);
+    trueparms = Estimates(6,1:2);
     [~, xi]= ksdensity(C(:,1));
     [~, yi]= ksdensity(C(:,2));
     [x1,x2] = meshgrid([linspace(0.0,0.2,50)],[linspace(0.5,7,50)]);
@@ -24,8 +24,8 @@ ylabel('\eta_{0}')
 xlabel('\lambda')
 
 subplot(2,2,2)    
-    C = theta_hat(:,:,1);
-    trueparms = Estimates(1,1:2);
+    C = theta_hat(:,:,4);
+    trueparms = Estimates(4,1:2);
     [~, xi]= ksdensity(C(:,1));
     [~, yi]= ksdensity(C(:,2));
     [x1,x2] = meshgrid([linspace(0.02,0.2,50)],[linspace(0.5,6.5,50)]);
@@ -41,8 +41,8 @@ ylabel('\eta_{0}')
 xlabel('\lambda')
 
 subplot(2,2,3)    
-    C = theta_hat(:,:,3);
-    trueparms = Estimates(3,1:2);
+    C = theta_hat(:,:,9);
+    trueparms = Estimates(9,1:2);
     [~, xi]= ksdensity(C(:,1));
     [~, yi]= ksdensity(C(:,2));
     [x1,x2] = meshgrid([linspace(0.075,0.45,50)],[linspace(3.5,12,50)]);
@@ -58,8 +58,8 @@ ylabel('\eta_{0}')
 xlabel('\lambda')
 
 subplot(2,2,4)    
-    C = theta_hat(:,:,4);
-    trueparms = Estimates(4,1:2);
+    C = theta_hat(:,:,10);
+    trueparms = Estimates(10,1:2);
     [~, xi]= ksdensity(C(:,1));
     [~, yi]= ksdensity(C(:,2));
     [x1,x2] = meshgrid([linspace(0,0.15,50)],[linspace(0.5,4,50)]);

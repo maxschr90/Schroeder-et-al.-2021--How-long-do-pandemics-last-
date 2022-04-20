@@ -1,4 +1,4 @@
-figure(3)
+figure(2)
 subplot(2,2,1)
             InvCdf = bpareto_invcdf(0.01*[10, 25, 50, 75, 90]',Base_Model(7).alpha',Base_Model(7).dmax,Base_Model(7).dmin);
             [ha,~,~] = shadedplot(1:size(InvCdf,2), InvCdf(1,:), InvCdf(5,:), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
@@ -79,7 +79,7 @@ subplot(2,2,4)
             title('England & Wales 1847-48','FontSize',11)
             box off
             
-            h = figure(3);
+            h = figure(2);
             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
             h.Units='centimeters';
             h.OuterPosition=[0 0 19 25];

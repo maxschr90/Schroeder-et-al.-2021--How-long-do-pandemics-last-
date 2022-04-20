@@ -4,7 +4,7 @@
 clear
 clc
 close all
-load('Fitted_Models_v2')
+load('Fitted_Models_v1')
 Linemarkertypes = {'-p','-x','-h','-s','-d','-*','-v','-^','-+','-o'};
 Markertypes = {'p','x','h','s','d','*','v','^','+','o','>'};
 

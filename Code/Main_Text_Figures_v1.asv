@@ -83,7 +83,7 @@ colorbar
 hold on
 plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',5)
 plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',5)
-title({'London','1918-19'},'FontSize',11,'FontWeight','bold')
+title({'London','1918-19'},'FontSize',9,'FontWeight','bold')
 ylabel('\eta_{0}')
 xlabel('\lambda')
 box off
@@ -102,7 +102,7 @@ colorbar
 hold on
 plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',5)
 plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',5)
-title({'Glasgow','1918-19'},'FontSize',11,'FontWeight','bold')
+title({'Glasgow','1918-19'},'FontSize',9,'FontWeight','bold')
 % ylabel('\eta_{0}')
 xlabel('\lambda')
 box off
@@ -122,7 +122,7 @@ colorbar
 hold on
 plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',5)
 plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',5)
-title({'United States','1918-19'},'FontSize',11,'FontWeight','bold')
+title({'United States','1918-19'},'FontSize',9,'FontWeight','bold')
 ylabel('\eta_{0}')
 xlabel('\lambda')
 box off
@@ -142,7 +142,7 @@ colorbar
 hold on
 ha=plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',5)
 hb=plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',5)
-title({'England & Wales', '1847- 48'},'FontSize',11,'FontWeight','bold')
+title({'England & Wales', '1847- 48'},'FontSize',9,'FontWeight','bold')
 % legend([ha,hb],'True Parameter',  'Median of Estimates')
 % ylabel('\eta_{0}')
 xlabel('\lambda')
@@ -155,7 +155,7 @@ h = figure(2);
             h.Units='centimeters';
             h.OuterPosition=[0 0 19 18];
         exportgraphics(h,'../Figures/Figure_2_v1.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(h,'../Figures/Figure_2.emf','BackgroundColor','none','Resolution', 900)   
+        exportgraphics(h,'../Figures/Figure_2_v1.emf','BackgroundColor','none','Resolution', 900)   
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -178,7 +178,7 @@ pa=subplot(2,2,1)
             c = ax.FontSize;
             ax.FontSize =8;
             ax.XTickLabelRotation = 0;
-            title({'London','1918-19'},'FontSize',11,'FontWeight','bold')
+            title({'London','1918-19'},'FontSize',9,'FontWeight','bold')
             box off
 
 pb=subplot(2,2,2)
@@ -197,7 +197,7 @@ pb=subplot(2,2,2)
             c = ax.FontSize;
             ax.FontSize =8;
             ax.XTickLabelRotation = 0;
-            title({'Glasgow','1918-19'},'FontSize',11,'FontWeight','bold')
+            title({'Glasgow','1918-19'},'FontSize',9,'FontWeight','bold')
             box off
 pc=subplot(2,2,3)
 
@@ -218,7 +218,7 @@ pc=subplot(2,2,3)
             c = ax.FontSize;
             ax.FontSize =8;
             ax.XTickLabelRotation = 0;
-            title({'United States','1918-19'},'FontSize',11,'FontWeight','bold')
+            title({'United States','1918-19'},'FontSize',9,'FontWeight','bold')
             box off
 
 pd=subplot(2,2,4)
@@ -239,7 +239,7 @@ pd=subplot(2,2,4)
             c = ax.FontSize;
             ax.FontSize =8;
             ax.XTickLabelRotation = 0;
-            title({'England & Wales', '1847- 48'},'FontSize',11,'FontWeight','bold')
+            title({'England & Wales', '1847- 48'},'FontSize',9,'FontWeight','bold')
             box off
             
             AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.05, 'VShift', -0.03, 'Direction', 'TopDown') 
@@ -248,8 +248,8 @@ pd=subplot(2,2,4)
             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
             h.Units='centimeters';
             h.OuterPosition=[0 0 19 18];
-        exportgraphics(h,'../Figures/Figure_3.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(h,'../Figures/Figure_3.emf','BackgroundColor','none','Resolution', 900)   
+        exportgraphics(h,'../Figures/Figure_3_v1.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(h,'../Figures/Figure_3_v1.emf','BackgroundColor','none','Resolution', 900)   
         
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 4  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -264,7 +264,7 @@ figure(4)
         end
             hold on
         plot(Influenza_US(2,21:end),bpareto_outbreakprob(Base_Model(n+1).alpha',Base_Model(n+1).dmax,Base_Model(n+1).dmin,500),  Linemarkertypes{n+1}, 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-        ylabel(sprintf('Probability of exceeding 500 deaths/million'),'fontsize',8) 
+        ylabel(sprintf('Prob(>500 deaths/million)'),'fontsize',8) 
         leg = legend({ 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield', 'US'},'FontSize',8, 'Location','best', 'NumColumns',1);
 %         leg.ItemTokenSize = [3,1.5];
         legend boxoff
@@ -273,6 +273,7 @@ figure(4)
         xticklabels({'1920','1925', '1930','1935','1940','1945','1950','1955'})
         xtickangle(0)
         yticks([0:0.05:0.4])
+        ylim([0,0.4])
         yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4'})
         a = get(gca,'XTickLabel');
         set(gca,'XTickLabel',a,'fontsize',8)        
@@ -290,7 +291,7 @@ figure(4)
         end
             hold on
         plot(Influenza_US(2,21:end),bpareto_outbreakprob(Base_Model(n+1).alpha',Base_Model(n+1).dmax,Base_Model(n+1).dmin,1000), Linemarkertypes{n+1}, 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black' )
-        ylabel(sprintf('Probability of exceeding 1,000 deaths/million'),'fontsize',8) 
+        ylabel(sprintf('Prob(>1,000 deaths/million)'),'fontsize',8) 
          a = get(gca,'XTickLabel');
         set(gca,'XTickLabel',a,'fontsize',8)        
         aa = get(gca,'YTickLabel');
@@ -300,6 +301,7 @@ figure(4)
         xticklabels({'1920','1925', '1930','1935','1940','1945','1950','1955'})
         xtickangle(0)
         yticks([0:0.05:0.4])
+        ylim([0,0.4])
         yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4'})
 
         pc = subplot(2,4,[5 6])
@@ -308,7 +310,7 @@ figure(4)
         plot(Influenza_RUS(2,12:52),bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,200), '-o', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
         hold on
         plot(Influenza_RUS(2,12:52),bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,300), '-d', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
-        leg=legend('100 deaths/million', '200 deaths/million', '300 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
+        leg=legend('   100 deaths/million', '   200 deaths/million', '   300 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
         legend boxoff
         title(leg,'England & Wales (1847-48)','FontSize',8);
         box off
@@ -323,6 +325,7 @@ figure(4)
         xticklabels({'1849','1854', '1859','1864','1869','1874','1879','1884','1889'}) 
         xtickangle(0)
         yticks([0:0.05:0.4])
+        ylim([0,0.4])
         yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4'})
 
         pd = subplot(2,4,[7 8])
@@ -331,7 +334,7 @@ figure(4)
         plot(Influenza_RUS(2,55:80),bpareto_outbreakprob(Base_Model(12).alpha',Base_Model(12).dmax,Base_Model(12).dmin,400), '-o', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
         hold on
         plot(Influenza_RUS(2,55:80),bpareto_outbreakprob(Base_Model(12).alpha',Base_Model(12).dmax,Base_Model(12).dmin,500), '-d', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
-        leg=legend('300 deaths/million', '400 deaths/million', '500 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
+        leg=legend('   300 deaths/million', '   400 deaths/million', '   500 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
         legend boxoff
         title(leg,{'England & Wales (1889-90)'},'FontSize',8);
         box off
@@ -347,6 +350,7 @@ figure(4)
         xtickangle(0)
 
         yticks([0:0.05:0.4])
+        ylim([0,0.4])
         yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4'})
 
         AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.05, 'VShift', -0.03, 'Direction', 'TopDown') 
@@ -355,9 +359,9 @@ figure(4)
             h = figure(4);
             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
             h.Units='centimeters';
-            h.OuterPosition=[0 0 19 25];
-        exportgraphics(h,'../Figures/Figure_4.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(h,'../Figures/Figure_4.emf','BackgroundColor','none','Resolution', 900)   
+            h.OuterPosition=[0 0 19 22.5];
+        exportgraphics(h,'../Figures/Figure_4_v1.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(h,'../Figures/Figure_4_v1.emf','BackgroundColor','none','Resolution', 900)   
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 5  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -372,6 +376,7 @@ parfor i=1:size(Rand_Parms,1)
 end
     Covid_Sim(:,:,1) =temp_1;
     Covid_Sim(:,:,2) =temp_2;
+
     figure(5)
         pa=subplot(1,2,1)
          hold on
@@ -384,7 +389,7 @@ end
         xticklabels({'2022','2027', '2032','2037','2042','2047','2052'}) 
         xtickangle(0)
         box off
-        ylabel(sprintf('Probability of mortality rate exceeding 500 per million'))
+        ylabel(sprintf('Prob(>500 deaths/million)'))
         a = get(gca,'XTickLabel');
         set(gca,'XTickLabel',a,'fontsize',8)        
         aa = get(gca,'YTickLabel');
@@ -401,17 +406,17 @@ end
         xticklabels({'2022','2027', '2032','2037','2042','2047','2052'}) 
         xtickangle(0)
         box off
-        ylabel(sprintf('Probability of mortality rate exceeding 1,000 per million'))
+        ylabel(sprintf('Prob(>1,000 deaths/million)'))
         a = get(gca,'XTickLabel');
         set(gca,'XTickLabel',a,'fontsize',8)        
         aa = get(gca,'YTickLabel');
         set(gca,'YTickLabel',aa,'fontsize',8) 
-        AddLetters2Plots({pa, pb},{'a','b'}, 'HShift', -0.075, 'VShift', -0.035, 'Direction', 'TopDown') 
+        AddLetters2Plots({pa, pb},{'a','b'}, 'HShift', -0.075, 'VShift', -0.075, 'Direction', 'TopDown') 
 
             
             h = figure(5);
             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
             h.Units='centimeters';
-            h.OuterPosition=[0 0 19 12.5];
-        exportgraphics(h,'../Figures/Figure_5.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(h,'../Figures/Figure_5.emf','BackgroundColor','none','Resolution', 900)   
+            h.OuterPosition=[0 0 19 8];
+        exportgraphics(h,'../Figures/Figure_5_v1.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(h,'../Figures/Figure_5_v1.emf','BackgroundColor','none','Resolution', 900)   

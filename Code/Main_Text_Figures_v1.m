@@ -22,7 +22,7 @@ Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
         set(gca,'XTickLabel',a,'fontsize',8)        
         aa = get(gca,'YTickLabel');
         set(gca,'YTickLabel',aa,'fontsize',8) 
-        title(citynames(b),'FontSize',11,'FontWeight','bold');
+        title(citynames(b),'FontSize',8,'FontWeight','bold');
         box off
     end
         subplot(5,2,b)
@@ -34,7 +34,7 @@ Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
         set(gca,'XTickLabel',a,'fontsize',8)        
         aa = get(gca,'YTickLabel');
         set(gca,'YTickLabel',aa,'fontsize',8) 
-        title('United States','FontSize',11,'FontWeight','bold')
+        title('United States','FontSize',8,'FontWeight','bold')
         box off
 
 
@@ -49,16 +49,16 @@ Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
         set(gca,'XTickLabel',a,'fontsize',8)        
         aa = get(gca,'YTickLabel');
         set(gca,'YTickLabel',aa,'fontsize',8) 
-        title('England & Wales','FontSize',11,'FontWeight','bold')
+        title('England & Wales','FontSize',8,'FontWeight','bold')
         box off
-        AddLetters2Plots(figure(1), {'a', 'c', 'e', 'g', 'i', 'b', 'd', 'f', 'h', 'j'}, 'HShift', -0.07, 'VShift', -0.035, 'Direction', 'TopDown','fontsize',8) 
+        AddLetters2Plots(figure(1), {'a', 'c', 'e', 'g', 'i', 'b', 'd', 'f', 'h', 'j'}, 'HShift', -0.07, 'VShift', -0.075, 'Direction', 'TopDown','fontsize',8) 
 
                     h = figure(1);
             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
             h.Units='centimeters';
-            h.OuterPosition=[0 0 19 21];
-        exportgraphics(figure(1),'../Figures/Figure_1_v1.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(figure(1),'../Figures/Figure_1_v1.emf','BackgroundColor','none','Resolution', 900)        
+            h.OuterPosition=[0 0 14 15];
+        exportgraphics(figure(1),'../Figures/Figure_1.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(figure(1),'../Figures/Figure_1.emf','BackgroundColor','none','Resolution', 900)        
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,7 +69,7 @@ Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
 load("MC_save_v2.mat")
 
 figure(2)
-pa=subplot(2,2,1)    
+pa=subplot(2,3,1)    
     C = theta_hat(:,:,6);
     trueparms = Estimates(6,1:2);
     [~, xi]= ksdensity(C(:,1));
@@ -78,17 +78,17 @@ pa=subplot(2,2,1)
     [A,B]=ksdensity(C,[x1(:) x2(:)]);
 
 contour(x1,x2,reshape(A,[size(x1,1)],[]),'ShowText','off')
-colormap("parula")
-colorbar
+colormap("jet")
+% colorbar
 hold on
-plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',5)
-plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',5)
-title({'London','1918-19'},'FontSize',9,'FontWeight','bold')
+plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',6)
+plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',6)
+title({'London','1918-19'},'FontSize',8,'FontWeight','bold')
 ylabel('\eta_{0}')
-xlabel('\lambda')
+% xlabel('\lambda')
 box off
 
-pb=subplot(2,2,2)    
+pb=subplot(2,3,2)    
     C = theta_hat(:,:,4);
     trueparms = Estimates(4,1:2);
     [~, xi]= ksdensity(C(:,1));
@@ -97,17 +97,37 @@ pb=subplot(2,2,2)
     [A,B]=ksdensity(C,[x1(:) x2(:)]);
 
 contour(x1,x2,reshape(A,[size(x1,1)],[]),'ShowText','off')
-colormap("parula")
-colorbar
+colormap("jet")
+% colorbar
 hold on
-plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',5)
-plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',5)
-title({'Glasgow','1918-19'},'FontSize',9,'FontWeight','bold')
+plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',6)
+plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',6)
+title({'Glasgow','1918-19'},'FontSize',8,'FontWeight','bold')
 % ylabel('\eta_{0}')
-xlabel('\lambda')
+% xlabel('\lambda')
 box off
 
-pc=subplot(2,2,3)    
+pc=subplot(2,3,3)    
+    C = theta_hat(:,:,5);
+    trueparms = Estimates(5,1:2);
+    [~, xi]= ksdensity(C(:,1));
+    [~, yi]= ksdensity(C(:,2));
+    [x1,x2] = meshgrid([linspace(0.,0.6,50)],[linspace(0,17.5,50)]);
+    [A,B]=ksdensity(C,[x1(:) x2(:)]);
+
+contour(x1,x2,reshape(A,[size(x1,1)],[]),'ShowText','off')
+colormap("jet")
+
+% colorbar
+hold on
+plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',6)
+plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',6)
+title({'Liverpool','1918-19'},'FontSize',8,'FontWeight','bold')
+% ylabel('\eta_{0}')
+% xlabel('\lambda')
+box off
+
+pd=subplot(2,3,4)    
     C = theta_hat(:,:,9);
     trueparms = Estimates(9,1:2);
     [~, xi]= ksdensity(C(:,1));
@@ -116,18 +136,18 @@ pc=subplot(2,2,3)
     [A,B]=ksdensity(C,[x1(:) x2(:)]);
 
 contour(x1,x2,reshape(A,[size(x1,1)],[]),'ShowText','off')
-colormap("parula")
+colormap("jet")
 
-colorbar
+% colorbar
 hold on
-plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',5)
-plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',5)
-title({'United States','1918-19'},'FontSize',9,'FontWeight','bold')
+plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',6)
+plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',6)
+title({'United States','1918-19'},'FontSize',8,'FontWeight','bold')
 ylabel('\eta_{0}')
 xlabel('\lambda')
 box off
 
-pd=subplot(2,2,4)    
+pe=subplot(2,3,5)    
     C = theta_hat(:,:,10);
     trueparms = Estimates(10,1:2);
     [~, xi]= ksdensity(C(:,1));
@@ -136,125 +156,191 @@ pd=subplot(2,2,4)
     [A,B]=ksdensity(C,[x1(:) x2(:)]);
 
 contour(x1,x2,reshape(A,[size(x1,1)],[]),'ShowText','off')
-colormap("parula")
+colormap("jet")
 
-colorbar
+% colorbar
 hold on
-ha=plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',5)
-hb=plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',5)
-title({'England & Wales', '1847- 48'},'FontSize',9,'FontWeight','bold')
+ha=plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',6)
+hb=plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',6)
+title({'England & Wales', '1847-48'},'FontSize',8,'FontWeight','bold')
 % legend([ha,hb],'True Parameter',  'Median of Estimates')
 % ylabel('\eta_{0}')
 xlabel('\lambda')
 box off
 
-AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.05, 'VShift', -0.03, 'Direction', 'TopDown') 
+pf=subplot(2,3,6)    
+    C = theta_hat(:,:,11);
+    trueparms = Estimates(11,1:2);
+    [~, xi]= ksdensity(C(:,1));
+    [~, yi]= ksdensity(C(:,2));
+    [x1,x2] = meshgrid([linspace(0,0.23,50)],[linspace(0.,6,50)]);
+    [A,B]=ksdensity(C,[x1(:) x2(:)]);
+
+contour(x1,x2,reshape(A,[size(x1,1)],[]),'ShowText','off')
+colormap("jet")
+
+% colorbar
+hold on
+ha=plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',6)
+hb=plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',6)
+title({'England & Wales', '1889-90'},'FontSize',8,'FontWeight','bold')
+% legend([ha,hb],'True Parameter',  'Median of Estimates')
+% ylabel('\eta_{0}')
+xlabel('\lambda')
+box off
+
+
+AddLetters2Plots({pa, pb, pc, pd, pe, pf},{'a','b','c','d','e','f'}, 'HShift', -0.05, 'VShift', -0.03, 'Direction', 'TopDown') 
            
 h = figure(2);
             %set (h, 'Units','centimeters', 'Positioff', [0 0 14.5 14.5]);
             h.Units='centimeters';
-            h.OuterPosition=[0 0 19 18];
-        exportgraphics(h,'../Figures/Figure_2_v1.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(h,'../Figures/Figure_2_v1.emf','BackgroundColor','none','Resolution', 900)   
+            h.OuterPosition=[0 0 19 10];
+        exportgraphics(h,'../Figures/Figure_2.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(h,'../Figures/Figure_2.emf','BackgroundColor','none','Resolution', 900)   
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure(3)
-pa=subplot(2,2,1)
+pa=subplot(2,3,1)
             InvCdf = bpareto_invcdf(0.01*[10, 25, 50, 75, 90]',Base_Model(7).alpha',Base_Model(7).dmax,Base_Model(7).dmin);
             [ha,~,~] = shadedplot(1:size(InvCdf,2), InvCdf(1,:), InvCdf(5,:), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
             hold on
             [ha,~,~] = shadedplot(1:size(InvCdf,2), InvCdf(2,:), InvCdf(4,:), [0.9 0.9 0.9],[0.9 0.9 0.9]); 
             hold on
-            hf = plot((Influenza_UK(26:end,7)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 4.5 )
+            plot(InvCdf(3,:),'Color','black')
+            hf = plot((Influenza_UK(26:end,7)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 3 )
             xlim([0,37])
             ylim([0,max(InvCdf(5,:)*1.05)])
-            xticks([1 6 11 16 21 26 31 36])
-            xticklabels({'1920','1925', '1930','1935','1940','1945','1950','1955'}) 
+            xticks([1 11 21 31])
+            xticklabels({'1920', '1930','1940','1950'}) 
             yticks([0,(round(max(Influenza_UK(26:end,7)),0)),round(max(InvCdf(5,:)))])
             ax = gca;
             c = ax.FontSize;
             ax.FontSize =8;
             ax.XTickLabelRotation = 0;
-            title({'London','1918-19'},'FontSize',9,'FontWeight','bold')
+            title({'London','1918-19'},'FontSize',8,'FontWeight','bold')
             box off
 
-pb=subplot(2,2,2)
+pb=subplot(2,3,2)
             InvCdf = bpareto_invcdf(0.01*[10, 25, 50, 75, 90]',Base_Model(5).alpha',Base_Model(5).dmax,Base_Model(5).dmin);
             [ha,~,~] = shadedplot(1:size(InvCdf,2), InvCdf(1,:), InvCdf(5,:), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
             hold on
             [ha,~,~] = shadedplot(1:size(InvCdf,2), InvCdf(2,:), InvCdf(4,:), [0.9 0.9 0.9],[0.9 0.9 0.9]); 
             hold on
-            hf = plot((Influenza_UK(26:end,5)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 4.5 )
+            plot(InvCdf(3,:),'Color','black')
+            hf = plot((Influenza_UK(26:end,5)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 3 )
             xlim([0,37])
             ylim([0,max(InvCdf(5,:)*1.05)])
-            xticks([1 6 11 16 21 26 31 36])
-            xticklabels({'1920','1925', '1930','1935','1940','1945','1950','1955'}) 
+            xticks([1 11 21 31])
+            xticklabels({'1920', '1930','1940','1950'}) 
             yticks([0,(round(max(Influenza_UK(26:end,5)),0)),round(max(InvCdf(5,:)))])
             ax = gca;
             c = ax.FontSize;
             ax.FontSize =8;
             ax.XTickLabelRotation = 0;
-            title({'Glasgow','1918-19'},'FontSize',9,'FontWeight','bold')
+            title({'Glasgow','1918-19'},'FontSize',8,'FontWeight','bold')
             box off
-pc=subplot(2,2,3)
+
+pc=subplot(2,3,3)
+            InvCdf = bpareto_invcdf(0.01*[10, 25, 50, 75, 90]',Base_Model(6).alpha',Base_Model(6).dmax,Base_Model(6).dmin);
+            [ha,~,~] = shadedplot(1:size(InvCdf,2), InvCdf(1,:), InvCdf(5,:), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
+            hold on
+            [ha,~,~] = shadedplot(1:size(InvCdf,2), InvCdf(2,:), InvCdf(4,:), [0.9 0.9 0.9],[0.9 0.9 0.9]); 
+            hold on
+            plot(InvCdf(3,:),'Color','black')
+            hf = plot((Influenza_UK(26:end,6)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 3 )
+            xlim([0,37])
+            ylim([0,max(InvCdf(5,:)*1.05)])
+            xticks([1 11 21 31])
+            xticklabels({'1920', '1930','1940','1950'}) 
+            yticks([0,(round(max(Influenza_UK(26:end,6)),0)),round(max(InvCdf(5,:)))])
+            ax = gca;
+            c = ax.FontSize;
+            ax.FontSize =8;
+            ax.XTickLabelRotation = 0;
+            title({'Liverpool','1918-19'},'FontSize',8,'FontWeight','bold')
+            box off
+
+pd=subplot(2,3,4)
 
             InvCdf_US(:,:) = bpareto_invcdf(0.01*[10, 25, 50, 75, 90]',Base_Model(10).alpha',Base_Model(10).dmax,Base_Model(10).dmin);
             [ha,~,~] = shadedplot(1:size(InvCdf_US,2), InvCdf_US(1,:), InvCdf_US(5,:), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
             hold on
             [ha,~,~] = shadedplot(1:size(InvCdf_US,2), InvCdf_US(2,:), InvCdf_US(4,:), [0.9 0.9 0.9],[0.9 0.9 0.9]); 
             hold on
+            plot(InvCdf_US(3,:),'Color','black')
 
-            hf = plot((Influenza_US(1,21:end)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 4.5)
+            hf = plot((Influenza_US(1,21:end)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize',3)
             xlim([0,37])
             ylim([0,max(InvCdf_US(5,:)*1.05)])
-
-            xticks([1 6 11 16 21 26 31 36])
-            xticklabels({'1920','1925', '1930','1935','1940','1945','1950','1955'}) 
+            xticks([1 11 21 31])
+            xticklabels({'1920', '1930','1940','1950'}) 
             yticks([0,round(max(Influenza_US(1,21:end)),0),round(max(InvCdf_US(5,:)))])
             ax = gca;
             c = ax.FontSize;
             ax.FontSize =8;
             ax.XTickLabelRotation = 0;
-            title({'United States','1918-19'},'FontSize',9,'FontWeight','bold')
+            title({'United States','1918-19'},'FontSize',8,'FontWeight','bold')
             box off
 
-pd=subplot(2,2,4)
+pe=subplot(2,3,5)
             InvCdf_RUS_1848(:,:) = bpareto_invcdf(0.01*[10, 25, 50, 75, 90]',Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin);
             [ha,~,~] = shadedplot(1:size(InvCdf_RUS_1848,2), InvCdf_RUS_1848(1,:), InvCdf_RUS_1848(5,:), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
             hold on
             [ha,~,~] = shadedplot(1:size(InvCdf_RUS_1848,2), InvCdf_RUS_1848(2,:), InvCdf_RUS_1848(4,:), [0.9 0.9 0.9],[0.9 0.9 0.9]); 
             hold on
+            plot(InvCdf_RUS_1848(3,:),'Color','black')
  
-            hf = plot((Influenza_RUS(1,12:52)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 4.5)
+            hf = plot((Influenza_RUS(1,12:52)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize',3)
             xlim([0,41])
             ylim([0,max(max(InvCdf_RUS_1848(5,:),Influenza_RUS(1,12:52)))*1.05])
 
-            xticks([1 6 11 16 21 26 31 36 41])
-            xticklabels({'1849','1854', '1859','1864','1869','1874','1879','1884','1889'}) 
+            xticks([1 11 21 31 41])
+            xticklabels({'1849', '1859','1869','1879','1889'}) 
             yticks([0,round(max(Influenza_RUS(1,12:52)),0),round(max(InvCdf_RUS_1848(5,:)))])
             ax = gca;
             c = ax.FontSize;
             ax.FontSize =8;
             ax.XTickLabelRotation = 0;
-            title({'England & Wales', '1847- 48'},'FontSize',9,'FontWeight','bold')
+            title({'England & Wales', '1847-48'},'FontSize',8,'FontWeight','bold')
             box off
-            
-            AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.05, 'VShift', -0.03, 'Direction', 'TopDown') 
+
+pf=subplot(2,3,6)
+            InvCdf_RUS_1890(:,:) = bpareto_invcdf(0.01*[10, 25, 50, 75, 90]',Base_Model(12).alpha',Base_Model(12).dmax,Base_Model(12).dmin);
+            [ha,~,~] = shadedplot(1:size(InvCdf_RUS_1890,2), InvCdf_RUS_1890(1,:), InvCdf_RUS_1890(5,:), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
+            hold on
+            [ha,~,~] = shadedplot(1:size(InvCdf_RUS_1890,2), InvCdf_RUS_1890(2,:), InvCdf_RUS_1890(4,:), [0.9 0.9 0.9],[0.9 0.9 0.9]); 
+            hold on
+            plot(InvCdf_RUS_1890(3,:),'Color','black')
+
+            hf = plot((Influenza_RUS(1,55:80)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 3)
+            xlim([0,26])
+            ylim([0,max(max(InvCdf_RUS_1890(5,:),Influenza_RUS(1,55:80)))*1.05])
+
+            xticks([1 6 11 16 21 26])
+            xticklabels({'1892','1897', '1902','1907','1912','1917'}) 
+            yticks([0,round(max(InvCdf_RUS_1890(5,:))),round(max(Influenza_RUS(1,55:80)),0)])
+            ax = gca;
+            c = ax.FontSize;
+            ax.FontSize =8;
+            ax.XTickLabelRotation = 0;
+            title({'England & Wales', '1889-90'},'FontSize',8,'FontWeight','bold')
+            box off            
+            AddLetters2Plots({pa, pb, pc, pd, pe, pf},{'a','b','c','d','e','f'}, 'HShift', -0.05, 'VShift', -0.03, 'Direction', 'TopDown') 
 
             h = figure(3);
             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
             h.Units='centimeters';
-            h.OuterPosition=[0 0 19 18];
-        exportgraphics(h,'../Figures/Figure_3_v1.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(h,'../Figures/Figure_3_v1.emf','BackgroundColor','none','Resolution', 900)   
+            h.OuterPosition=[0 0 19 12];
+        exportgraphics(h,'../Figures/Figure_3.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(h,'../Figures/Figure_3.emf','BackgroundColor','none','Resolution', 900)   
         
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 4  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 figure(4)
         pa = subplot(2,4,[1 2])
@@ -360,8 +446,8 @@ figure(4)
             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
             h.Units='centimeters';
             h.OuterPosition=[0 0 19 20];
-        exportgraphics(h,'../Figures/Figure_4_v1.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(h,'../Figures/Figure_4_v1.emf','BackgroundColor','none','Resolution', 900)   
+        exportgraphics(h,'../Figures/Figure_4.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(h,'../Figures/Figure_4.emf','BackgroundColor','none','Resolution', 900)   
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 5  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -377,6 +463,7 @@ end
     Covid_Sim(:,:,1) =temp_1;
     Covid_Sim(:,:,2) =temp_2;
 
+
     figure(5)
         pa=subplot(1,2,1)
          hold on
@@ -389,11 +476,15 @@ end
         xticklabels({'2022','2027', '2032','2037','2042','2047','2052'}) 
         xtickangle(0)
         box off
+        ylim([0,0.35])
+        yticks([0:0.05:0.35])
+
         ylabel(sprintf('Prob(>500 deaths/million)'))
         a = get(gca,'XTickLabel');
         set(gca,'XTickLabel',a,'fontsize',8)        
         aa = get(gca,'YTickLabel');
         set(gca,'YTickLabel',aa,'fontsize',8) 
+
         pb=subplot(1,2,2)
         hold on
         [hc,~,~] = shadedplot(1:size(Covid_Sim(:,:,2),2), prctile([Covid_Sim(:,:,2)],10), prctile([Covid_Sim(:,:,2)],90), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
@@ -406,6 +497,8 @@ end
         xticklabels({'2022','2027', '2032','2037','2042','2047','2052'}) 
         xtickangle(0)
         box off
+        ylim([0,0.35])
+        yticks([0:0.05:0.35])
         ylabel(sprintf('Prob(>1,000 deaths/million)'))
         a = get(gca,'XTickLabel');
         set(gca,'XTickLabel',a,'fontsize',8)        
@@ -418,5 +511,5 @@ end
             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
             h.Units='centimeters';
             h.OuterPosition=[0 0 19 8];
-        exportgraphics(h,'../Figures/Figure_5_v1.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(h,'../Figures/Figure_5_v1.emf','BackgroundColor','none','Resolution', 900)   
+        exportgraphics(h,'../Figures/Figure_5.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(h,'../Figures/Figure_5.emf','BackgroundColor','none','Resolution', 900)   

@@ -238,7 +238,7 @@ h = figure(1);
 %             hold on
 %             plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',6)
 %             plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',6)
-%             title({'England & Wales', '(1889-90)'},'FontSize',8,'FontWeight','bold')
+%             title({'England & Wales', '(1890-91)'},'FontSize',8,'FontWeight','bold')
 %             ylabel('\eta_{0}')
 %             xlabel('\lambda')
 %             box off
@@ -338,7 +338,7 @@ figure(3)
 %             xticks([1 6 11 16 21 26])
 %             xticklabels({'1892','1897', '1902','1907','1912','1917'}) 
 %             yticks([0,round(max(InvCdf_RUS_1890(5,:))),round(max(Influenza_RUS(1,55:80)),0)])
-%             title({'England & Wales', '1889-90'},'FontSize',8,'FontWeight','bold')           
+%             title({'England & Wales', '1890-91'},'FontSize',8,'FontWeight','bold')           
 %             box off
 % 
 %         AddLetters2Plots(figure(4), {'a', 'b', 'c'}, 'HShift', -0.07, 'VShift', -0.07, 'Direction', 'TopDown','fontsize',8) 
@@ -493,7 +493,7 @@ figure(6)
         plot(Influenza_RUS(2,55:80),bpareto_outbreakprob(Theoretical_Bounds_Model(12).alpha',Theoretical_Bounds_Model(12).dmax,Theoretical_Bounds_Model(12).dmin,500), '-d', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
         leg=legend('300 deaths/million', '400 deaths/million', '500 deaths/million','FontSize',8, 'location', 'southeast', 'NumColumns' ,1)
         legend boxoff
-        title(leg,{'England & Wales (1889-90)'},'FontSize',8);
+        title(leg,{'England & Wales (1890-91)'},'FontSize',8);
         box off
 
         ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8) 
@@ -605,7 +605,7 @@ figure(7)
         plot(Influenza_RUS(2,55:80),bpareto_outbreakprob(Estimated_Bounds_Model(12).alpha',Estimated_Bounds_Model(12).dmax,Estimated_Bounds_Model(12).dmin,500), '-d', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
         leg=legend('300 deaths/million', '400 deaths/million', '500 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
         legend boxoff
-        title(leg,{'England & Wales (1889-90)'},'FontSize',8);
+        title(leg,{'England & Wales (1890-91)'},'FontSize',8);
         box off
 
         ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8) 
@@ -719,7 +719,7 @@ figure(8)
         plot(Influenza_RUS(2,55:80),weibull_outbreakprob(Weibull_Model(12).w',50), '-d', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
         leg=legend('300 deaths/million', '400 deaths/million', '500 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
         legend boxoff
-        title(leg,{'England & Wales (1889-90)'},'FontSize',8);
+        title(leg,{'England & Wales (1890-91)'},'FontSize',8);
         box off
 
         ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8) 
@@ -758,7 +758,7 @@ for b=1:11
     hold on
     ha(b)=plot((Parms(b,1)),(Parms(b,2)), Markertypes{b},'Color', 'black','MarkerSize',6)
 end
-legend(ha,{ 'Belfast 1918-19', 'Birmingham 1918-19' ,'Cardiff 1918-19','Glasgow 1918-19', 'Liverpool 1918-19', 'London 1918-19', 'Manchester 1918-19', 'Sheffield 1918-19', 'United States  1918-19', 'England & Wales 1847-48', 'England & Wales 1889-90'},'FontSize',8,'NumColumns',3,'Orientation','horizontal','Location','bestoutside')
+legend(ha,{ 'Belfast 1918-19', 'Birmingham 1918-19' ,'Cardiff 1918-19','Glasgow 1918-19', 'Liverpool 1918-19', 'London 1918-19', 'Manchester 1918-19', 'Sheffield 1918-19', 'United States  1918-19', 'England & Wales 1847-48', 'England & Wales 1890-91'},'FontSize',8,'NumColumns',3,'Orientation','horizontal','Location','bestoutside')
 legend boxoff
 ylabel('\eta_{0}')
 xlabel('\lambda')

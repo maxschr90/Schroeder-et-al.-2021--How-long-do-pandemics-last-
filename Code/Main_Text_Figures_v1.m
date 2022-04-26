@@ -183,7 +183,7 @@ colormap("jet")
 hold on
 ha=plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',6)
 hb=plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',6)
-title({'England & Wales', '1889-90'},'FontSize',8,'FontWeight','bold')
+title({'England & Wales', '1890-91'},'FontSize',8,'FontWeight','bold')
 % legend([ha,hb],'True Parameter',  'Median of Estimates')
 % ylabel('\eta_{0}')
 xlabel('\lambda')
@@ -327,7 +327,7 @@ pf=subplot(2,3,6)
             c = ax.FontSize;
             ax.FontSize =8;
             ax.XTickLabelRotation = 0;
-            title({'England & Wales', '1889-90'},'FontSize',8,'FontWeight','bold')
+            title({'England & Wales', '1890-91'},'FontSize',8,'FontWeight','bold')
             box off            
             AddLetters2Plots({pa, pb, pc, pd, pe, pf},{'a','b','c','d','e','f'}, 'HShift', -0.05, 'VShift', -0.03, 'Direction', 'TopDown') 
 
@@ -422,7 +422,7 @@ figure(4)
         plot(Influenza_RUS(2,55:80),bpareto_outbreakprob(Base_Model(12).alpha',Base_Model(12).dmax,Base_Model(12).dmin,500), '-d', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
         leg=legend('300 deaths/million', '400 deaths/million', '500 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
         legend boxoff
-        title(leg,{'England & Wales (1889-90)'},'FontSize',8);
+        title(leg,{'England & Wales (1890-91)'},'FontSize',8);
         box off
 
         ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8) 

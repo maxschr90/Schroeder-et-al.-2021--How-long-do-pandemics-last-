@@ -3,6 +3,8 @@ clc
 close all
 Load_Data
 years = [1895:1956]';
+outbreakyears = [1922,1924,1927,1929,1933,1937]';
+
 A = [years,table2array(Influenza)];
 B = [years,sumdatatables(A(:,2:end),table2array(Pneumonia))];
 C = [years,sumdatatables(B(:,2:end),table2array(Bronchitis))];
@@ -94,3 +96,4 @@ h = figure(2);
 h.Units='centimeters';
 h.OuterPosition=[0 0 19 25];
 exportgraphics(h,'../Figures/HP_filtered_disease.pdf','BackgroundColor','none','Resolution', 900)
+

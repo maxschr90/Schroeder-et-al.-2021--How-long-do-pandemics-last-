@@ -14,7 +14,7 @@ Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
     figure(1)
     for b = 2:size(Influenza_UK,2)
         subplot(5,2,b-1)
-        plot(years,Influenza_UK(:,b), '-o',  'Linewidth', 0.5, 'Color','black', 'Markersize', 3 ,'MarkerEdgeColor','red')
+        plot(years,Influenza_UK(:,b),'.-',  'Linewidth', 0.5, 'Color','red', 'Markersize', 6 ,'MarkerEdgeColor','red')
         ylim([0,max(Influenza_UK(:,b))*1.05])
         yticks([0,1000,round(max(Influenza_UK(:,b)),0)])
         xlim([1895,1950])
@@ -26,7 +26,7 @@ Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
         box off
     end
         subplot(5,2,b)
-        plot(Influenza_US(2,:),Influenza_US(1,:), '-o',  'Linewidth', 0.5, 'Color','black', 'Markersize', 3  ,'MarkerEdgeColor','red')
+        plot(Influenza_US(2,:),Influenza_US(1,:),'.-',  'Linewidth', 0.5, 'Color','red', 'Markersize', 6  ,'MarkerEdgeColor','red')
         ylim([0,max(Influenza_US(1,:))*1.05])
         yticks([0,1000,round(max(Influenza_US(1,:)),0)])
         xlim([1895,1950])
@@ -40,7 +40,7 @@ Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
 
 
         subplot(5,2,b+1)
-        plot(Influenza_RUS(2,1:80),Influenza_RUS(1,1:80), '-o',  'Linewidth', 0.5, 'Color','black', 'Markersize',3  ,'MarkerEdgeColor','red')
+        plot(Influenza_RUS(2,1:80),Influenza_RUS(1,1:80),'.-', 'Linewidth', 0.5, 'Color','red', 'Markersize',6  ,'MarkerEdgeColor','red')
         ylim([0,max(Influenza_RUS(1,1:80))*1.05])
         yticks([0,250,round(max(Influenza_RUS(1,1:80)),0)])
         xlim([1838,1917])

@@ -577,7 +577,7 @@ figure(8)
         leg = legend({ 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield', 'US'},'FontSize',6, 'Location','best', 'NumColumns',1);
 %         leg.ItemTokenSize = [3,1.5];
         legend boxoff
-        xlim([1918,1956])
+        xlim([1917,1956])
         xticks([1920:5:1956])
         xticklabels({'1920','1925', '1930','1935','1940','1945','1950','1955'})
         xtickangle(0)
@@ -605,7 +605,7 @@ figure(8)
         set(gca,'XTickLabel',a,'fontsize',8)        
         aa = get(gca,'YTickLabel');
         set(gca,'YTickLabel',aa,'fontsize',8) 
-        xlim([1918,1956])
+        xlim([1917,1956])
         xticks([1920:5:1956])
         xticklabels({'1920','1925', '1930','1935','1940','1945','1950','1955'})
         xtickangle(0)
@@ -614,12 +614,12 @@ figure(8)
         yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4'})
 
         pc = subplot(2,4,[5 6])
-        plot(Influenza_RUS(2,10:52),bpareto_outbreakprob(Estimated_Bounds_Model_v2(11).alpha',Estimated_Bounds_Model_v2(11).dmax,Estimated_Bounds_Model_v2(11).dmin,50), '-+', 'Linewidth', .5, 'Markersize', 5,  'Color' ,'black')
+        plot(Influenza_RUS(2,10:52),bpareto_outbreakprob(Estimated_Bounds_Model_v2(11).alpha',Estimated_Bounds_Model_v2(11).dmax,Estimated_Bounds_Model_v2(11).dmin,100), '-+', 'Linewidth', .5, 'Markersize', 5,  'Color' ,'black')
         hold on        
-        plot(Influenza_RUS(2,10:52),bpareto_outbreakprob(Estimated_Bounds_Model_v2(11).alpha',Estimated_Bounds_Model_v2(11).dmax,Estimated_Bounds_Model_v2(11).dmin,100), '-o', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
+        plot(Influenza_RUS(2,10:52),bpareto_outbreakprob(Estimated_Bounds_Model_v2(11).alpha',Estimated_Bounds_Model_v2(11).dmax,Estimated_Bounds_Model_v2(11).dmin,200), '-o', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
         hold on
-        plot(Influenza_RUS(2,10:52),bpareto_outbreakprob(Estimated_Bounds_Model_v2(11).alpha',Estimated_Bounds_Model_v2(11).dmax,Estimated_Bounds_Model_v2(11).dmin,150), '-d', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
-        leg=legend('50 deaths/million', '100 deaths/million', '150 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
+        plot(Influenza_RUS(2,10:52),bpareto_outbreakprob(Estimated_Bounds_Model_v2(11).alpha',Estimated_Bounds_Model_v2(11).dmax,Estimated_Bounds_Model_v2(11).dmin,300), '-d', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
+        leg=legend('100 deaths/million', '200 deaths/million', '300 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
         legend boxoff
         title(leg,'England & Wales (1847-48)','FontSize',8);
         box off
@@ -629,7 +629,7 @@ figure(8)
         set(gca,'XTickLabel',a,'fontsize',8)        
         aa = get(gca,'YTickLabel');
         set(gca,'YTickLabel',aa,'fontsize',8) 
-        xlim([1846,1889])
+        xlim([1845,1889])
         xticks([1849:5:1889])
         xticklabels({'1849','1854', '1859','1864','1869','1874','1879','1884','1889'}) 
         xtickangle(0)
@@ -653,7 +653,7 @@ figure(8)
         set(gca,'XTickLabel',a,'fontsize',8)        
         aa = get(gca,'YTickLabel');
         set(gca,'YTickLabel',aa,'fontsize',8) 
-        xlim([1889,1917])
+        xlim([1888,1917])
         xticks([1892:5:1917])
         xticklabels({'1892','1897', '1902','1907','1912','1917'})
         xtickangle(0)

@@ -144,11 +144,11 @@ years = years(1:end);
     names = {'All Cities', 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield','US','England & Wales 1848','England & Wales 1890'};
     
     for b =1:12
-        T3(:,b) = table([Parameters(:,b);Obs(b)]);
+        T6(:,b) = table([Parameters(:,b);Obs(b)]);
     end
-    T3.Properties.VariableNames = names;
-    T3 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations' }') T3];
-    writetable(T3,'../Figures/Table_1.xlsx', 'Sheet', 'Estimated Bounds Model v2')
+    T6.Properties.VariableNames = names;
+    T6 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations' }') T6];
+    writetable(T6,'../Figures/Table_1.xlsx', 'Sheet', 'Estimated Bounds Model v2')
 
     % Model with theoretical bounds
     for n=1:12

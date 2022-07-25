@@ -28,14 +28,14 @@ figure(1)
         title(citynames(b+1),'FontSize',8,'FontWeight','bold');
         box off
     end
-        AddLetters2Plots(figure(1), {'a', 'c', 'e', 'g', 'i', 'b', 'd', 'f'}, 'HShift', -0.07, 'VShift', -0.075, 'Direction', 'TopDown','fontsize',8) 
+        AddLetters2Plots(figure(1), {'a', 'c', 'e', 'g' 'b', 'd', 'f', 'h'},'HShift', -0.07, 'VShift', -0.075, 'Direction', 'TopDown','fontsize',8) 
 
                     h = figure(1);
             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
             h.Units='centimeters';
             h.OuterPosition=[0 0 14 15];
-        exportgraphics(figure(1),'../Figures/SI_Figure_A-1.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(figure(1),'../Figures/SI_Figure_A-1.emf','BackgroundColor','none','Resolution', 900)        
+        exportgraphics(h,'../Figures/SI_Figure_A-1.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(h,'../Figures/SI_Figure_A-1.emf','BackgroundColor','none','Resolution', 900)        
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 2 A  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,14 +55,14 @@ figure(2)
         title(citynames(b+1),'FontSize',8,'FontWeight','bold');
         box off
     end
-        AddLetters2Plots(figure(2), {'a', 'c', 'e', 'g', 'i', 'b', 'd', 'f'}, 'HShift', -0.07, 'VShift', -0.075, 'Direction', 'TopDown','fontsize',8) 
+        AddLetters2Plots(figure(2), {'a', 'c', 'e', 'g' 'b', 'd', 'f', 'h'}, 'HShift', -0.07, 'VShift', -0.075, 'Direction', 'TopDown','fontsize',8) 
 
             h = figure(2);
             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
             h.Units='centimeters';
             h.OuterPosition=[0 0 14 15];
-        exportgraphics(figure(2),'../Figures/SI_Figure_A-2.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(figure(2),'../Figures/SI_Figure_A-2.emf','BackgroundColor','none','Resolution', 900)        
+        exportgraphics(h,'../Figures/SI_Figure_A-2.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(h,'../Figures/SI_Figure_A-2.emf','BackgroundColor','none','Resolution', 900)        
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

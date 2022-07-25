@@ -14,7 +14,6 @@ Sheffield = readtable('../Data/UK_Cities_Mortality_Data.xlsx', 'Sheet', ['Sheffi
 Influenza = table(Belfast.Influenza_rate, Birmingham.Influenza_rate ,Cardiff.Influenza_rate, Glasgow.Influenza_rate, Liverpool.Influenza_rate, London.Influenza_rate, Manchester.Influenza_rate, Sheffield.Influenza_rate,'VariableNames', citynames);
 Pneumonia = table(Belfast.Pneumonia_rate, Birmingham.Pneumonia_rate ,Cardiff.Pneumonia_rate, Glasgow.Pneumonia_rate, Liverpool.Pneumonia_rate, London.Pneumonia_rate, Manchester.Pneumonia_rate, Sheffield.Pneumonia_rate,'VariableNames', citynames);
 Bronchitis = table(Belfast.Bronchitis_rate, Birmingham.Bronchitis_rate ,Cardiff.Bronchitis_rate, Glasgow.Bronchitis_rate, Liverpool.Bronchitis_rate, London.Bronchitis_rate, Manchester.Bronchitis_rate, Sheffield.Bronchitis_rate,'VariableNames', citynames);
-All_causes = table(Belfast.All_causes_rate, Birmingham.All_causes_rate ,Cardiff.All_causes_rate, Glasgow.All_causes_rate, Liverpool.All_causes_rate, London.All_causes_rate, Manchester.All_causes_rate, Sheffield.All_causes_rate,'VariableNames', citynames);
 Bronchio_pneumonia = table(Belfast.Bronchio_pneumonia_rate, Birmingham.Bronchio_pneumonia_rate ,Cardiff.Bronchio_pneumonia_rate, Glasgow.Bronchio_pneumonia_rate, Liverpool.Bronchio_pneumonia_rate, London.Bronchio_pneumonia_rate, Manchester.Bronchio_pneumonia_rate, Sheffield.Bronchio_pneumonia_rate,'VariableNames', citynames);
 Other_respiratory = table(Belfast.Other_respiratory_rate, Birmingham.Other_respiratory_rate ,Cardiff.Other_respiratory_rate, Glasgow.Other_respiratory_rate, Liverpool.Other_respiratory_rate, London.Other_respiratory_rate, Manchester.Other_respiratory_rate, Sheffield.Other_respiratory_rate,'VariableNames', citynames);
 
@@ -41,18 +40,19 @@ VarNames = {'Population 1920s','Population 1930s','Population 1940s','Population
     writetable(Tab,'../Figures/Table_2.xlsx')
 
 
+%% Calculate Relative Influenza & Respiratory Diseases for outbreak years
 
+outbreakyears = [1922,1924,1927,1929,1933,1937]';
+years = [1895:1956]';
 
-    outbreakyears = [1922,1924,1927,1929,1933,1937]';
-
-A = [years,table2array(Influenza)];
-B = [years,sumdatatables(A(:,2:end),table2array(Pneumonia))];
-C = [years,sumdatatables(B(:,2:end),table2array(Bronchitis))];
-D = [years,sumdatatables(C(:,2:end),table2array(Bronchio_pneumonia))];
+Infl = [years,table2array(Influenza)];
+temp = [years,sumdatatables(Infl(:,2:end),table2array(Pneumonia))];
+temp = [years,sumdatatables(temp(:,2:end),table2array(Bronchitis))];
+Resp = [years,sumdatatables(temp(:,2:end),table2array(Bronchio_pneumonia))];
 
 for i =1:length(outbreakyears)
     ind = find(years==outbreakyears(i));
-    Excess_Influenza(i,:) = A(ind,2:end)./mean([A(ind-1,2:end); A(ind+1,2:end)],'omitnan');
-    Excess_Resp(i,:) = D(ind,2:end)./mean([D(ind-1,2:end); D(ind+1,2:end)],'omitnan');
+    Excess_Influenza(i,:) = Infl(ind,2:end)./mean([Infl(ind-1,2:end); Infl(ind+1,2:end)],'omitnan');
+    Excess_Resp(i,:) = Resp(ind,2:end)./mean([Resp(ind-1,2:end); Resp(ind+1,2:end)],'omitnan');
 end
 Excess_Resp(6,1) = NaN;

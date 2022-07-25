@@ -39,3 +39,20 @@ VarNames = {'Population 1920s','Population 1930s','Population 1940s','Population
     Tab2.Properties.VariableNames = { 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield'};
     Tab = [table(VarNames) Tab2];
     writetable(Tab,'../Figures/Table_2.xlsx')
+
+
+
+
+    outbreakyears = [1922,1924,1927,1929,1933,1937]';
+
+A = [years,table2array(Influenza)];
+B = [years,sumdatatables(A(:,2:end),table2array(Pneumonia))];
+C = [years,sumdatatables(B(:,2:end),table2array(Bronchitis))];
+D = [years,sumdatatables(C(:,2:end),table2array(Bronchio_pneumonia))];
+
+for i =1:length(outbreakyears)
+    ind = find(years==outbreakyears(i));
+    Excess_Influenza(i,:) = A(ind,2:end)./mean([A(ind-1,2:end); A(ind+1,2:end)],'omitnan');
+    Excess_Resp(i,:) = D(ind,2:end)./mean([D(ind-1,2:end); D(ind+1,2:end)],'omitnan');
+end
+Excess_Resp(6,1) = NaN;

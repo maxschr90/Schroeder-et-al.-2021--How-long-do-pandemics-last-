@@ -7,17 +7,70 @@ close all
 load('Fitted_Models_v1')
 load("MC_save_v2.mat")
 
+
 Linemarkertypes = {'-p','-x','-h','-s','-d','-*','-v','-^','-+','-o'};
 Markertypes = {'p','x','h','s','d','*','v','^','+','o','>'};
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%% Figure 1 ab  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Figure 1 A  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Pneumonia_UK = table2array(Pneumonia);
+figure(1)
+    for b = 1:size(Pneumonia_UK,2)
+        subplot(4,2,b)
+        plot(years,Pneumonia_UK(:,b),'.-',  'Linewidth', 0.5, 'Color','red', 'Markersize', 6 ,'MarkerEdgeColor','red')
+        ylim([0,max(Pneumonia_UK(:,b))*1.05])
+        yticks([0,1000,round(max(Pneumonia_UK(:,b)),0)])
+        xlim([1895,1950])
+        a = get(gca,'XTickLabel');
+        set(gca,'XTickLabel',a,'fontsize',8)        
+        aa = get(gca,'YTickLabel');
+        set(gca,'YTickLabel',aa,'fontsize',8) 
+        title(citynames(b+1),'FontSize',8,'FontWeight','bold');
+        box off
+    end
+        AddLetters2Plots(figure(1), {'a', 'c', 'e', 'g', 'i', 'b', 'd', 'f'}, 'HShift', -0.07, 'VShift', -0.075, 'Direction', 'TopDown','fontsize',8) 
+
+                    h = figure(1);
+            %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
+            h.Units='centimeters';
+            h.OuterPosition=[0 0 14 15];
+        exportgraphics(figure(1),'../Figures/SI_Figure_A-1.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(figure(1),'../Figures/SI_Figure_A-1.emf','BackgroundColor','none','Resolution', 900)        
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%% Figure 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Figure 2 A  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Bronchitis_UK = table2array(Bronchitis);
+figure(2)
+    for b = 1:size(Bronchitis_UK,2)
+        subplot(4,2,b)
+        plot(years,Bronchitis_UK(:,b),'.-',  'Linewidth', 0.5, 'Color','red', 'Markersize', 6 ,'MarkerEdgeColor','red')
+        ylim([0,max(Bronchitis_UK(:,b))*1.05])
+        yticks([0,1000,round(max(Bronchitis_UK(:,b)),0)])
+        xlim([1895,1950])
+        a = get(gca,'XTickLabel');
+        set(gca,'XTickLabel',a,'fontsize',8)        
+        aa = get(gca,'YTickLabel');
+        set(gca,'YTickLabel',aa,'fontsize',8) 
+        title(citynames(b+1),'FontSize',8,'FontWeight','bold');
+        box off
+    end
+        AddLetters2Plots(figure(2), {'a', 'c', 'e', 'g', 'i', 'b', 'd', 'f'}, 'HShift', -0.07, 'VShift', -0.075, 'Direction', 'TopDown','fontsize',8) 
+
+            h = figure(2);
+            %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
+            h.Units='centimeters';
+            h.OuterPosition=[0 0 14 15];
+        exportgraphics(figure(2),'../Figures/SI_Figure_A-2.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(figure(2),'../Figures/SI_Figure_A-2.emf','BackgroundColor','none','Resolution', 900)        
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Figure 1 B  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
 
-figure(1)
+figure(3)
 pa=subplot(4,2,1)    
     C = theta_hat(:,:,1);
     trueparms = Estimates(1,1:2);
@@ -181,78 +234,15 @@ xlabel('\lambda')
 box off
 AddLetters2Plots({pa, pb, pc, pd, pe, pf, pg, pj},{'a','b','c','d','e','f','g','h'}, 'HShift', -0.05, 'VShift', -0.03, 'Direction', 'TopDown') 
            
-h = figure(1);
+h = figure(3);
             %set (h, 'Units','centimeters', 'Positioff', [0 0 14.5 14.5]);
             h.Units='centimeters';
             h.OuterPosition=[0 0 19 25];
         exportgraphics(h,'../Figures/SI_Figure_B-1.pdf','BackgroundColor','none','Resolution', 900)
         exportgraphics(h,'../Figures/SI_Figure_B-1.emf','BackgroundColor','none','Resolution', 900)    
-% 
-% figure(2)
-%             subplot(3,1,1)
-%             C = theta_hat(:,:,9);
-%                 trueparms = Estimates(9,1:2);
-%                 [~, xi]= ksdensity(C(:,1));
-%                 [~, yi]= ksdensity(C(:,2));
-%                 [x1,x2] = meshgrid([linspace(0.0,prctile(C(:,1),95),50)],[linspace(0.,prctile(C(:,2),95),50)]);
-%                 [A,B]=ksdensity(C,[x1(:) x2(:)]);
-%             
-%             contour(x1,x2,reshape(A,[size(x1,1)],[]),'ShowText','off')
-%             colormap('jet')
-%             hold on
-%             plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',6)
-%             plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',6)
-%             title({'United States','1918-19'},'FontSize',8,'FontWeight','bold')
-%             ylabel('\eta_{0}')
-% %             xlabel('\lambda')
-%             box off
-% 
-%             subplot(3,1,2)
-%             C = theta_hat(:,:,10);
-%                 trueparms = Estimates(10,1:2);
-%                 [~, xi]= ksdensity(C(:,1));
-%                 [~, yi]= ksdensity(C(:,2));
-%                 [x1,x2] = meshgrid([linspace(0.0,prctile(C(:,1),95),50)],[linspace(0.,prctile(C(:,2),95),50)]);
-%                 [A,B]=ksdensity(C,[x1(:) x2(:)]);
-%             
-%             contour(x1,x2,reshape(A,[size(x1,1)],[]),'ShowText','off')
-%             colormap('jet')
-%             hold on
-%             plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',6)
-%             plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',6)
-%             title({'England & Wales', '(1847-48)'},'FontSize',8,'FontWeight','bold')
-%             ylabel('\eta_{0}')
-% %             xlabel('\lambda')
-%             box off
-% 
-%             subplot(3,1,3)
-%             C = theta_hat(:,:,11);
-%                 trueparms = Estimates(11,1:2);
-%                 [~, xi]= ksdensity(C(:,1));
-%                 [~, yi]= ksdensity(C(:,2));
-%                 [x1,x2] = meshgrid([linspace(0.0,prctile(C(:,1),95),50)],[linspace(0.,prctile(C(:,2),95),50)]);
-%                 [A,B]=ksdensity(C,[x1(:) x2(:)]);
-%             
-%             contour(x1,x2,reshape(A,[size(x1,1)],[]),'ShowText','off')
-%             colormap('jet')
-%             hold on
-%             plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',6)
-%             plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',6)
-%             title({'England & Wales', '(1890-91)'},'FontSize',8,'FontWeight','bold')
-%             ylabel('\eta_{0}')
-%             xlabel('\lambda')
-%             box off
-% 
-%             AddLetters2Plots(figure(2), {'a', 'b', 'c'}, 'HShift', -0.07, 'VShift', -0.035, 'Direction', 'TopDown','fontsize',8) 
-%         
-%             h = figure(2);
-%             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
-%             h.Units='centimeters';
-%             h.OuterPosition=[0 0 19 18];
-%         exportgraphics(h,'../Figures/SI_Figure_1b.pdf','BackgroundColor','none','Resolution', 900)
-%         exportgraphics(h,'../Figures/SI_Figure_1b.emf','BackgroundColor','none','Resolution', 900)   
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%% Figure 2 ab  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Figure 2 B  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 for b = 2:size(Influenza_UK,2) 
     InvCdf(:,:,b) = bpareto_invcdf(0.01*[10, 25, 50, 75, 90]',Base_Model(b).alpha',Base_Model(b).dmax,Base_Model(b).dmin);
@@ -261,7 +251,7 @@ end
     InvCdf_RUS_1848(:,:) = bpareto_invcdf(0.01*[10, 25, 50, 75, 90]',Base_Model(b+2).alpha',Base_Model(b+2).dmax,Base_Model(b+2).dmin);
     InvCdf_RUS_1890(:,:) = bpareto_invcdf(0.01*[10, 25, 50, 75, 90]',Base_Model(b+3).alpha',Base_Model(b+3).dmax,Base_Model(b+3).dmin);
     
-figure(3)
+figure(4)
         for b = 2:size(Influenza_UK,2)
             subplot((size(Influenza_UK,2)-1)/2,2,b-1)
             [ha,~,~] = shadedplot(1:size(InvCdf,2), InvCdf(1,:,b), InvCdf(5,:,b), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
@@ -279,79 +269,17 @@ figure(3)
             title({citynames{b},'1918-19'},'FontSize',8,'FontWeight','bold')
             box off
         end
-        AddLetters2Plots(figure(3), {'a', 'b', 'c', 'd', 'e',  'f', 'g', 'h'}, 'HShift', -0.07, 'VShift', -0.07, 'Direction', 'TopDown','fontsize',8) 
+        AddLetters2Plots(figure(4), {'a', 'b', 'c', 'd', 'e',  'f', 'g', 'h'}, 'HShift', -0.07, 'VShift', -0.07, 'Direction', 'TopDown','fontsize',8) 
         
-            h = figure(3);
+            h = figure(4);
             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
             h.Units='centimeters';
             h.OuterPosition=[0 0 19 25];
         exportgraphics(h,'../Figures/SI_Figure_B-2.pdf','BackgroundColor','none','Resolution', 900)
         exportgraphics(h,'../Figures/SI_Figure_B-2.emf','BackgroundColor','none','Resolution', 900)   
-% 
-% figure(4)
-% 
-%         subplot(3,1,1)
-%             [ha,~,~] = shadedplot(1:size(InvCdf_US,2), InvCdf_US(1,:), InvCdf_US(5,:), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
-%             hold on
-%             [ha,~,~] = shadedplot(1:size(InvCdf_US,2), InvCdf_US(2,:), InvCdf_US(4,:), [0.9 0.9 0.9],[0.9 0.9 0.9]); 
-%             hold on
-%             plot(InvCdf_US(3,:),'Color','black')
-% 
-%             hf = plot((Influenza_US(1,21:end)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 3)
-%             xlim([0,37])
-%             ylim([0,max(InvCdf_US(5,:)*1.05)])
-% 
-%             xticks([1 6 11 16 21 26 31 36])
-%             xticklabels({'1920','1925', '1930','1935','1940','1945','1950','1955'}) 
-%             yticks([0,round(max(Influenza_US(1,21:end)),0),round(max(InvCdf_US(5,:)))])
-%             title({'United States','1918-19'},'FontSize',8,'FontWeight','bold')
-%             box off
-% 
-%          subplot(3,1,2)
-%             [ha,~,~] = shadedplot(1:size(InvCdf_RUS_1848,2), InvCdf_RUS_1848(1,:), InvCdf_RUS_1848(5,:), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
-%             hold on
-%             [ha,~,~] = shadedplot(1:size(InvCdf_RUS_1848,2), InvCdf_RUS_1848(2,:), InvCdf_RUS_1848(4,:), [0.9 0.9 0.9],[0.9 0.9 0.9]); 
-%             hold on
-%             plot(InvCdf_RUS_1848(3,:),'Color','black')
-% 
-%             hf = plot((Influenza_RUS(1,12:52)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 3)
-%             xlim([0,26])
-%             ylim([0,max(max(InvCdf_RUS_1848(5,:),Influenza_RUS(1,12:52)))*1.05])
-% 
-%             xticks([1 6 11 16 21 26 31 36 41])
-%             xticklabels({'1849','1854', '1859','1864','1869','1874','1879','1884','1889'}) 
-%             yticks([0,round(max(Influenza_RUS(1,12:52)),0),round(max(InvCdf_RUS_1848(5,:)))])
-%             title({'England & Wales', '1847-48'},'FontSize',8,'FontWeight','bold')           
-%             box off
-% 
-%         subplot(3,1,3)
-%             [ha,~,~] = shadedplot(1:size(InvCdf_RUS_1890,2), InvCdf_RUS_1890(1,:), InvCdf_RUS_1890(5,:), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
-%             hold on
-%             [ha,~,~] = shadedplot(1:size(InvCdf_RUS_1890,2), InvCdf_RUS_1890(2,:), InvCdf_RUS_1890(4,:), [0.9 0.9 0.9],[0.9 0.9 0.9]); 
-%             hold on
-%             plot(InvCdf_RUS_1890(3,:),'Color','black')
-% 
-%             hf = plot((Influenza_RUS(1,55:80)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 3)
-%             xlim([0,26])
-%             ylim([0,max(max(InvCdf_RUS_1890(5,:),Influenza_RUS(1,55:80)))*1.05])
-% 
-%             xticks([1 6 11 16 21 26])
-%             xticklabels({'1892','1897', '1902','1907','1912','1917'}) 
-%             yticks([0,round(max(InvCdf_RUS_1890(5,:))),round(max(Influenza_RUS(1,55:80)),0)])
-%             title({'England & Wales', '1890-91'},'FontSize',8,'FontWeight','bold')           
-%             box off
-% 
-%         AddLetters2Plots(figure(4), {'a', 'b', 'c'}, 'HShift', -0.07, 'VShift', -0.07, 'Direction', 'TopDown','fontsize',8) 
-% 
-%             h = figure(4);
-%             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
-%             h.Units='centimeters';
-%             h.OuterPosition=[0 0 19 18];
-%         exportgraphics(h,'../Figures/SI_Figure_2b.pdf','BackgroundColor','none','Resolution', 900)
-%         exportgraphics(h,'../Figures/SI_Figure_2b.emf','BackgroundColor','none','Resolution', 900)   
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%% Figure 3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Figure 3 B  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 figure(5)
@@ -410,7 +338,7 @@ figure(5)
         exportgraphics(h,'../Figures/SI_Figure_B-3.emf','BackgroundColor','none','Resolution', 900)   
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%% Figure 4  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Figure 4 B %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 figure(6)
@@ -521,8 +449,8 @@ figure(6)
         exportgraphics(h,'../Figures/SI_Figure_B-4.emf','BackgroundColor','none','Resolution', 900)   
 
 
-         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%% Figure 5  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Figure 5 B %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 figure(7)
@@ -634,12 +562,122 @@ figure(7)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%% Figure 6  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Figure 6 B %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure(8)
+        pa = subplot(2,4,[1 2])
+        for n=2:9
+            hold on
+            plot(years(24:end), bpareto_outbreakprob(Estimated_Bounds_Model_v2(n).alpha',Estimated_Bounds_Model_v2(n).dmax,Estimated_Bounds_Model_v2(n).dmin,500), Linemarkertypes{n} , 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+        end
+            hold on
+        plot(Influenza_US(2,19:end),bpareto_outbreakprob(Estimated_Bounds_Model_v2(n+1).alpha',Estimated_Bounds_Model_v2(n+1).dmax,Estimated_Bounds_Model_v2(n+1).dmin,500),  Linemarkertypes{n+1}, 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+        ylabel(sprintf('Prob(>500 deaths/million)'),'fontsize',8) 
+        leg = legend({ 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield', 'US'},'FontSize',6, 'Location','best', 'NumColumns',1);
+%         leg.ItemTokenSize = [3,1.5];
+        legend boxoff
+        xlim([1918,1956])
+        xticks([1920:5:1956])
+        xticklabels({'1920','1925', '1930','1935','1940','1945','1950','1955'})
+        xtickangle(0)
+        yticks([0:0.05:0.5])
+        ylim([0,0.55])
+        yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4','0.45','0.5'})
+        a = get(gca,'XTickLabel');
+        set(gca,'XTickLabel',a,'fontsize',8)        
+        aa = get(gca,'YTickLabel');
+        set(gca,'YTickLabel',aa,'fontsize',8) 
+
+        pb = subplot(2,4,[3 4])
+        p = get(pb, 'position');
+        p(1) = p(1) + 0.03;
+        p(3) = p(3) - 0.03;
+        set(pb, 'position', p);        
+        for n=2:9
+            hold on
+            plot(years(24:end), bpareto_outbreakprob(Estimated_Bounds_Model_v2(n).alpha',Estimated_Bounds_Model_v2(n).dmax,Estimated_Bounds_Model_v2(n).dmin,1000), Linemarkertypes{n}, 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+        end
+            hold on
+        plot(Influenza_US(2,19:end),bpareto_outbreakprob(Estimated_Bounds_Model_v2(n+1).alpha',Estimated_Bounds_Model_v2(n+1).dmax,Estimated_Bounds_Model_v2(n+1).dmin,1000), Linemarkertypes{n+1}, 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black' )
+        ylabel(sprintf('Prob(>1000 deaths/million)'),'fontsize',8) 
+         a = get(gca,'XTickLabel');
+        set(gca,'XTickLabel',a,'fontsize',8)        
+        aa = get(gca,'YTickLabel');
+        set(gca,'YTickLabel',aa,'fontsize',8) 
+        xlim([1918,1956])
+        xticks([1920:5:1956])
+        xticklabels({'1920','1925', '1930','1935','1940','1945','1950','1955'})
+        xtickangle(0)
+        yticks([0:0.05:0.4])
+        ylim([0,0.45])
+        yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4'})
+
+        pc = subplot(2,4,[5 6])
+        plot(Influenza_RUS(2,10:52),bpareto_outbreakprob(Estimated_Bounds_Model_v2(11).alpha',Estimated_Bounds_Model_v2(11).dmax,Estimated_Bounds_Model_v2(11).dmin,50), '-+', 'Linewidth', .5, 'Markersize', 5,  'Color' ,'black')
+        hold on        
+        plot(Influenza_RUS(2,10:52),bpareto_outbreakprob(Estimated_Bounds_Model_v2(11).alpha',Estimated_Bounds_Model_v2(11).dmax,Estimated_Bounds_Model_v2(11).dmin,100), '-o', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
+        hold on
+        plot(Influenza_RUS(2,10:52),bpareto_outbreakprob(Estimated_Bounds_Model_v2(11).alpha',Estimated_Bounds_Model_v2(11).dmax,Estimated_Bounds_Model_v2(11).dmin,150), '-d', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
+        leg=legend('50 deaths/million', '100 deaths/million', '150 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
+        legend boxoff
+        title(leg,'England & Wales (1847-48)','FontSize',8);
+        box off
+
+        ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8) 
+        a = get(gca,'XTickLabel');
+        set(gca,'XTickLabel',a,'fontsize',8)        
+        aa = get(gca,'YTickLabel');
+        set(gca,'YTickLabel',aa,'fontsize',8) 
+        xlim([1846,1889])
+        xticks([1849:5:1889])
+        xticklabels({'1849','1854', '1859','1864','1869','1874','1879','1884','1889'}) 
+        xtickangle(0)
+        yticks([0:0.05:0.4])
+        ylim([0,0.45])
+        yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4'})
+
+        pd = subplot(2,4,[7 8])
+        plot(Influenza_RUS(2,53:80),bpareto_outbreakprob(Estimated_Bounds_Model_v2(12).alpha',Estimated_Bounds_Model_v2(12).dmax,Estimated_Bounds_Model_v2(12).dmin,300), '-+', 'Linewidth', .5, 'Markersize', 5,  'Color' ,'black')
+        hold on        
+        plot(Influenza_RUS(2,53:80),bpareto_outbreakprob(Estimated_Bounds_Model_v2(12).alpha',Estimated_Bounds_Model_v2(12).dmax,Estimated_Bounds_Model_v2(12).dmin,400), '-o', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
+        hold on
+        plot(Influenza_RUS(2,53:80),bpareto_outbreakprob(Estimated_Bounds_Model_v2(12).alpha',Estimated_Bounds_Model_v2(12).dmax,Estimated_Bounds_Model_v2(12).dmin,500), '-d', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
+        leg=legend('300 deaths/million', '400 deaths/million', '500 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
+        legend boxoff
+        title(leg,{'England & Wales (1890-91)'},'FontSize',8);
+        box off
+
+        ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8) 
+        a = get(gca,'XTickLabel');
+        set(gca,'XTickLabel',a,'fontsize',8)        
+        aa = get(gca,'YTickLabel');
+        set(gca,'YTickLabel',aa,'fontsize',8) 
+        xlim([1889,1917])
+        xticks([1892:5:1917])
+        xticklabels({'1892','1897', '1902','1907','1912','1917'})
+        xtickangle(0)
+
+        yticks([0:0.05:0.4])
+        ylim([0,0.45])
+        yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4'})
+
+        AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.05, 'VShift', -0.03, 'Direction', 'TopDown') 
+          
+            h = figure(8);
+            %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
+            h.Units='centimeters';
+            h.OuterPosition=[0 0 19 20];
+        exportgraphics(h,'../Figures/SI_Figure_B-6.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(h,'../Figures/SI_Figure_B-6.emf','BackgroundColor','none','Resolution', 900)   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Figure 7 B  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
   
 
-figure(8)
+figure(9)
         pa = subplot(2,4,[1 2])
         for n=2:9
             hold on
@@ -739,18 +777,18 @@ figure(8)
         AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.05, 'VShift', -0.05, 'Direction', 'TopDown') 
 
             
-            h = figure(8);
+            h = figure(9);
             %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
             h.Units='centimeters';
             h.OuterPosition=[0 0 19 20];
-        exportgraphics(h,'../Figures/SI_Figure_B-6.pdf','BackgroundColor','none','Resolution', 900)
-        exportgraphics(h,'../Figures/SI_Figure_B-6.emf','BackgroundColor','none','Resolution', 900)   
+        exportgraphics(h,'../Figures/SI_Figure_B-7.pdf','BackgroundColor','none','Resolution', 900)
+        exportgraphics(h,'../Figures/SI_Figure_B-7.emf','BackgroundColor','none','Resolution', 900)   
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%% Figure 7  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Figure 8  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-figure(9)
+figure(10)
 
 contour(g1,g2,reshape(kdensity_estimate,[size(g1,1)],[]),'ShowText','off')
 colormap("jet")
@@ -763,7 +801,7 @@ legend boxoff
 ylabel('\eta_{0}')
 xlabel('\lambda')
 box off
-h = figure(9);
+h = figure(10);
 h.Units='centimeters';
 h.OuterPosition=[0 0 19 12];
 exportgraphics(h,'../Figures/SI_Figure_B-7.pdf','BackgroundColor','none','Resolution', 900)

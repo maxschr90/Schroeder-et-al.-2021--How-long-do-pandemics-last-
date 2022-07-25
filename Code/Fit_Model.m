@@ -46,7 +46,7 @@ years = years(1:end);
         [Theoretical_Bounds_Model(n+2)] = est_parms_bpareto(Influenza_RUS(1,12:52)',1000000,1, 'England&Wales');        
         [Theoretical_Bounds_Model(n+3)] = est_parms_bpareto(Influenza_RUS(1,55:80)',1000000,1, 'England&Wales');        
        
-%%% 5. Estimate Model with estimated Bounds
+%%% 5a. Estimate Model with estimated Bounds
 
     for n = 1:size(Influenza_UK,2)
         [Estimated_Bounds_Model(n)] = est_parms_bpareto(Influenza_UK(26:end,n),[],[], citynames(n));
@@ -57,7 +57,18 @@ years = years(1:end);
         [Estimated_Bounds_Model(n+2)] = est_parms_bpareto(Influenza_RUS(1,12:52)',[],[], 'England&Wales 1848');
         [Estimated_Bounds_Model(n+3)] = est_parms_bpareto(Influenza_RUS(1,55:80)',[],[], 'England&Wales 1890');        
         
+ %%% 5b. Estimate Model with estimated Bounds
+
+    for n = 1:size(Influenza_UK,2)
+        [Estimated_Bounds_Model_v2(n)] = est_parms_bpareto(Influenza_UK(24:end,n),[],[], citynames(n));
+    end
+        dmax_US = max(Influenza_US(1,:)');
+        dmin_US = min(Influenza_US(1,:)');
+        [Estimated_Bounds_Model_v2(n+1)] = est_parms_bpareto(Influenza_US(1,19:end)',[],[], 'US');
+        [Estimated_Bounds_Model_v2(n+2)] = est_parms_bpareto(Influenza_RUS(1,10:52)',[],[], 'England&Wales 1848');
+        [Estimated_Bounds_Model_v2(n+3)] = est_parms_bpareto(Influenza_RUS(1,53:80)',[],[], 'England&Wales 1890');        
         
+           
 %%% 6. Estimate Weibull Model 
 %%% Deaths need to be rescaled for Weibull Distribution
     for n = 1:size(Influenza_UK,2)
@@ -125,7 +136,20 @@ years = years(1:end);
     T3.Properties.VariableNames = names;
     T3 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations' }') T3];
     writetable(T3,'../Figures/Table_1.xlsx', 'Sheet', 'Estimated Bounds Model')
+     
+    for n=1:12
+        Parameters(:,n) = round([(Estimated_Bounds_Model_v2(n).lambda) (Estimated_Bounds_Model_v2(n).eta_zero) (Estimated_Bounds_Model_v2(n).dmin) (Estimated_Bounds_Model_v2(n).dmax) ],3);
+    end
     
+    names = {'All Cities', 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield','US','England & Wales 1848','England & Wales 1890'};
+    
+    for b =1:12
+        T3(:,b) = table([Parameters(:,b);Obs(b)]);
+    end
+    T3.Properties.VariableNames = names;
+    T3 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations' }') T3];
+    writetable(T3,'../Figures/Table_1.xlsx', 'Sheet', 'Estimated Bounds Model v2')
+
     % Model with theoretical bounds
     for n=1:12
         Parameters(:,n) = round([(Theoretical_Bounds_Model(n).lambda) (Theoretical_Bounds_Model(n).eta_zero) (Theoretical_Bounds_Model(n).dmin) (Theoretical_Bounds_Model(n).dmax) ],3);

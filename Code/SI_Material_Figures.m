@@ -212,7 +212,7 @@ ylabel('\eta_{0}')
 xlabel('\lambda')
 box off
 
-pj=subplot(4,2,8)    
+pj=subplot(4,2,8);    
     C = theta_hat(:,:,8);
     trueparms = Estimates(8,1:2);
     [~, xi]= ksdensity(C(:,1));

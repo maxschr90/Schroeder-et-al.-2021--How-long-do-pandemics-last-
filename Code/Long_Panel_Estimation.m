@@ -17,31 +17,31 @@ dmax = max(Influenza_UK(2,:));
 
 figure(1)
 subplot(5,1,1)
-plot(Influenza_UK(1,11:52), bpareto_outbreakprob(Pandemic_1848.alpha',Pandemic_1848.dmax,Pandemic_1848.dmin,Pandemic_1848.dmax/2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+plot(Influenza_UK(1,11:52), bpareto_outbreakprob(Pandemic_1848.alpha',Pandemic_1848.dmax,Pandemic_1848.dmin,Pandemic_1848.dmax/3*2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
 hold on 
-plot(Influenza_UK(1,11:52), bpareto_outbreakprob(Pandemic_1848.alpha',Pandemic_1848.dmax,Pandemic_1848.dmin,Pandemic_1848.dmax/3),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-plot(Influenza_UK(1,11:52), bpareto_outbreakprob(Pandemic_1848.alpha',Pandemic_1848.dmax,Pandemic_1848.dmin,Pandemic_1848.dmax/4),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-legend('1/2 of peak','1/3 of peak','1/4 of peak')
+plot(Influenza_UK(1,11:52), bpareto_outbreakprob(Pandemic_1848.alpha',Pandemic_1848.dmax,Pandemic_1848.dmin,Pandemic_1848.dmax/2),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+plot(Influenza_UK(1,11:52), bpareto_outbreakprob(Pandemic_1848.alpha',Pandemic_1848.dmax,Pandemic_1848.dmin,Pandemic_1848.dmax/3),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+legend('2/3 of peak','1/2 of peak','1/3 of peak')
 subplot(5,1,2)
-plot(Influenza_UK(1,53:80), bpareto_outbreakprob(Pandemic_1890.alpha',Pandemic_1890.dmax,Pandemic_1890.dmin,Pandemic_1890.dmax/2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+plot(Influenza_UK(1,53:80), bpareto_outbreakprob(Pandemic_1890.alpha',Pandemic_1890.dmax,Pandemic_1890.dmin,Pandemic_1890.dmax/3*2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
 hold on
-plot(Influenza_UK(1,53:80), bpareto_outbreakprob(Pandemic_1890.alpha',Pandemic_1890.dmax,Pandemic_1890.dmin,Pandemic_1890.dmax/3),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-plot(Influenza_UK(1,53:80), bpareto_outbreakprob(Pandemic_1890.alpha',Pandemic_1890.dmax,Pandemic_1890.dmin,Pandemic_1890.dmax/4),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+plot(Influenza_UK(1,53:80), bpareto_outbreakprob(Pandemic_1890.alpha',Pandemic_1890.dmax,Pandemic_1890.dmin,Pandemic_1890.dmax/2),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+plot(Influenza_UK(1,53:80), bpareto_outbreakprob(Pandemic_1890.alpha',Pandemic_1890.dmax,Pandemic_1890.dmin,Pandemic_1890.dmax/3),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
 
 subplot(5,1,3)
-plot(Influenza_UK(1,81:119), bpareto_outbreakprob(Pandemic_1918.alpha',Pandemic_1918.dmax,Pandemic_1918.dmin,Pandemic_1918.dmax/2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+plot(Influenza_UK(1,81:119), bpareto_outbreakprob(Pandemic_1918.alpha',Pandemic_1918.dmax,Pandemic_1918.dmin,Pandemic_1918.dmax/3*2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
 hold on
-plot(Influenza_UK(1,81:119), bpareto_outbreakprob(Pandemic_1918.alpha',Pandemic_1918.dmax,Pandemic_1918.dmin,Pandemic_1918.dmax/3),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-plot(Influenza_UK(1,81:119), bpareto_outbreakprob(Pandemic_1918.alpha',Pandemic_1918.dmax,Pandemic_1918.dmin,Pandemic_1918.dmax/4),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+plot(Influenza_UK(1,81:119), bpareto_outbreakprob(Pandemic_1918.alpha',Pandemic_1918.dmax,Pandemic_1918.dmin,Pandemic_1918.dmax/2),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+plot(Influenza_UK(1,81:119), bpareto_outbreakprob(Pandemic_1918.alpha',Pandemic_1918.dmax,Pandemic_1918.dmin,Pandemic_1918.dmax/3),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
 
 subplot(5,1,4)
-plot(Influenza_UK(1,120:130), bpareto_outbreakprob(Pandemic_1957.alpha',Pandemic_1957.dmax,Pandemic_1957.dmin,Pandemic_1957.dmax/2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+plot(Influenza_UK(1,120:130), bpareto_outbreakprob(Pandemic_1957.alpha',Pandemic_1957.dmax,Pandemic_1957.dmin,Pandemic_1957.dmax/3*2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
 hold on
-plot(Influenza_UK(1,120:130), bpareto_outbreakprob(Pandemic_1957.alpha',Pandemic_1957.dmax,Pandemic_1957.dmin,Pandemic_1957.dmax/3),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-plot(Influenza_UK(1,120:130), bpareto_outbreakprob(Pandemic_1957.alpha',Pandemic_1957.dmax,Pandemic_1957.dmin,Pandemic_1957.dmax/4),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+plot(Influenza_UK(1,120:130), bpareto_outbreakprob(Pandemic_1957.alpha',Pandemic_1957.dmax,Pandemic_1957.dmin,Pandemic_1957.dmax/2),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+plot(Influenza_UK(1,120:130), bpareto_outbreakprob(Pandemic_1957.alpha',Pandemic_1957.dmax,Pandemic_1957.dmin,Pandemic_1957.dmax/3),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
 
 subplot(5,1,5)
-plot(Influenza_UK(1,131:end), bpareto_outbreakprob(Pandemic_1968.alpha',Pandemic_1968.dmax,Pandemic_1968.dmin,Pandemic_1968.dmax/2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+plot(Influenza_UK(1,131:end), bpareto_outbreakprob(Pandemic_1968.alpha',Pandemic_1968.dmax,Pandemic_1968.dmin,Pandemic_1968.dmax/3*2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
 hold on
-plot(Influenza_UK(1,131:end), bpareto_outbreakprob(Pandemic_1968.alpha',Pandemic_1968.dmax,Pandemic_1968.dmin,Pandemic_1968.dmax/3),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-plot(Influenza_UK(1,131:end), bpareto_outbreakprob(Pandemic_1968.alpha',Pandemic_1968.dmax,Pandemic_1968.dmin,Pandemic_1968.dmax/4),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+plot(Influenza_UK(1,131:end), bpareto_outbreakprob(Pandemic_1968.alpha',Pandemic_1968.dmax,Pandemic_1968.dmin,Pandemic_1968.dmax/2),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+plot(Influenza_UK(1,131:end), bpareto_outbreakprob(Pandemic_1968.alpha',Pandemic_1968.dmax,Pandemic_1968.dmin,Pandemic_1968.dmax/3),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')

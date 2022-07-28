@@ -63,6 +63,6 @@ writematrix(Excess_Resp,'../Data/Relative_Mortality.xlsx','Sheet','Respiratory',
 %% Keep Variables for Analysis
 Influenza_US = table2array(readtable('../Data/National_Mortality_Data.xls', 'Sheet', ['US'], 'Range', 'A1:B57'));
 Influenza_EW = table2array(readtable('../Data/National_Mortality_Data.xls', 'Sheet', ['England&Wales'], 'Range', 'A1:B163'));
-Influenza_Cities = [years,table2array(Influenza)];
+Influenza_Cities = table2array(Influenza);
 
-clearvars -except Influenza_US Influenza_EW Influenza_Cities years citynames
+keepvars Influenza_US 

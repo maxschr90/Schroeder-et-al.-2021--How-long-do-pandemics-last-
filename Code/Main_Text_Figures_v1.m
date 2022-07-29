@@ -207,11 +207,11 @@ xlabel('\lambda')
 box off
 
 pf=subplot(2,3,6)    
-    C = theta_hat(:,:,14);
-    trueparms = Estimates(14,1:2);
+    C = theta_hat(:,:,12);
+    trueparms = Estimates(12,1:2);
     [~, xi]= ksdensity(C(:,1));
     [~, yi]= ksdensity(C(:,2));
-    [x1,x2] = meshgrid([linspace(0,0.5,50)],[linspace(0.,12,50)]);
+    [x1,x2] = meshgrid([linspace(0,0.25,50)],[linspace(0.,7.5,50)]);
     [A,B]=ksdensity(C,[x1(:) x2(:)]);
 
 contour(x1,x2,reshape(A,[size(x1,1)],[]),'ShowText','off')
@@ -221,7 +221,7 @@ colormap("jet")
 hold on
 ha=plot(trueparms(1),trueparms(2),'*','Color','black','MarkerSize',6)
 hb=plot(median(C(:,1)),median(C(:,2)),'o','Color','black','MarkerSize',6)
-title({'England & Wales', '1968'},'FontSize',8,'FontWeight','bold')
+title({'England & Wales', '1918-19'},'FontSize',8,'FontWeight','bold')
 % legend([ha,hb],'True Parameter',  'Median of Estimates')
 % ylabel('\eta_{0}')
 xlabel('\lambda')
@@ -347,25 +347,25 @@ pe=subplot(2,3,5)
             box off
 
 pf=subplot(2,3,6)
-            InvCdf_EW_1968(:,:) = bpareto_invcdf(0.01*[10, 25, 50, 75, 90]',Base_Model(14).alpha',Base_Model(14).dmax,Base_Model(14).dmin);
-            [ha,~,~] = shadedplot(1:size(InvCdf_EW_1968,2), InvCdf_EW_1968(1,:), InvCdf_EW_1968(5,:), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
+            InvCdf_EW_1918(:,:) = bpareto_invcdf(0.01*[10, 25, 50, 75, 90]',Base_Model(12).alpha',Base_Model(12).dmax,Base_Model(12).dmin);
+            [ha,~,~] = shadedplot(1:size(InvCdf_EW_1918,2), InvCdf_EW_1918(1,:), InvCdf_EW_1918(5,:), [0.95 0.95 0.95],[0.95 0.95 0.95]); 
             hold on
-            [ha,~,~] = shadedplot(1:size(InvCdf_EW_1968,2), InvCdf_EW_1968(2,:), InvCdf_EW_1968(4,:), [0.9 0.9 0.9],[0.9 0.9 0.9]); 
+            [ha,~,~] = shadedplot(1:size(InvCdf_EW_1918,2), InvCdf_EW_1918(2,:), InvCdf_EW_1918(4,:), [0.9 0.9 0.9],[0.9 0.9 0.9]); 
             hold on
-            plot(InvCdf_EW_1968(3,:),'Color','black')
+            plot(InvCdf_EW_1918(3,:),'Color','black')
 
-            hf = plot((Influenza_EW(134:end,2)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 3)
-            xlim([0,32])
-            xticks([5,15,25])
-            xticklabels({'1975', '1985','1995'}) 
-            ylim([0,max(max(InvCdf_EW_1968(5,:)),max(Influenza_EW(134:end,2)))*1.05])
+            hf = plot((Influenza_EW(83:119,2)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 3)
+            xlim([0,37])
+            xticks([1 11 21 31])
+            xticklabels({'1920', '1930','1940','1950'}) 
+            ylim([0,max(max(InvCdf_EW_1918(5,:)),max(Influenza_EW(83:end,2)))*1.05])
 
-            yticks([0,round(max(InvCdf_EW_1968(5,:))),round(max(Influenza_EW(134:end,2)),0)])
+            yticks(sort([0,round(max(InvCdf_EW_1918(5,:))),round(max(Influenza_EW(83:end,2)),0)]))
             ax = gca;
             c = ax.FontSize;
             ax.FontSize =8;
             ax.XTickLabelRotation = 0;
-            title({'England & Wales', '1968'},'FontSize',8,'FontWeight','bold')
+            title({'England & Wales', '1918-19'},'FontSize',8,'FontWeight','bold')
             box off            
             AddLetters2Plots({pa, pb, pc, pd, pe, pf},{'a','b','c','d','e','f'}, 'HShift', -0.05, 'VShift', -0.03, 'Direction', 'TopDown') 
 

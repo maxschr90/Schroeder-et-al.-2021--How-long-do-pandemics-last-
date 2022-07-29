@@ -65,4 +65,4 @@ Influenza_US = table2array(readtable('../Data/National_Mortality_Data.xls', 'She
 Influenza_EW = table2array(readtable('../Data/National_Mortality_Data.xls', 'Sheet', ['England&Wales'], 'Range', 'A1:B163'));
 Influenza_Cities = [years,table2array(Influenza)];
 
-clearvars -except Influenza_US Influenza_EW Influenza_Cities years citynames
+clearvars -except Influenza_US Influenza_EW Influenza_Cities years citynames Pneumonia Bronchitis

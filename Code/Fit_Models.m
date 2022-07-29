@@ -22,12 +22,11 @@ Load_Data % Loads data for Cities cities from excel file
 
         dmax_EW_1890 = max(Influenza_EW(53:80,2)');
         dmin_EW_1890 = min(Influenza_EW(53:80,2)');
-        [Base_Model(n+3)] = est_parms_bpareto(Influenza_EW(55:80,2),dmax_EW_1890,dmin_EW_1890, 'England&Wales 1890');
+        [Base_Model(n+3)] = est_parms_bpareto(Influenza_EW(56:80,2),dmax_EW_1890,dmin_EW_1890, 'England&Wales 1890');
 
         dmax_EW_1918 = max(Influenza_EW(81:119,2)');
         dmin_EW_1918 = min(Influenza_EW(81:119,2)');
         [Base_Model(n+4)] = est_parms_bpareto(Influenza_EW(83:119,2),dmax_EW_1918,dmin_EW_1918, 'England&Wales 1918');
-
 
         dmax_EW_1957 = max(Influenza_EW(120:130,2)');
         dmin_EW_1957 = min(Influenza_EW(120:130,2)');
@@ -35,7 +34,7 @@ Load_Data % Loads data for Cities cities from excel file
 
         dmax_EW_1968 = max(Influenza_EW(131:end,2)');
         dmin_EW_1968 = min(Influenza_EW(131:end,2)');
-        [Base_Model(n+6)] = est_parms_bpareto(Influenza_EW(133:end,2),dmax_EW_1968,dmin_EW_1968, 'England&Wales 1968');
+        [Base_Model(n+6)] = est_parms_bpareto(Influenza_EW(134:end,2),dmax_EW_1968,dmin_EW_1968, 'England&Wales 1968');
 
 %%% 3. Estimate Model with common Bounds
     dmax_Cities = (max(dmax_Cities));
@@ -54,47 +53,31 @@ Load_Data % Loads data for Cities cities from excel file
 
         [Theoretical_Bounds_Model(n+2)] = est_parms_bpareto(Influenza_EW(12:52,2),1000000,1, 'England&Wales 1848');
 
-        [Theoretical_Bounds_Model(n+3)] = est_parms_bpareto(Influenza_EW(55:80,2),1000000,1, 'England&Wales 1890');
+        [Theoretical_Bounds_Model(n+3)] = est_parms_bpareto(Influenza_EW(56:80,2),1000000,1, 'England&Wales 1890');
 
         [Theoretical_Bounds_Model(n+4)] = est_parms_bpareto(Influenza_EW(83:119,2),1000000,1, 'England&Wales 1918');
 
         [Theoretical_Bounds_Model(n+5)] = est_parms_bpareto(Influenza_EW(123:130,2),1000000,1, 'England&Wales 1957');
 
-        [Theoretical_Bounds_Model(n+6)] = est_parms_bpareto(Influenza_EW(133:end,2),1000000,1, 'England&Wales 1968');   
+        [Theoretical_Bounds_Model(n+6)] = est_parms_bpareto(Influenza_EW(134:end,2),1000000,1, 'England&Wales 1968');   
        
-%%% 5a. Estimate Model with estimated Bounds
-
-    for n = 1:8
-        [Estimated_Bounds_Model(n)] = est_parms_bpareto(Influenza_Cities(26:end,n+1),[],[], citynames(n));
-    end
-        [Estimated_Bounds_Model(n+1)] = est_parms_bpareto(Influenza_US(21:end,2),[],[], 'US');
-
-        [Estimated_Bounds_Model(n+2)] = est_parms_bpareto(Influenza_EW(12:52,2),[],[], 'England&Wales 1848');
-
-        [Estimated_Bounds_Model(n+3)] = est_parms_bpareto(Influenza_EW(55:80,2),[],[], 'England&Wales 1890');
-
-        [Estimated_Bounds_Model(n+4)] = est_parms_bpareto(Influenza_EW(83:119,2),[],[], 'England&Wales 1918');
-
-        [Estimated_Bounds_Model(n+5)] = est_parms_bpareto(Influenza_EW(123:130,2),[],[], 'England&Wales 1957');
-
-        [Estimated_Bounds_Model(n+6)] = est_parms_bpareto(Influenza_EW(133:end,2),[],[], 'England&Wales 1968');    
         
- %%% 5b. Estimate Model with estimated Bounds
+ %%% 5. Estimate Model with estimated Bounds
 
     for n = 1:8
-        [Estimated_Bounds_Model_v2(n)] = est_parms_bpareto(Influenza_Cities(24:end,n+1),[],[], citynames(n));
+        [Estimated_Bounds_Model(n)] = est_parms_bpareto(Influenza_Cities(24:end,n+1),[],[], citynames(n));
     end
-        [Estimated_Bounds_Model_v2(n+1)] = est_parms_bpareto(Influenza_US(19:end,2),[],[], 'US');
+        [Estimated_Bounds_Model(n+1)] = est_parms_bpareto(Influenza_US(19:end,2),[],[], 'US');
 
-        [Estimated_Bounds_Model_v2(n+2)] = est_parms_bpareto(Influenza_EW(11:52,2),[],[], 'England&Wales 1848');
+        [Estimated_Bounds_Model(n+2)] = est_parms_bpareto(Influenza_EW(11:52,2),[],[], 'England&Wales 1848');
 
-        [Estimated_Bounds_Model_v2(n+3)] = est_parms_bpareto(Influenza_EW(53:80,2),[],[], 'England&Wales 1890');
+        [Estimated_Bounds_Model(n+3)] = est_parms_bpareto(Influenza_EW(53:80,2),[],[], 'England&Wales 1890');
 
-        [Estimated_Bounds_Model_v2(n+4)] = est_parms_bpareto(Influenza_EW(81:119,2),[],[], 'England&Wales 1918');
+        [Estimated_Bounds_Model(n+4)] = est_parms_bpareto(Influenza_EW(81:119,2),[],[], 'England&Wales 1918');
 
-        [Estimated_Bounds_Model_v2(n+5)] = est_parms_bpareto(Influenza_EW(120:130,2),[],[], 'England&Wales 1957');
+        [Estimated_Bounds_Model(n+5)] = est_parms_bpareto(Influenza_EW(120:130,2),[],[], 'England&Wales 1957');
 
-        [Estimated_Bounds_Model_v2(n+6)] = est_parms_bpareto(Influenza_EW(131:end,2),[],[], 'England&Wales 1968');
+        [Estimated_Bounds_Model(n+6)] = est_parms_bpareto(Influenza_EW(131:end,2),[],[], 'England&Wales 1968');
         
            
 %%% 6. Estimate Weibull Model 
@@ -106,13 +89,13 @@ Load_Data % Loads data for Cities cities from excel file
 
         [Weibull_Model(n+2)] = est_parms_weibull(Influenza_EW(12:52,2)'/10, 'England&Wales 1848');
 
-        [Weibull_Model(n+3)] = est_parms_weibull(Influenza_EW(55:80,2)'/10, 'England&Wales 1890');
+        [Weibull_Model(n+3)] = est_parms_weibull(Influenza_EW(56:80,2)'/10, 'England&Wales 1890');
 
         [Weibull_Model(n+4)] = est_parms_weibull(Influenza_EW(83:119,2)'/10, 'England&Wales 1918');
 
         [Weibull_Model(n+5)] = est_parms_weibull(Influenza_EW(123:130,2)'/10, 'England&Wales 1957');
 
-        [Weibull_Model(n+6)] = est_parms_weibull(Influenza_EW(133:end,2)'/10, 'England&Wales 1968');         
+        [Weibull_Model(n+6)] = est_parms_weibull(Influenza_EW(134:end,2)'/10, 'England&Wales 1968');         
 
 
 %%% 7. Model Summary Tables
@@ -160,18 +143,6 @@ Load_Data % Loads data for Cities cities from excel file
     T3 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations' }') T3];
     writetable(T3,'../Figures/Table_2.xlsx', 'Sheet', 'Estimated Bounds Model')
      
-    for n=1:14
-        Parameters(:,n) = round([(Estimated_Bounds_Model_v2(n).lambda) (Estimated_Bounds_Model_v2(n).eta_zero) (Estimated_Bounds_Model_v2(n).dmin) (Estimated_Bounds_Model_v2(n).dmax) ],3);
-    end
-    
-    names = {'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield','US','England & Wales 1848','England & Wales 1890','England & Wales 1918','England & Wales 1957','England & Wales 1968'};
-    
-    for b =1:14
-        T6(:,b) = table([Parameters(:,b);Obs(b)]);
-    end
-    T6.Properties.VariableNames = names;
-    T6 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations' }') T6];
-    writetable(T6,'../Figures/Table_2.xlsx', 'Sheet', 'Estimated Bounds Model v2')
 
     % Model with theoretical bounds
     for n=1:14

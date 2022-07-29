@@ -85,17 +85,17 @@ Load_Data % Loads data for Cities cities from excel file
     for n = 1:8
         [Weibull_Model(n)] = est_parms_weibull(Influenza_Cities(26:end,n+1)/10, citynames(n));
     end
-        [Weibull_Model(n+1)] = est_parms_weibull(Influenza_US(21:end,2)'/10, 'US');
+        [Weibull_Model(n+1)] = est_parms_weibull(Influenza_US(21:end,2)/10, 'US');
 
-        [Weibull_Model(n+2)] = est_parms_weibull(Influenza_EW(12:52,2)'/10, 'England&Wales 1848');
+        [Weibull_Model(n+2)] = est_parms_weibull(Influenza_EW(12:52,2)/10, 'England&Wales 1848');
 
-        [Weibull_Model(n+3)] = est_parms_weibull(Influenza_EW(56:80,2)'/10, 'England&Wales 1890');
+        [Weibull_Model(n+3)] = est_parms_weibull(Influenza_EW(56:80,2)/10, 'England&Wales 1890');
 
-        [Weibull_Model(n+4)] = est_parms_weibull(Influenza_EW(83:119,2)'/10, 'England&Wales 1918');
+        [Weibull_Model(n+4)] = est_parms_weibull(Influenza_EW(83:119,2)/10, 'England&Wales 1918');
 
-        [Weibull_Model(n+5)] = est_parms_weibull(Influenza_EW(123:130,2)'/10, 'England&Wales 1957');
+        [Weibull_Model(n+5)] = est_parms_weibull(Influenza_EW(123:130,2)/10, 'England&Wales 1957');
 
-        [Weibull_Model(n+6)] = est_parms_weibull(Influenza_EW(134:end,2)'/10, 'England&Wales 1968');         
+        [Weibull_Model(n+6)] = est_parms_weibull(Influenza_EW(134:end,2)/10, 'England&Wales 1968');         
 
 
 %%% 7. Model Summary Tables
@@ -113,7 +113,7 @@ Load_Data % Loads data for Cities cities from excel file
     end
     T1.Properties.VariableNames = names;
     T1 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations'}') T1];
-    writetable(T1,'../Figures/Table_2.xlsx', 'Sheet', 'Base Model')
+    writetable(T1,'../Figures/Table_3.xlsx', 'Sheet', 'Base Model')
 
     % Model with common bounds
     for n=1:8
@@ -127,7 +127,7 @@ Load_Data % Loads data for Cities cities from excel file
     end
     T2.Properties.VariableNames = names;
     T2 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations'}') T2];
-    writetable(T2,'../Figures/Table_2.xlsx', 'Sheet', 'Common Bounds Model')
+    writetable(T2,'../Figures/Table_3.xlsx', 'Sheet', 'Common Bounds Model')
     
     % Model with estimated bounds
     for n=1:14
@@ -141,7 +141,7 @@ Load_Data % Loads data for Cities cities from excel file
     end
     T3.Properties.VariableNames = names;
     T3 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations' }') T3];
-    writetable(T3,'../Figures/Table_2.xlsx', 'Sheet', 'Estimated Bounds Model')
+    writetable(T3,'../Figures/Table_3.xlsx', 'Sheet', 'Estimated Bounds Model')
      
 
     % Model with theoretical bounds
@@ -156,7 +156,7 @@ Load_Data % Loads data for Cities cities from excel file
     end
     T4.Properties.VariableNames = names;
     T4 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations'}') T4];
-    writetable(T4,'../Figures/Table_2.xlsx', 'Sheet', 'Theoretical Bounds Model')
+    writetable(T4,'../Figures/Table_3.xlsx', 'Sheet', 'Theoretical Bounds Model')
     
    % Weibull
    Parameters =[];
@@ -171,10 +171,10 @@ Load_Data % Loads data for Cities cities from excel file
     end
     T5.Properties.VariableNames = names;
     T5 = [table({ '\lambda', '\eta_{0}', 'Observations'}') T5];
-    writetable(T5,'../Figures/Table_2.xlsx', 'Sheet', 'Weibull Model')
+    writetable(T5,'../Figures/Table_3.xlsx', 'Sheet', 'Weibull Model')
 
 %%% 8. Mortality Summary Tables
-
+Influenza_Cities(25,2) = 996; %% Add missing Belfast number
 mean_temp = [mean(Influenza_Cities(4:13,2:end),'omitnan')'; mean(Influenza_US(1:8,2)); mean(Influenza_EW(61:70,2))];
 mean_temp = [mean_temp,[mean(Influenza_Cities(14:23,2:end),'omitnan')'; mean(Influenza_US(9:18,2)); mean(Influenza_EW(71:80,2))]];
 mean_temp = [mean_temp,[mean(Influenza_Cities(24:25,2:end),'omitnan')'; mean(Influenza_US(19:21,2)); mean(Influenza_EW(81:82,2))]];
@@ -211,10 +211,10 @@ t = table({'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 
 ttt.Properties.VariableNames = {'1898-1907',	'1908-1917',	'1918/19',	'1920-29',	'1930-39',	'1940-1949'};
 tt.Properties.VariableNames = {'1898-1907',	'1908-1917',	'1918/19',	'1920-29',	'1930-39',	'1940-1949'};
 
-writetable(tt,'../Figures/Table_1.xlsx', 'Sheet', 'Means', 'Range', 'B2:G11','WriteVariableNames',true)
-writetable(t,'../Figures/Table_1.xlsx', 'Sheet', 'Means', 'Range', 'A2:A11')
-writetable(ttt,'../Figures/Table_1.xlsx', 'Sheet', 'Range', 'Range', 'B2:G11','WriteVariableNames',true)
-writetable(t,'../Figures/Table_1.xlsx', 'Sheet', 'Range', 'Range', 'A2:A11')
+writetable(tt,'../Figures/Table_1.xlsx', 'Sheet', 'Means', 'Range', 'B2:G12','WriteVariableNames',true)
+writetable(t,'../Figures/Table_1.xlsx', 'Sheet', 'Means', 'Range', 'A2:A12')
+writetable(ttt,'../Figures/Table_1.xlsx', 'Sheet', 'Range', 'Range', 'B2:G12','WriteVariableNames',true)
+writetable(t,'../Figures/Table_1.xlsx', 'Sheet', 'Range', 'Range', 'A2:A12')
 
     %%% Save Results        
 

@@ -22,7 +22,7 @@ Load_Data % Loads data for Cities cities from excel file
 
         dmax_EW_1890 = max(Influenza_EW(53:80,2)');
         dmin_EW_1890 = min(Influenza_EW(53:80,2)');
-        [Base_Model(n+3)] = est_parms_bpareto(Influenza_EW(56:80,2),dmax_EW_1890,dmin_EW_1890, 'England&Wales 1890');
+        [Base_Model(n+3)] = est_parms_bpareto(Influenza_EW(55:80,2),dmax_EW_1890,dmin_EW_1890, 'England&Wales 1890');
 
         dmax_EW_1918 = max(Influenza_EW(81:119,2)');
         dmin_EW_1918 = min(Influenza_EW(81:119,2)');
@@ -53,7 +53,7 @@ Load_Data % Loads data for Cities cities from excel file
 
         [Theoretical_Bounds_Model(n+2)] = est_parms_bpareto(Influenza_EW(12:52,2),1000000,1, 'England&Wales 1848');
 
-        [Theoretical_Bounds_Model(n+3)] = est_parms_bpareto(Influenza_EW(56:80,2),1000000,1, 'England&Wales 1890');
+        [Theoretical_Bounds_Model(n+3)] = est_parms_bpareto(Influenza_EW(55:80,2),1000000,1, 'England&Wales 1890');
 
         [Theoretical_Bounds_Model(n+4)] = est_parms_bpareto(Influenza_EW(83:119,2),1000000,1, 'England&Wales 1918');
 
@@ -89,7 +89,7 @@ Load_Data % Loads data for Cities cities from excel file
 
         [Weibull_Model(n+2)] = est_parms_weibull(Influenza_EW(12:52,2)/10, 'England&Wales 1848');
 
-        [Weibull_Model(n+3)] = est_parms_weibull(Influenza_EW(56:80,2)/10, 'England&Wales 1890');
+        [Weibull_Model(n+3)] = est_parms_weibull(Influenza_EW(55:80,2)/10, 'England&Wales 1890');
 
         [Weibull_Model(n+4)] = est_parms_weibull(Influenza_EW(83:119,2)/10, 'England&Wales 1918');
 

@@ -551,21 +551,21 @@ figure(6)
 
         pb = subplot(2,2,2)
         
-        plot(Influenza_EW(56:80,1), bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,Base_Model(11).dmax/3*2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+        plot(Influenza_EW(55:80,1), bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,Base_Model(11).dmax/3*2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
         hold on 
-        plot(Influenza_EW(56:80,1), bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,Base_Model(11).dmax/2),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-        plot(Influenza_EW(56:80,1), bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,Base_Model(11).dmax/3),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+        plot(Influenza_EW(55:80,1), bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,Base_Model(11).dmax/2),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+        plot(Influenza_EW(55:80,1), bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,Base_Model(11).dmax/3),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
 
-        xlim([1892,1918])
+        xlim([1891,1918])
         xticks([1890:5:1915])
         xtickangle(0)
         yticks([0:0.1:0.7])
         ylim([0,0.7])
         yticklabels({'0','0.1',  '0.2', '0.3','0.4','0.5','0.6','0.7'})
-        a = get(gca,'XTickLabel');
-        set(gca,'XTickLabel',a,'fontsize',8)        
-        aa = get(gca,'YTickLabel');
-        set(gca,'YTickLabel',aa,'fontsize',8) 
+%         a = get(gca,'XTickLabel');
+%         set(gca,'XTickLabel',a,'fontsize',8)        
+%         aa = get(gca,'YTickLabel');
+%         set(gca,'YTickLabel',aa,'fontsize',8) 
         title('England & Wales 1889-90')
         box off
         ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8) 

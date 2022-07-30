@@ -313,7 +313,7 @@ pb=subplot(3,1,2)
     trueparms = Estimates(11,1:2);
     [~, xi]= ksdensity(C(:,1));
     [~, yi]= ksdensity(C(:,2));
-    [x1,x2] = meshgrid([linspace(0,0.2,50)],[linspace(0.,37,50)]);
+    [x1,x2] = meshgrid([linspace(0,0.08,100)],[linspace(0.,37,100)]);
     [A,B]=ksdensity(C,[x1(:) x2(:)]);
 
 contour(x1,x2,reshape(A,[size(x1,1)],[]),'ShowText','off')
@@ -482,13 +482,13 @@ hold on
 hold on
 plot(InvCdf_EW_1890(3,:),'Color','black')
  
-hf = plot((Influenza_EW(56:80,2)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize',3)
-xlim([0,26])
+hf = plot((Influenza_EW(55:80,2)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize',3)
+xlim([0,27])
 xticks([1 6 11 16 21 26])
-xticklabels({'1893', '1898','1903','1908','1913','1918'}) 
+xticklabels({'1892', '1897','1902','1907','1912','1917'}) 
       
-ylim([0,max(max(InvCdf_EW_1890(5,:)),max(Influenza_EW(56:80,2)))*1.05])
-yticks([0,sort(round(max(Influenza_EW(56:80,2)),0),round(max(InvCdf_EW_1890(5,:))))])
+ylim([0,max(max(InvCdf_EW_1890(5,:)),max(Influenza_EW(55:80,2)))*1.05])
+yticks([0,sort(round(max(Influenza_EW(55:80,2)),0),round(max(InvCdf_EW_1890(5,:))))])
 ax = gca;
 c = ax.FontSize;
 ax.FontSize =8;
@@ -669,7 +669,7 @@ figure(8)
         plot(Influenza_US(21:end,1),bpareto_outbreakprob(Theoretical_Bounds_Model(9).alpha',Theoretical_Bounds_Model(9).dmax,Theoretical_Bounds_Model(9).dmin,1000), '-o', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
         leg=legend('500 deaths/million', '1000 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
         legend boxoff
-        title(leg,'US (1918-19)','FontSize',8);
+        title(leg,'United States (1918-19)','FontSize',8);
         box off
 
         ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8) 
@@ -725,21 +725,22 @@ figure(8)
 
         pb = subplot(2,2,2)
         
-        plot(Influenza_EW(56:80,1), bpareto_outbreakprob(Theoretical_Bounds_Model(11).alpha',Theoretical_Bounds_Model(11).dmax,Theoretical_Bounds_Model(11).dmin,Base_Model(11).dmax/3*2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+        plot(Influenza_EW(55:80,1), bpareto_outbreakprob(Theoretical_Bounds_Model(11).alpha',Theoretical_Bounds_Model(11).dmax,Theoretical_Bounds_Model(11).dmin,Base_Model(11).dmax/3*2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
         hold on 
-        plot(Influenza_EW(56:80,1), bpareto_outbreakprob(Theoretical_Bounds_Model(11).alpha',Theoretical_Bounds_Model(11).dmax,Theoretical_Bounds_Model(11).dmin,Base_Model(11).dmax/2),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-        plot(Influenza_EW(56:80,1), bpareto_outbreakprob(Theoretical_Bounds_Model(11).alpha',Theoretical_Bounds_Model(11).dmax,Theoretical_Bounds_Model(11).dmin,Base_Model(11).dmax/3),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-
-        xlim([1892,1918])
+        plot(Influenza_EW(55:80,1), bpareto_outbreakprob(Theoretical_Bounds_Model(11).alpha',Theoretical_Bounds_Model(11).dmax,Theoretical_Bounds_Model(11).dmin,Base_Model(11).dmax/2),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+        plot(Influenza_EW(55:80,1), bpareto_outbreakprob(Theoretical_Bounds_Model(11).alpha',Theoretical_Bounds_Model(11).dmax,Theoretical_Bounds_Model(11).dmin,Base_Model(11).dmax/3),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+%         a = get(gca,'XTickLabel');
+%         set(gca,'XTickLabel',a,'fontsize',8)        
+        aa = get(gca,'YTickLabel');
+        set(gca,'YTickLabel',aa,'fontsize',8) 
+        xlim([1891,1918])
         xticks([1890:5:1915])
+
         xtickangle(0)
         yticks([0:0.1:0.5])
         ylim([0,0.5])
         yticklabels({'0','0.1',  '0.2', '0.3','0.4','0.5','0.6','0.7'})
-        a = get(gca,'XTickLabel');
-        set(gca,'XTickLabel',a,'fontsize',8)        
-        aa = get(gca,'YTickLabel');
-        set(gca,'YTickLabel',aa,'fontsize',8) 
+
         title('England & Wales 1889-90')
         box off
 
@@ -779,7 +780,7 @@ figure(8)
         set(gca,'XTickLabel',a,'fontsize',8)        
         aa = get(gca,'YTickLabel');
         set(gca,'YTickLabel',aa,'fontsize',8) 
-        title('England & Wales 1968')
+        title('England & Wales 1968-70')
         box off
 
         AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.07, 'VShift', -0.045, 'Direction', 'TopDown') 
@@ -801,7 +802,6 @@ figure(8)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 8 B %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-close all
 figure(10)
         pa = subplot(2,2,1)
         for n=1:8
@@ -876,7 +876,7 @@ figure(10)
         plot(Influenza_US(19:end,1),bpareto_outbreakprob(Estimated_Bounds_Model(9).alpha',Estimated_Bounds_Model(9).dmax,Estimated_Bounds_Model(9).dmin,1000), '-o', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
         leg=legend('500 deaths/million', '1000 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
         legend boxoff
-        title(leg,'US (1918-19)','FontSize',8);
+        title(leg,'United States (1918-19)','FontSize',8);
         box off
 
         ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8) 
@@ -984,7 +984,7 @@ figure(10)
         set(gca,'XTickLabel',a,'fontsize',8)        
         aa = get(gca,'YTickLabel');
         set(gca,'YTickLabel',aa,'fontsize',8) 
-        title('England & Wales 1968')
+        title('England & Wales 1968-70')
         box off
 
         AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.07, 'VShift', -0.045, 'Direction', 'TopDown') 
@@ -1001,7 +1001,6 @@ figure(10)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 10 B %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-close all
 figure(12)
         pa = subplot(2,2,1)
         for n=1:8
@@ -1076,7 +1075,7 @@ figure(12)
         plot(Influenza_US(21:end,1),weibull_outbreakprob(Weibull_Model(9).w',100), '-o', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
         leg=legend('500 deaths/million', '1000 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
         legend boxoff
-        title(leg,'US (1918-19)','FontSize',8);
+        title(leg,'United States (1918-19)','FontSize',8);
         box off
 
         ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8) 

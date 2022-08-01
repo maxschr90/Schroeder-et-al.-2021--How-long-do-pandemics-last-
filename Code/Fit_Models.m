@@ -98,7 +98,17 @@ Load_Data % Loads data for Cities cities from excel file
         [Weibull_Model(n+6)] = est_parms_weibull(Influenza_EW(134:end,2)/10, 'England&Wales 1968');         
 
 
-%%% 7. Model Summary Tables
+%%% 7. Estimate Risk for different Gender breakdown
+Base_Model_Gender(1) = est_parms_bpareto(Influenza_EW_Gender(20:56,2),max(Influenza_EW_Gender(18:56,2)),min(Influenza_EW_Gender(18:56,2)), '1918 males');
+Base_Model_Gender(2) = est_parms_bpareto(Influenza_EW_Gender(20:56,3),max(Influenza_EW_Gender(18:56,3)),min(Influenza_EW_Gender(18:56,3)), '1918 females');
+Base_Model_Gender(3) = est_parms_bpareto(Influenza_EW_Gender(20:56,4),max(Influenza_EW_Gender(18:56,4)),min(Influenza_EW_Gender(18:56,4)), '1918 total');
+Base_Model_Gender(4) = est_parms_bpareto(Influenza_EW_Gender(71:end,2),max(Influenza_EW_Gender(68:end,2)),min(Influenza_EW_Gender(68:end,2)), '1968 males');
+Base_Model_Gender(5) = est_parms_bpareto(Influenza_EW_Gender(71:end,3),max(Influenza_EW_Gender(68:end,3)),min(Influenza_EW_Gender(68:end,3)), '1968 females');
+Base_Model_Gender(6) = est_parms_bpareto(Influenza_EW_Gender(71:end,4),max(Influenza_EW_Gender(68:end,4)),min(Influenza_EW_Gender(68:end,4)), '1968 total');
+
+
+
+%%% 8. Model Summary Tables
 % Base Model
    Obs = [sum(Influenza_Cities(26:end,2:9)==Influenza_Cities(26:end,2:9)), sum(Influenza_US(21:end,2)==Influenza_US(21:end,2)),sum(Influenza_EW(12:52,2)==Influenza_EW(12:52,2)),sum(Influenza_EW(55:80,2)==Influenza_EW(55:80,2)),sum(Influenza_EW(83:119,2)==Influenza_EW(83:119,2)),sum(Influenza_EW(123:130,2)==Influenza_EW(123:130,2)),sum(Influenza_EW(133:end,2)==Influenza_EW(133:end,2))];
 
@@ -173,7 +183,7 @@ Load_Data % Loads data for Cities cities from excel file
     T5 = [table({ '\lambda', '\eta_{0}', 'Observations'}') T5];
     writetable(T5,'../Figures/Table_3.xlsx', 'Sheet', 'Weibull Model')
 
-%%% 8. Mortality Summary Tables
+%%% 9. Mortality Summary Tables
 Influenza_Cities(25,2) = 996; %% Add missing Belfast number
 mean_temp = [mean(Influenza_Cities(4:13,2:end),'omitnan')'; mean(Influenza_US(1:8,2)); mean(Influenza_EW(61:70,2))];
 mean_temp = [mean_temp,[mean(Influenza_Cities(14:23,2:end),'omitnan')'; mean(Influenza_US(9:18,2)); mean(Influenza_EW(71:80,2))]];

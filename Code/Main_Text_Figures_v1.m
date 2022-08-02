@@ -5,8 +5,8 @@ clear
 clc
 close all
 load('Fitted_Models_v1')
-Linemarkertypes = {'-p','-x','-h','-s','-d','-*','-v','-^','-+','-o'};
-Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
+Linemarkertypes = {'-p','-o','-h','-s','-d','-*','-v','-^','-+','-x'};
+Markertypes = {'p','o','h','s','d','*','v','^','+','x'};
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 1  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -70,6 +70,15 @@ Markertypes = {'p','x','h','s','d','*','v','^','+','o'};
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure(2)
 plot(Influenza_EW(1:end,1),Influenza_EW(1:end,2),'.-', 'Linewidth', 0.5, 'Color','red', 'Markersize',6  ,'MarkerEdgeColor','red')
+hold on
+patch([1846.5,1846.5, 1888.5, 1888.5],[0 max(ylim) max(ylim) 0], [0.9 0.9 0.9])
+patch([1888.5,1888.5, 1917.5, 1917.5],[0 max(ylim) max(ylim) 0], [0.8 0.8 0.8])
+patch([1917.5,1917.5, 1956.5, 1956.5],[0 max(ylim) max(ylim) 0], [0.9 0.9 0.9])
+patch([1956.5,1956.5, 1967.5, 1967.5],[0 max(ylim) max(ylim) 0], [0.8 0.8 0.8])
+patch([1967.5,1967.5, 2000.5, 2000.5],[0 max(ylim) max(ylim) 0], [0.9 0.9 0.9])
+
+plot(Influenza_EW(1:end,1),Influenza_EW(1:end,2),'.-', 'Linewidth', 0.5, 'Color','red', 'Markersize',6  ,'MarkerEdgeColor','red')
+
 ylabel('Mortality rate (deaths/million)')
 box off
 xticks([1840:20:2000])
@@ -129,7 +138,7 @@ figure(3)
     ylim([0,450])
     xlim([0,4000])
     ylabel({'Average mortality in first','post-pandemic decade'})
-    xlabel({'Average mortality across main waves'})
+    xlabel({'Average mortality across main waves (1918-19)'})
 
 h = figure(3);
 
@@ -431,9 +440,6 @@ figure(6)
         end
             hold on
         ylabel(sprintf('Prob(>500 deaths/million)'),'fontsize',8) 
-        leg = legend({ 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield'},'FontSize',6, 'Location','best', 'NumColumns',1);
-%         leg.ItemTokenSize = [3,1.5];
-        legend boxoff
         xlim([1919,1956])
         xticks([1920:5:1956])
         xticklabels({'1920','1925', '1930','1935','1940','1945','1950','1955'})
@@ -457,6 +463,10 @@ figure(6)
         end
             hold on
         ylabel(sprintf('Prob(>1,000 deaths/million)'),'fontsize',8) 
+        leg = legend({ 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield'},'FontSize',6, 'Location','best', 'NumColumns',1);
+        leg.ItemTokenSize = [9,4.5];
+        legend boxoff
+        title(leg,'UK Cities (1918-19)','FontSize',8);
          a = get(gca,'XTickLabel');
         set(gca,'XTickLabel',a,'fontsize',8)        
         aa = get(gca,'YTickLabel');
@@ -474,6 +484,8 @@ figure(6)
         hold on        
         plot(Influenza_EW(83:119,1),bpareto_outbreakprob(Base_Model(12).alpha',Base_Model(12).dmax,Base_Model(12).dmin,1000), '-o', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
         leg=legend('500 deaths/million', '1000 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
+        leg.ItemTokenSize = [9,4.5];
+
         legend boxoff
         title(leg,'England & Wales (1918-19)','FontSize',8);
         box off
@@ -496,6 +508,7 @@ figure(6)
         hold on        
         plot(Influenza_US(21:end,1),bpareto_outbreakprob(Base_Model(9).alpha',Base_Model(9).dmax,Base_Model(9).dmin,1000), '-o', 'Linewidth', .5, 'Markersize', 5, 'Color' ,'black')
         leg=legend('500 deaths/million', '1000 deaths/million','FontSize',6, 'location', 'northeast', 'NumColumns' ,1)
+        leg.ItemTokenSize = [9,4.5];
         legend boxoff
         title(leg,'United States (1918-19)','FontSize',8);
         box off
@@ -533,7 +546,9 @@ figure(6)
         hold on 
         plot(Influenza_EW(12:52,1), bpareto_outbreakprob(Base_Model(10).alpha',Base_Model(10).dmax,Base_Model(10).dmin,Base_Model(10).dmax/2),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
         plot(Influenza_EW(12:52,1), bpareto_outbreakprob(Base_Model(10).alpha',Base_Model(10).dmax,Base_Model(10).dmin,Base_Model(10).dmax/3),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-        legend('2/3 of peak','1/2 of peak','1/3 of peak')
+        leg=legend('2/3 of peak','1/2 of peak','1/3 of peak')
+        leg.ItemTokenSize = [9,4.5];
+
         legend boxoff
         xlim([1848,1890])
         xticks([1850:5:1890])
@@ -636,7 +651,7 @@ figure(8)
     ylim([0,0.3])
     xlim([0,4000])
     ylabel('\lambda')
-    xlabel({'Average mortality across main waves'})
+    xlabel({'Average mortality across main waves (1918-19)'})
 
 h = figure(8);
 

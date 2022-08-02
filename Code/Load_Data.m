@@ -64,8 +64,6 @@ writematrix(Excess_Resp,'../Data/Relative_Mortality.xlsx','Sheet','Respiratory',
 Influenza_US = table2array(readtable('../Data/National_Mortality_Data.xls', 'Sheet', ['US'], 'Range', 'A1:B57'));
 Influenza_EW = table2array(readtable('../Data/National_Mortality_Data.xls', 'Sheet', ['England & Wales'], 'Range', 'A1:B163'));
 Influenza_Cities = [years,table2array(Influenza)];
-Influenza_EW_Gender(:,:,1) = table2array(readtable('../Data/Mortality_Rate_by_Gender.xlsx', 'Sheet', ['Total'], 'Range', 'A1:E101'));
-Influenza_EW_Gender(:,:,2) = table2array(readtable('../Data/Mortality_Rate_by_Gender.xlsx', 'Sheet', ['Male'], 'Range', 'A1:E101'));
-Influenza_EW_Gender(:,:,3) = table2array(readtable('../Data/Mortality_Rate_by_Gender.xlsx', 'Sheet', ['Female'], 'Range', 'A1:E101'));
 
-clearvars -except Influenza_US Influenza_EW Influenza_EW_Gender Influenza_Cities years citynames Pneumonia Bronchitis
+
+clearvars -except Influenza_US Influenza_EW  Influenza_Cities years citynames Pneumonia Bronchitis

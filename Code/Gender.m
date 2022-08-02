@@ -5,17 +5,22 @@ load('Fitted_Models_v1.mat')
 
 figure(1)
 hold on
-plot(Influenza_EW_Gender(:,1),Influenza_EW_Gender(:,4),'Color','red')
-plot(Influenza_EW_Gender(:,1),Influenza_EW_Gender(:,2),'-o','Color','blue')
-plot(Influenza_EW_Gender(:,1),Influenza_EW_Gender(:,3),'-*','Color','green')
+plot(Influenza_EW_Gender(:,1,1),Influenza_EW_Gender(:,2,1),'Color','red')
+plot(Influenza_EW_Gender(:,1,1),Influenza_EW_Gender(:,2,2),'-o','Color','blue')
+plot(Influenza_EW_Gender(:,1,1),Influenza_EW_Gender(:,2,3),'-*','Color','green')
 legend('Total', 'Males', 'Females')
 
 axes('Position',[.65 .4 .25 .25])
 box on
 hold on
-plot(Influenza_EW_Gender(55:end,1),Influenza_EW_Gender(55:end,4),'Color','red')
-plot(Influenza_EW_Gender(55:end,1),Influenza_EW_Gender(55:end,2),'-o','Color','blue')
-plot(Influenza_EW_Gender(55:end,1),Influenza_EW_Gender(55:end,3),'-*','Color','green')
+plot(Influenza_EW_Gender(55:end,1,1),Influenza_EW_Gender(55:end,2,1),'Color','red')
+plot(Influenza_EW_Gender(55:end,1,1),Influenza_EW_Gender(55:end,2,2),'-o','Color','blue')
+plot(Influenza_EW_Gender(55:end,1,1),Influenza_EW_Gender(55:end,2,3),'-*','Color','green')
+
+        h = figure(1);
+        h.Units='centimeters';
+        h.OuterPosition=[0 0 18 15];
+        exportgraphics(figure(1),'../Figures/Fig_Gender_a.pdf','BackgroundColor','none','Resolution', 900)
 
 Linemarkertypes = {'-o','-*','-','-o','-*','-'};
 
@@ -109,3 +114,8 @@ pc = subplot(2,2,3)
         yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4'})
 
         AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.05, 'VShift', -0.03, 'Direction', 'TopDown') 
+
+                h = figure(2);
+        h.Units='centimeters';
+        h.OuterPosition=[0 0 18 15];
+        exportgraphics(figure(2),'../Figures/Fig_Gender_b.pdf','BackgroundColor','none','Resolution', 900)

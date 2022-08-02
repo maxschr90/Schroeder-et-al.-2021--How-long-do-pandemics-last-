@@ -99,12 +99,12 @@ Load_Data % Loads data for Cities cities from excel file
 
 
 %%% 7. Estimate Risk for different Gender breakdown
-Base_Model_Gender(1) = est_parms_bpareto(Influenza_EW_Gender(20:56,2),max(Influenza_EW_Gender(18:56,2)),min(Influenza_EW_Gender(18:56,2)), '1918 males');
-Base_Model_Gender(2) = est_parms_bpareto(Influenza_EW_Gender(20:56,3),max(Influenza_EW_Gender(18:56,3)),min(Influenza_EW_Gender(18:56,3)), '1918 females');
-Base_Model_Gender(3) = est_parms_bpareto(Influenza_EW_Gender(20:56,4),max(Influenza_EW_Gender(18:56,4)),min(Influenza_EW_Gender(18:56,4)), '1918 total');
-Base_Model_Gender(4) = est_parms_bpareto(Influenza_EW_Gender(71:end,2),max(Influenza_EW_Gender(68:end,2)),min(Influenza_EW_Gender(68:end,2)), '1968 males');
-Base_Model_Gender(5) = est_parms_bpareto(Influenza_EW_Gender(71:end,3),max(Influenza_EW_Gender(68:end,3)),min(Influenza_EW_Gender(68:end,3)), '1968 females');
-Base_Model_Gender(6) = est_parms_bpareto(Influenza_EW_Gender(71:end,4),max(Influenza_EW_Gender(68:end,4)),min(Influenza_EW_Gender(68:end,4)), '1968 total');
+Base_Model_Gender(1) = est_parms_bpareto(Influenza_EW_Gender(20:56,2,2),max(Influenza_EW_Gender(18:56,2,2)),min(Influenza_EW_Gender(18:56,2,2)), '1918 males');
+Base_Model_Gender(2) = est_parms_bpareto(Influenza_EW_Gender(20:56,2,3),max(Influenza_EW_Gender(18:56,2,3)),min(Influenza_EW_Gender(18:56,2,3)), '1918 females');
+Base_Model_Gender(3) = est_parms_bpareto(Influenza_EW_Gender(20:56,2,1),max(Influenza_EW_Gender(18:56,2,1)),min(Influenza_EW_Gender(18:56,2,1)), '1918 total');
+Base_Model_Gender(4) = est_parms_bpareto(Influenza_EW_Gender(71:end,2,2),max(Influenza_EW_Gender(68:end,2,2)),min(Influenza_EW_Gender(68:end,2,2)), '1968 males');
+Base_Model_Gender(5) = est_parms_bpareto(Influenza_EW_Gender(71:end,2,3),max(Influenza_EW_Gender(68:end,2,3)),min(Influenza_EW_Gender(68:end,2,3)), '1968 females');
+Base_Model_Gender(6) = est_parms_bpareto(Influenza_EW_Gender(71:end,2,1),max(Influenza_EW_Gender(68:end,2,1)),min(Influenza_EW_Gender(68:end,2,1)), '1968 total');
 
 
 

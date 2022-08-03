@@ -573,16 +573,18 @@ figure(6)
 
         xlim([1891,1918])
         xticks([1890:5:1915])
+        xticklabels([1890:5:1915])
         xtickangle(0)
         yticks([0:0.1:0.7])
         ylim([0,0.7])
         yticklabels({'0','0.1',  '0.2', '0.3','0.4','0.5','0.6','0.7'})
-%         a = get(gca,'XTickLabel');
-%         set(gca,'XTickLabel',a,'fontsize',8)        
-%         aa = get(gca,'YTickLabel');
-%         set(gca,'YTickLabel',aa,'fontsize',8) 
+        b = get(gca,'XTickLabel');
+        set(gca,'XTickLabel',b,'fontsize',8)        
+        bb = get(gca,'YTickLabel');
+        set(gca,'YTickLabel',bb,'fontsize',8) 
         title('England & Wales 1889-90')
         box off
+
         ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8) 
 
         pc = subplot(2,2,3)

@@ -71,11 +71,11 @@ Markertypes = {'p','o','h','s','d','*','v','^','+','x'};
 figure(2)
 plot(Influenza_EW(1:end,1),Influenza_EW(1:end,2),'.-', 'Linewidth', 0.5, 'Color','red', 'Markersize',6  ,'MarkerEdgeColor','red')
 hold on
-patch([1846.5,1846.5, 1888.5, 1888.5],[0 max(ylim) max(ylim) 0], [0.9 0.9 0.9])
-patch([1888.5,1888.5, 1917.5, 1917.5],[0 max(ylim) max(ylim) 0], [0.8 0.8 0.8])
-patch([1917.5,1917.5, 1956.5, 1956.5],[0 max(ylim) max(ylim) 0], [0.9 0.9 0.9])
-patch([1956.5,1956.5, 1967.5, 1967.5],[0 max(ylim) max(ylim) 0], [0.8 0.8 0.8])
-patch([1967.5,1967.5, 2000.5, 2000.5],[0 max(ylim) max(ylim) 0], [0.9 0.9 0.9])
+patch([1846.5,1846.5, 1888.5, 1888.5],[0 max(ylim) max(ylim) 0], [0.9 0.9 0.9],'EdgeColor','none')
+patch([1888.5,1888.5, 1917.5, 1917.5],[0 max(ylim) max(ylim) 0], [0.8 0.8 0.8],'EdgeColor','none')
+patch([1917.5,1917.5, 1956.5, 1956.5],[0 max(ylim) max(ylim) 0], [0.9 0.9 0.9],'EdgeColor','none')
+patch([1956.5,1956.5, 1967.5, 1967.5],[0 max(ylim) max(ylim) 0], [0.8 0.8 0.8],'EdgeColor','none')
+patch([1967.5,1967.5, 2000.5, 2000.5],[0 max(ylim) max(ylim) 0], [0.9 0.9 0.9],'EdgeColor','none')
 
 plot(Influenza_EW(1:end,1),Influenza_EW(1:end,2),'.-', 'Linewidth', 0.5, 'Color','red', 'Markersize',6  ,'MarkerEdgeColor','red')
 

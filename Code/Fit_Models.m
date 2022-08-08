@@ -219,29 +219,32 @@ writetable(t,'../Figures/Table_1.xlsx', 'Sheet', 'Range', 'Range', 'A2:A12')
 mean_temp_1848 = [mean(Influenza_EW(1:9,2)),mean(Influenza_EW(10:11,2)),mean(Influenza_EW(12:21,2)),mean(Influenza_EW(22:31,2))];
 mean_temp_1890 = [mean(Influenza_EW(43:52,2)),mean(Influenza_EW(53:54,2)),mean(Influenza_EW(55:64,2)),mean(Influenza_EW(65:74,2))];
 mean_temp_1918 = [mean(Influenza_EW(71:80,2)),mean(Influenza_EW(81:82,2)),mean(Influenza_EW(83:92,2)),mean(Influenza_EW(93:102,2))];
+mean_temp_1957 = [mean(Influenza_EW(110:119,2)),mean(Influenza_EW(120:122,2)),mean(Influenza_EW(123:132,2)),mean(Influenza_EW(133:142,2))];
 mean_temp_1968 = [mean(Influenza_EW(121:130,2)),mean(Influenza_EW(131:133,2)),mean(Influenza_EW(134:143,2)),mean(Influenza_EW(144:153,2))];
-mean_EW = [mean_temp_1848;mean_temp_1890;mean_temp_1918;mean_temp_1968];
+mean_EW = [mean_temp_1848;mean_temp_1890;mean_temp_1918;mean_temp_1957;mean_temp_1968];
 
 max_temp_1848 = [max(Influenza_EW(1:9,2)),max(Influenza_EW(10:11,2)),max(Influenza_EW(12:21,2)),max(Influenza_EW(22:31,2))];
 max_temp_1890 = [max(Influenza_EW(43:52,2)),max(Influenza_EW(53:54,2)),max(Influenza_EW(55:64,2)),max(Influenza_EW(65:74,2))];
 max_temp_1918 = [max(Influenza_EW(71:80,2)),max(Influenza_EW(81:82,2)),max(Influenza_EW(83:92,2)),max(Influenza_EW(93:102,2))];
+max_temp_1957 = [max(Influenza_EW(110:119,2)),max(Influenza_EW(120:122,2)),max(Influenza_EW(123:132,2)),max(Influenza_EW(133:142,2))];
 max_temp_1968 = [max(Influenza_EW(121:130,2)),max(Influenza_EW(131:133,2)),max(Influenza_EW(134:143,2)),max(Influenza_EW(144:153,2))];
-max_EW = [max_temp_1848;max_temp_1890;max_temp_1918;max_temp_1968];
+max_EW = [max_temp_1848;max_temp_1890;max_temp_1918;max_temp_1957;max_temp_1968];
 
 min_temp_1848 = [min(Influenza_EW(1:9,2)),min(Influenza_EW(10:11,2)),min(Influenza_EW(12:21,2)),min(Influenza_EW(22:31,2))];
 min_temp_1890 = [min(Influenza_EW(43:52,2)),min(Influenza_EW(53:54,2)),min(Influenza_EW(55:64,2)),min(Influenza_EW(65:74,2))];
 min_temp_1918 = [min(Influenza_EW(71:80,2)),min(Influenza_EW(81:82,2)),min(Influenza_EW(83:92,2)),min(Influenza_EW(93:102,2))];
+min_temp_1957 = [min(Influenza_EW(110:119,2)),min(Influenza_EW(120:122,2)),min(Influenza_EW(123:132,2)),min(Influenza_EW(133:142,2))];
 min_temp_1968 = [min(Influenza_EW(121:130,2)),min(Influenza_EW(131:133,2)),min(Influenza_EW(134:143,2)),min(Influenza_EW(144:153,2))];
-min_EW = [min_temp_1848;min_temp_1890;min_temp_1918;min_temp_1968];
+min_EW = [min_temp_1848;min_temp_1890;min_temp_1918;min_temp_1957;min_temp_1968];
 
-for i=1:4
+for i=1:5
     for j=1:4
         tttt(i,j)= {strcat(int2str(min_EW(i,j)),'-',int2str(max_EW(i,j)))};
     end
 end
 tttt = splitvars(cell2table(tttt));
 tt = splitvars(table(mean_EW));
-t = table({'England & Wales 1848-49','England & Wales 1890-91','England & Wales 1918-19','England & Wales 1968-70'}');
+t = table({'England & Wales 1848-49','England & Wales 1890-91','England & Wales 1918-19','England & Wales 1967-59','England & Wales 1968-70'}');
 
 tttt.Properties.VariableNames = {'Preceeding decade',	'Main waves',	'Post-pandemic decade I',	'Post-pandemic decade II' };
 tt.Properties.VariableNames = {'Preceeding decade',	'Main waves',	'Post-pandemic decade I',	'Post-pandemic decade II' };
@@ -250,6 +253,7 @@ writetable(tt,'../Figures/Table_2.xlsx', 'Sheet', 'Means', 'Range', 'B2:G12','Wr
 writetable(t,'../Figures/Table_2.xlsx', 'Sheet', 'Means', 'Range', 'A2:A12')
 writetable(tttt,'../Figures/Table_2.xlsx', 'Sheet', 'Range', 'Range', 'B2:G12','WriteVariableNames',true)
 writetable(t,'../Figures/Table_2.xlsx', 'Sheet', 'Range', 'Range', 'A2:A12')
+
 
     %%% Save Results        
 

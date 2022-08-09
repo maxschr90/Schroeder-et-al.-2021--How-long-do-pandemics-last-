@@ -553,7 +553,7 @@ xticks([1 6 11 16 21 26, 31])
 xticklabels({'1971', '1976','1981','1986','1991','1996'}) 
       
 ylim([0,max(max(InvCdf_EW_1968(5,:)),max(Influenza_EW(133:end,2)))*1.05])
-yticks([0,sort(round(max(Influenza_EW(134:end,2)),0),round(max(InvCdf_EW_1968(5,:))))])
+yticks([0,sort([round(max(Influenza_EW(134:end,2))),round(max(InvCdf_EW_1968(5,:)),0)])])
 ax = gca;
 c = ax.FontSize;
 ax.FontSize =8;
@@ -1281,11 +1281,11 @@ figure(14)
             plot(InvCdf(3,:,b),'Color','black')
             hf = plot((Influenza_Cities(26:end,b+1)'),'o',  'Color',[230, 33, 11]/sum([230, 33, 11]), 'Markersize', 3 )
             xlim([0,37])
-            ylim([0,max(InvCdf(5,:,b)*1.05)])
+            ylim([0,max(max(InvCdf(5,:,b),max(Influenza_Cities(26:end,b+1))))*1.05])
             xticks([1 6 11 16 21 26 31 36])
             xtickangle(0)
             xticklabels([]) 
-            yticks([0,sort((round(max(Influenza_Cities(26:end,b+1)),0)),round(max(InvCdf(5,:,b))))])
+            yticks([0,sort([(round(max(Influenza_Cities(26:end,b+1)),0)),round(max(InvCdf(5,:,b)))])])
             title({citynames{b},'1918-19'},'FontSize',8,'FontWeight','bold')
             box off
         end
@@ -1390,7 +1390,7 @@ xticks([1 6 11 16 21 26])
 xticklabels({'1892', '1897','1902','1907','1912','1917'}) 
       
 ylim([0,max(max(InvCdf_EW_1890(5,:)),max(Influenza_EW(55:80,2)))*1.05])
-yticks([0,sort(round(max(Influenza_EW(55:80,2)),0),round(max(InvCdf_EW_1890(5,:))))])
+yticks([0,sort([round(max(Influenza_EW(55:80,2)),0),round(max(InvCdf_EW_1890(5,:)))])])
 ax = gca;
 c = ax.FontSize;
 ax.FontSize =8;
@@ -1434,7 +1434,7 @@ xticks([1 6 11 16 21 26, 31])
 xticklabels({'1971', '1976','1981','1986','1991','1996'}) 
       
 ylim([0,max(max(InvCdf_EW_1968(5,:)),max(Influenza_EW(133:end,2)))*1.05])
-yticks([0,sort(round(max(Influenza_EW(134:end,2)),0),round(max(InvCdf_EW_1968(5,:))))])
+yticks([0,sort([round(max(Influenza_EW(134:end,2)),0),round(max(InvCdf_EW_1968(5,:)))])])
 ax = gca;
 c = ax.FontSize;
 ax.FontSize =8;

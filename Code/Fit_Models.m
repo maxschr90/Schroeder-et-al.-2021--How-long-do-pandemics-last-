@@ -113,7 +113,7 @@ Load_Data % Loads data for Cities cities from excel file
     end
     T1.Properties.VariableNames = names;
     T1 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations'}') T1];
-    writetable(T1,'../Figures/Table_3.xlsx', 'Sheet', 'Base Model')
+    writetable(T1,'../Figures/Table_3_v2.xlsx', 'Sheet', 'Base Model')
 
     % Model with common bounds
     for n=1:8
@@ -127,7 +127,7 @@ Load_Data % Loads data for Cities cities from excel file
     end
     T2.Properties.VariableNames = names;
     T2 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations'}') T2];
-    writetable(T2,'../Figures/Table_3.xlsx', 'Sheet', 'Common Bounds Model')
+    writetable(T2,'../Figures/Table_3_v2.xlsx', 'Sheet', 'Common Bounds Model')
     
     % Model with estimated bounds
     for n=1:14
@@ -141,7 +141,7 @@ Load_Data % Loads data for Cities cities from excel file
     end
     T3.Properties.VariableNames = names;
     T3 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations' }') T3];
-    writetable(T3,'../Figures/Table_3.xlsx', 'Sheet', 'Estimated Bounds Model')
+    writetable(T3,'../Figures/Table_3_v2.xlsx', 'Sheet', 'Estimated Bounds Model')
      
 
     % Model with theoretical bounds
@@ -156,7 +156,7 @@ Load_Data % Loads data for Cities cities from excel file
     end
     T4.Properties.VariableNames = names;
     T4 = [table({ '\lambda', '\eta_{0}', 'd_{min}', 'd_{max}', 'Observations'}') T4];
-    writetable(T4,'../Figures/Table_3.xlsx', 'Sheet', 'Theoretical Bounds Model')
+    writetable(T4,'../Figures/Table_3_v2.xlsx', 'Sheet', 'Theoretical Bounds Model')
     
    % Weibull
    Parameters =[];
@@ -171,7 +171,7 @@ Load_Data % Loads data for Cities cities from excel file
     end
     T5.Properties.VariableNames = names;
     T5 = [table({ '\lambda', '\eta_{0}', 'Observations'}') T5];
-    writetable(T5,'../Figures/Table_3.xlsx', 'Sheet', 'Weibull Model')
+    writetable(T5,'../Figures/Table_3_v2.xlsx', 'Sheet', 'Weibull Model')
 
 %%% 8. Mortality Summary Tables
 Influenza_Cities(25,2) = 996; %% Add missing Belfast number
@@ -211,10 +211,10 @@ t = table({'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 
 ttt.Properties.VariableNames = {'1898-1907',	'1908-1917',	'1918/19',	'1920-29',	'1930-39',	'1940-1949'};
 tt.Properties.VariableNames = {'1898-1907',	'1908-1917',	'1918/19',	'1920-29',	'1930-39',	'1940-1949'};
 
-writetable(tt,'../Figures/Table_1.xlsx', 'Sheet', 'Means', 'Range', 'B2:G12','WriteVariableNames',true)
-writetable(t,'../Figures/Table_1.xlsx', 'Sheet', 'Means', 'Range', 'A2:A12')
-writetable(ttt,'../Figures/Table_1.xlsx', 'Sheet', 'Range', 'Range', 'B2:G12','WriteVariableNames',true)
-writetable(t,'../Figures/Table_1.xlsx', 'Sheet', 'Range', 'Range', 'A2:A12')
+writetable(tt,'../Figures/Table_1_v2.xlsx', 'Sheet', 'Means', 'Range', 'B2:G12','WriteVariableNames',true)
+writetable(t,'../Figures/Table_1_v2.xlsx', 'Sheet', 'Means', 'Range', 'A2:A12')
+writetable(ttt,'../Figures/Table_1_v2.xlsx', 'Sheet', 'Range', 'Range', 'B2:G12','WriteVariableNames',true)
+writetable(t,'../Figures/Table_1_v2.xlsx', 'Sheet', 'Range', 'Range', 'A2:A12')
 
 mean_temp_1848 = [mean(Influenza_EW(1:9,2)),mean(Influenza_EW(10:11,2)),mean(Influenza_EW(12:21,2)),mean(Influenza_EW(22:31,2))];
 mean_temp_1890 = [mean(Influenza_EW(43:52,2)),mean(Influenza_EW(53:54,2)),mean(Influenza_EW(55:64,2)),mean(Influenza_EW(65:74,2))];
@@ -249,16 +249,16 @@ t = table({'England & Wales 1848-49','England & Wales 1890-91','England & Wales 
 tttt.Properties.VariableNames = {'Preceeding decade',	'Main waves',	'Post-pandemic decade I',	'Post-pandemic decade II' };
 tt.Properties.VariableNames = {'Preceeding decade',	'Main waves',	'Post-pandemic decade I',	'Post-pandemic decade II' };
 
-writetable(tt,'../Figures/Table_2.xlsx', 'Sheet', 'Means', 'Range', 'B2:G12','WriteVariableNames',true)
-writetable(t,'../Figures/Table_2.xlsx', 'Sheet', 'Means', 'Range', 'A2:A12')
-writetable(tttt,'../Figures/Table_2.xlsx', 'Sheet', 'Range', 'Range', 'B2:G12','WriteVariableNames',true)
-writetable(t,'../Figures/Table_2.xlsx', 'Sheet', 'Range', 'Range', 'A2:A12')
+writetable(tt,'../Figures/Table_2_v2.xlsx', 'Sheet', 'Means', 'Range', 'B2:G12','WriteVariableNames',true)
+writetable(t,'../Figures/Table_2_v2.xlsx', 'Sheet', 'Means', 'Range', 'A2:A12')
+writetable(tttt,'../Figures/Table_2_v2.xlsx', 'Sheet', 'Range', 'Range', 'B2:G12','WriteVariableNames',true)
+writetable(t,'../Figures/Table_2_v2.xlsx', 'Sheet', 'Range', 'Range', 'A2:A12')
 
 
     %%% Save Results        
 
-    save('Fitted_Models_v1')
-    save('Monte_Carlo_Input','Base_Model')    
+    save('Fitted_Models_v2')
+    save('Monte_Carlo_Input_v2','Base_Model')    
     clearvars
 
 

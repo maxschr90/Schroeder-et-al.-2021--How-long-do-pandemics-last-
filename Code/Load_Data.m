@@ -2,14 +2,14 @@
 %%% demographic variables for Table S1
 clear    
 citynames = {'Belfast', 'Birmingham' ,'Cardiff', 'Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield'};
-Belfast = readtable('../Data/UK_Cities_Mortality_Data.xlsx', 'Sheet', ['Belfast data'], 'Range', 'A1:M63');
-Birmingham = readtable('../Data/UK_Cities_Mortality_Data.xlsx', 'Sheet', ['Birmingham data'], 'Range', 'A1:M63');
-Cardiff = readtable('../Data/UK_Cities_Mortality_Data.xlsx', 'Sheet', ['Cardiff data'], 'Range', 'A1:M63');
-Glasgow = readtable('../Data/UK_Cities_Mortality_Data.xlsx', 'Sheet', ['Glasgow data'], 'Range', 'A1:L63');
-Liverpool = readtable('../Data/UK_Cities_Mortality_Data.xlsx', 'Sheet', ['Liverpool data'], 'Range', 'A1:M63');
-London = readtable('../Data/UK_Cities_Mortality_Data.xlsx', 'Sheet', ['London data'], 'Range', 'A1:M63');
-Manchester = readtable('../Data/UK_Cities_Mortality_Data.xlsx', 'Sheet', ['Manchester data'], 'Range', 'A1:M63');
-Sheffield = readtable('../Data/UK_Cities_Mortality_Data.xlsx', 'Sheet', ['Sheffield data'], 'Range', 'A1:M63');
+Belfast = readtable('../Data/UK_Cities_Mortality_Data_v2.xlsx', 'Sheet', ['Belfast data'], 'Range', 'A1:M63');
+Birmingham = readtable('../Data/UK_Cities_Mortality_Data_v2.xlsx', 'Sheet', ['Birmingham data'], 'Range', 'A1:M63');
+Cardiff = readtable('../Data/UK_Cities_Mortality_Data_v2.xlsx', 'Sheet', ['Cardiff data'], 'Range', 'A1:M63');
+Glasgow = readtable('../Data/UK_Cities_Mortality_Data_v2.xlsx', 'Sheet', ['Glasgow data'], 'Range', 'A1:L63');
+Liverpool = readtable('../Data/UK_Cities_Mortality_Data_v2.xlsx', 'Sheet', ['Liverpool data'], 'Range', 'A1:M63');
+London = readtable('../Data/UK_Cities_Mortality_Data_v2.xlsx', 'Sheet', ['London data'], 'Range', 'A1:M63');
+Manchester = readtable('../Data/UK_Cities_Mortality_Data_v2.xlsx', 'Sheet', ['Manchester data'], 'Range', 'A1:M63');
+Sheffield = readtable('../Data/UK_Cities_Mortality_Data_v2.xlsx', 'Sheet', ['Sheffield data'], 'Range', 'A1:M63');
 
 Influenza = table(Belfast.Influenza_rate, Birmingham.Influenza_rate ,Cardiff.Influenza_rate, Glasgow.Influenza_rate, Liverpool.Influenza_rate, London.Influenza_rate, Manchester.Influenza_rate, Sheffield.Influenza_rate,'VariableNames', citynames);
 Pneumonia = table(Belfast.Pneumonia_rate, Birmingham.Pneumonia_rate ,Cardiff.Pneumonia_rate, Glasgow.Pneumonia_rate, Liverpool.Pneumonia_rate, London.Pneumonia_rate, Manchester.Pneumonia_rate, Sheffield.Pneumonia_rate,'VariableNames', citynames);
@@ -57,8 +57,8 @@ for i =1:length(outbreakyears)
 end
 Excess_Resp(6,1) = NaN;
 
-writematrix(Excess_Influenza,'../Data/Relative_Mortality.xlsx','Sheet','Influenza','Range','B2:I7')
-writematrix(Excess_Resp,'../Data/Relative_Mortality.xlsx','Sheet','Respiratory','Range','B2:I7')
+writematrix(Excess_Influenza,'../Data/Relative_Mortality_v2.xlsx','Sheet','Influenza','Range','B2:I7')
+writematrix(Excess_Resp,'../Data/Relative_Mortality_v2.xlsx','Sheet','Respiratory','Range','B2:I7')
 
 %% Keep Variables for Analysis
 Influenza_US = table2array(readtable('../Data/National_Mortality_Data.xls', 'Sheet', ['US'], 'Range', 'A1:B57'));
@@ -66,4 +66,4 @@ Influenza_EW = table2array(readtable('../Data/National_Mortality_Data.xls', 'She
 Influenza_Cities = [years,table2array(Influenza)];
 
 
-clearvars -except Influenza_US Influenza_EW  Influenza_Cities years citynames Pneumonia Bronchitis
+clearvars -except Influenza_US Influenza_EW  Influenza_Cities years citynames Pneumonia Bronchitis Resp

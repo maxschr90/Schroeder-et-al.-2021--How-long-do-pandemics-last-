@@ -1,7 +1,7 @@
 clear
 clc
 close all
-load('Fitted_Models_v1')
+load('Fitted_Models_v2')
 Linemarkertypes = {'-p','-o','-h','-s','-d','-*','-v','-^','-+','-x'};
 Markertypes = {'p','o','h','s','d','*','v','^','+','x'};
 citynames = {'Belfast', 'Birmingham' ,'Cardiff', 'Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield'};

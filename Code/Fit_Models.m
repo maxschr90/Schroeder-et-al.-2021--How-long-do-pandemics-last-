@@ -35,7 +35,8 @@ Load_Data % Loads data for Cities cities from excel file
         dmax_EW_1968 = max(Influenza_EW(131:end,2)');
         dmin_EW_1968 = min(Influenza_EW(131:end,2)');
         [Base_Model(n+6)] = est_parms_bpareto(Influenza_EW(134:end,2),dmax_EW_1968,dmin_EW_1968, 'England&Wales 1968');
-
+        
+        Robustness_Checks
 %%% 3. Estimate Model with common Bounds
     dmax_Cities = (max(dmax_Cities));
     dmin_Cities = (min(dmin_Cities));

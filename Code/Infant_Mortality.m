@@ -13,6 +13,15 @@ for n=1:8
     temp(n,:) = bpareto_outbreakprob(Base_Model(n).alpha',Base_Model(n).dmax,Base_Model(n).dmin,500);
     halflife(n) = find(temp(n,:)>temp(n,1)/2,1,'last');
 end
+
+for n=[1:8]
+   outbreakrisk_500(n,:)=bpareto_outbreakprob(Base_Model(n).alpha',Base_Model(n).dmax,Base_Model(n).dmin,500);
+   outbreakrisk_1000(n,:)=bpareto_outbreakprob(Base_Model(n).alpha',Base_Model(n).dmax,Base_Model(n).dmin,1000);
+end
+    slope_500(:,1) = (outbreakrisk_500(:,10) - outbreakrisk_500(:,1))/10;
+    slope_500(:,2) = (outbreakrisk_500(:,20) - outbreakrisk_500(:,1))/20;
+    slope_1000(:,1) = (outbreakrisk_1000(:,10) - outbreakrisk_1000(:,1))/10;
+    slope_1000(:,2) = (outbreakrisk_1000(:,20) - outbreakrisk_1000(:,1))/20;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -89,7 +98,7 @@ exportgraphics(h,'../Figures/Infant_Figure_3.emf','BackgroundColor','none','Reso
 figure(4)
 hold on
 for i=1:8
-    plot(pre_average(i),Base_Model(i).lambda,Markertypes{i}, 'Color','black', 'Markersize',6 );
+    plot(pre_average(i),slope_500(i,1),Markertypes{i}, 'Color','black', 'Markersize',6 );
 end
 legend([citynames],'Location','best','FontSize',6)
 legend boxoff
@@ -97,7 +106,7 @@ box off
 %     ylim([0,450])
 %     xlim([0,4000])
 xlabel({'Infant Mortality','(deaths/1,000 births'})
-ylabel({'\lambda'})
+ylabel({'Prob(>500 deaths/million)','10 year slope'})
 
 h = figure(4);
 %set (h, 'Units','centimeters', 'Positioff', [0 0 14.5 14.5]);

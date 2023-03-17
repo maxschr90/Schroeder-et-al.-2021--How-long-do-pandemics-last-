@@ -642,23 +642,86 @@ figure(6)
 %%%%%%%%%%%%%%%%%%%%% Figure 8  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+% figure(8)
+%     hold on
+%     for i=1:10
+%         plot(mean_temp(i,3),Base_Model(i).lambda,Markertypes{i}, 'Color','black', 'Markersize',6 );
+%     end
+%     legend([citynames,'United States', 'England & Wales'],'Location','west','FontSize',6)
+%     legend boxoff
+%     box off
+%     ylim([0,0.3])
+%     xlim([0,4000])
+%     ylabel('\lambda')
+%     xlabel({'Average mortality across main waves (1918-19)'})
+% 
+% h = figure(8);
+% 
+%             %set (h, 'Units','centimeters', 'Positioff', [0 0 14.5 14.5]);
+%             h.Units='centimeters';
+%             h.OuterPosition=[0 0 19 10];
+%         exportgraphics(h,'../Figures/Figure_8.pdf','BackgroundColor','none','Resolution', 900)
+%         exportgraphics(h,'../Figures/Figure_8.emf','BackgroundColor','none','Resolution', 900) 
+
+
+for n=[1:9,12]
+   outbreakrisk_500(n,:)=bpareto_outbreakprob(Base_Model(n).alpha',Base_Model(n).dmax,Base_Model(n).dmin,500);
+   outbreakrisk_1000(n,:)=bpareto_outbreakprob(Base_Model(n).alpha',Base_Model(n).dmax,Base_Model(n).dmin,1000);
+end
+    slope_500(:,1) = (outbreakrisk_500(:,10) - outbreakrisk_500(:,1))/10;
+    slope_500(:,2) = (outbreakrisk_500(:,20) - outbreakrisk_500(:,1))/20;
+    slope_1000(:,1) = (outbreakrisk_1000(:,10) - outbreakrisk_1000(:,1))/10;
+    slope_1000(:,2) = (outbreakrisk_1000(:,20) - outbreakrisk_1000(:,1))/20;
 figure(8)
+    subplot(2,2,1)
     hold on
     for i=1:10
-        plot(mean_temp(i,3),Base_Model(i).lambda,Markertypes{i}, 'Color','black', 'Markersize',6 );
+        plot(mean_temp(i,3),slope_500(i,1),Markertypes{i}, 'Color','black', 'Markersize',6 );
+    end
+
+    box off
+%     ylim([0,0.3])
+    xlim([0,4000])
+    ylabel({'Prob(>500 deaths/million)','10 year slope'})
+    xlabel({'Average mortality across main waves (1918-19)'})
+    subplot(2,2,2)
+    hold on
+    for i=1:10
+        plot(mean_temp(i,3),slope_500(i,2),Markertypes{i}, 'Color','black', 'Markersize',6 );
     end
     legend([citynames,'United States', 'England & Wales'],'Location','west','FontSize',6)
     legend boxoff
     box off
-    ylim([0,0.3])
+%     ylim([0,0.3])
     xlim([0,4000])
-    ylabel('\lambda')
+    ylabel('20 year slope')
+        subplot(2,2,3)
+    hold on
+    for i=1:10
+        plot(mean_temp(i,3),slope_1000(i,1),Markertypes{i}, 'Color','black', 'Markersize',6 );
+    end
+
+    box off
+%     ylim([0,0.3])
+    xlim([0,4000])
+    ylabel({'Prob(>1,000 deaths/million)','10 year slope'})
+    subplot(2,2,4)
+    hold on
+    for i=1:10
+        plot(mean_temp(i,3),slope_1000(i,2),Markertypes{i}, 'Color','black', 'Markersize',6 );
+    end
+
+    box off
+%     ylim([0,0.3])
+    xlim([0,4000])
+    ylabel('20 year slope')
     xlabel({'Average mortality across main waves (1918-19)'})
+
 
 h = figure(8);
 
             %set (h, 'Units','centimeters', 'Positioff', [0 0 14.5 14.5]);
             h.Units='centimeters';
-            h.OuterPosition=[0 0 19 10];
+            h.OuterPosition=[0 0 19 10]*2;
         exportgraphics(h,'../Figures/Figure_8.pdf','BackgroundColor','none','Resolution', 900)
         exportgraphics(h,'../Figures/Figure_8.emf','BackgroundColor','none','Resolution', 900)   

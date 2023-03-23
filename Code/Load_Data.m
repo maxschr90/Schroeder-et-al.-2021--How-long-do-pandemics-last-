@@ -45,6 +45,6 @@ Influenza_Cities = [years,table2array(Influenza)];
 Infant_mortality_EW =table2array(readtable('../Data/National_Mortality_Data.xls', 'Sheet', ['England & Wales'], 'Range', 'C1:C163'));
 Infant_mortality_US =table2array(readtable('../Data/National_Mortality_Data.xls', 'Sheet', ['US'], 'Range', 'C1:C57'));
 average_infant_mort = mean(table2array(Infant_mortality(1:23,:)),'omitnan')/1000;
-average_infant_mort = [average_infant_mort,mean(Infant_mortality_US,'omitnan'),mean(Infant_mortality_EW,'omitnan')];
+average_infant_mort = [average_infant_mort,mean(Infant_mortality_US,'omitnan'),mean(Infant_mortality_EW(46:68),'omitnan')];
 
 clearvars -except Influenza_US Influenza_EW  Influenza_Cities years citynames Pneumonia Bronchitis Resp Infant_mortality average_infant_mort

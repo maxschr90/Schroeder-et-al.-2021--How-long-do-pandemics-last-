@@ -47,4 +47,4 @@ Infant_mortality_US =table2array(readtable('../Data/National_Mortality_Data.xls'
 average_infant_mort = mean(table2array(Infant_mortality(1:23,:)),'omitnan')/1000;
 average_infant_mort = [average_infant_mort,mean(Infant_mortality_US,'omitnan'),mean(Infant_mortality_EW(46:68),'omitnan')];
 
-clearvars -except Influenza_US Influenza_EW  Influenza_Cities years citynames Pneumonia Bronchitis Resp Infant_mortality average_infant_mort
+clearvars -except Influenza_US Influenza_EW  Influenza_Cities years citynames Pneumonia Bronchitis Bronchio_pneumonia Resp Infant_mortality average_infant_mort

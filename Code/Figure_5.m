@@ -1,7 +1,3 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%% Figure 5  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 clear
 clc
 close all
@@ -15,98 +11,57 @@ MainWave(2) = mean([157, 574]);
 MainWave(3) = mean([3301.46362304688,1264.60046386719]);
 MainWave(4) = mean([95.9169845581055,97.1312026977539,148.288146972656]);
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Figure 5  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+close all
+ttt =[1:9,12];
+for n=1:10
+    i=ttt(n);
+    outbreakrisk_500(n,:)=bpareto_outbreakprob(Base_Model(i).alpha',Base_Model(i).dmax,Base_Model(i).dmin,500);
+end
+slope_500(:,1) = (outbreakrisk_500(:,10) - outbreakrisk_500(:,1))./outbreakrisk_500(:,1)/10;
+max_500 = outbreakrisk_500(:,1);
+
 figure(5)
-pa = subplot(2,2,1)
-plot(Influenza_EW(12:52,1), bpareto_outbreakprob(Base_Model(10).alpha',Base_Model(10).dmax,Base_Model(10).dmin,MainWave(1)/3*2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
+subplot(2,1,1)
 hold on
-plot(Influenza_EW(12:52,1), bpareto_outbreakprob(Base_Model(10).alpha',Base_Model(10).dmax,Base_Model(10).dmin,MainWave(1)/2),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-plot(Influenza_EW(12:52,1), bpareto_outbreakprob(Base_Model(10).alpha',Base_Model(10).dmax,Base_Model(10).dmin,MainWave(1)/3),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-leg=legend('2/3','1/2','1/3')
-leg.ItemTokenSize = [9,4.5];
-title(leg,{'Threshold relative', 'to average across', 'main waves'})
+for i=1:10
+    plot(NaN,NaN,Markertypes{i}, 'Color','black', 'Markersize',6 );
+end
+for i=1:10
+    plot(mean_temp(i,3),max_500(i,1),Markertypes{i}, 'Color','red', 'Markersize',6 );
+end
+leg = legend([citynames,'United States', 'England & Wales'],'Location','west','FontSize',6,'Color','black')
 legend boxoff
-xlim([1848,1890])
-xticks([1850:5:1890])
-xtickangle(0)
-yticks([0:0.05:0.3])
-ylim([0,0.3])
-yticklabels([0:0.05:0.3])
+box off
+ylim([0.25,0.4])
+xlim([0,4000])
+ylabel({'Prob(>500 deaths/million)','maximum'},'fontsize',8)
+a = get(gca,'XTickLabel');
+set(gca,'XTickLabel',{[]})
+a = get(gca,'YTickLabel');
+set(gca,'YTickLabel',a,'fontsize',8)
+
+subplot(2,1,2)
+hold on
+for i=1:10
+    plot(mean_temp(i,3),slope_500(i,1),Markertypes{i}, 'Color','red', 'Markersize',6 );
+end
+xlabel({'Average mortality across main waves (1918-19)'},'fontsize',8)
+ylabel({'Prob(>500 deaths/million)','10-year slope'},'fontsize',8)
+
+box off
+xlim([0,4000])
 a = get(gca,'XTickLabel');
 set(gca,'XTickLabel',a,'fontsize',8)
-aa = get(gca,'YTickLabel');
-set(gca,'YTickLabel',aa,'fontsize',8)
-title('England & Wales 1847-48')
-box off
-ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8)
-
-pb = subplot(2,2,2)
-
-plot(Influenza_EW(55:80,1), bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,MainWave(2)/3*2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-hold on
-plot(Influenza_EW(55:80,1), bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,MainWave(2)/2),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-plot(Influenza_EW(55:80,1), bpareto_outbreakprob(Base_Model(11).alpha',Base_Model(11).dmax,Base_Model(11).dmin,MainWave(2)/3),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-
-xlim([1891,1918])
-xticks([1890:5:1915])
-xticklabels([1890:5:1915])
-xtickangle(0)
-yticks([0:0.1:1])
-ylim([0,1])
-yticklabels([0:0.1:1])
-b = get(gca,'XTickLabel');
-set(gca,'XTickLabel',b,'fontsize',8)
-bb = get(gca,'YTickLabel');
-set(gca,'YTickLabel',bb,'fontsize',8)
-title('England & Wales 1889-90')
-box off
-
-ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8)
-
-pc = subplot(2,2,3)
-
-plot(Influenza_EW(83:119,1), bpareto_outbreakprob(Base_Model(12).alpha',Base_Model(12).dmax,Base_Model(12).dmin,MainWave(3)/3*2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-hold on
-plot(Influenza_EW(83:119,1), bpareto_outbreakprob(Base_Model(12).alpha',Base_Model(12).dmax,Base_Model(12).dmin,MainWave(3)/2),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-plot(Influenza_EW(83:119,1), bpareto_outbreakprob(Base_Model(12).alpha',Base_Model(12).dmax,Base_Model(12).dmin,MainWave(3)/3),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-
-xlim([1919,1957])
-xticks([1920:5:1955])
-xtickangle(0)
-yticks([0:0.05:0.35])
-ylim([0,0.35])
-yticklabels([0:0.05:0.35])
-a = get(gca,'XTickLabel');
-set(gca,'XTickLabel',a,'fontsize',8)
-aa = get(gca,'YTickLabel');
-set(gca,'YTickLabel',aa,'fontsize',8)
-title('England & Wales 1918-19')
-box off
-ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8)
-
-pd = subplot(2,2,4)
-plot(Influenza_EW(134:end,1), bpareto_outbreakprob(Base_Model(14).alpha',Base_Model(14).dmax,Base_Model(14).dmin,MainWave(4)/3*2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-hold on
-plot(Influenza_EW(134:end,1), bpareto_outbreakprob(Base_Model(14).alpha',Base_Model(14).dmax,Base_Model(14).dmin,MainWave(4)/2),'-*', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-plot(Influenza_EW(134:end,1), bpareto_outbreakprob(Base_Model(14).alpha',Base_Model(14).dmax,Base_Model(14).dmin,MainWave(4)/3),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
-
-xlim([1970,2001])
-xticks([1970:5:2000])
-xtickangle(0)
-yticks([0:0.05:0.3])
-ylim([0,0.3])
-yticklabels([0:0.05:0.3])
-a = get(gca,'XTickLabel');
-set(gca,'XTickLabel',a,'fontsize',8)
-aa = get(gca,'YTickLabel');
-set(gca,'YTickLabel',aa,'fontsize',8)
-title('England & Wales 1968-70')
-box off
-ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8)
-
-AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.07, 'VShift', -0.045, 'Direction', 'TopDown')
+a = get(gca,'YTickLabel');
+set(gca,'YTickLabel',a,'fontsize',8)
+AddLetters2Plots(figure(5), {'a', 'b'}, 'HShift', -0.05, 'VShift', -0.05, 'Direction', 'TopDown','fontsize',8)
 
 h = figure(5);
-%set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
+
+%set (h, 'Units','centimeters', 'Positioff', [0 0 14.5 14.5]);
 h.Units='centimeters';
 h.OuterPosition=[0 0 19 16];
 exportgraphics(h,'../Figures/Figure_5.pdf','BackgroundColor','none','Resolution', 900)

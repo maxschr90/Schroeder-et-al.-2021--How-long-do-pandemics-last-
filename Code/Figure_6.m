@@ -6,58 +6,52 @@ load('Fitted_Models_v1')
 Linemarkertypes = {'-p','-o','-h','-s','-d','-*','-v','-^','-+','-x'};
 Markertypes = {'p','o','h','s','d','*','v','^','+','x'};
 
-MainWave(1) = mean([285, 459]);
-MainWave(2) = mean([157, 574]);
-MainWave(3) = mean([3301.46362304688,1264.60046386719]);
-MainWave(4) = mean([95.9169845581055,97.1312026977539,148.288146972656]);
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 6  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-close all
-ttt =[1:9,12];
-for n=1:10
-    i=ttt(n);
-    outbreakrisk_500(n,:)=bpareto_outbreakprob(Base_Model(i).alpha',Base_Model(i).dmax,Base_Model(i).dmin,500);
-end
-slope_500(:,1) = (outbreakrisk_500(:,10) - outbreakrisk_500(:,1))./outbreakrisk_500(:,1)/10;
-max_500 = outbreakrisk_500(:,1);
 
 figure(6)
-subplot(2,1,1)
+subplot(1,8,[1,4])
 hold on
+for i=1:10
+    plot(mean_temp(i,3),mean_temp(i,4),Markertypes{i}, 'Color','red', 'Markersize',6 );
+end
+xlabel({'Average mortality across main waves (1918-19)'},'Fontsize',8)
+ylabel({'Average mortality in', 'first post pandemic decade'},'Fontsize',8)
+
+box off
+xlim([0,4000])
+ylim([230,450])
+a = get(gca,'XTickLabel');
+set(gca,'XTickLabel',a,'fontsize',8)
+aa = get(gca,'YTickLabel');
+set(gca,'YTickLabel',aa,'fontsize',8)
+
+subplot(1,8,[5,8])
+
+hold on
+
 for i=1:10
     plot(NaN,NaN,Markertypes{i}, 'Color','black', 'Markersize',6 );
 end
+
+
 for i=1:10
-    plot(mean_temp(i,3),max_500(i,1),Markertypes{i}, 'Color','red', 'Markersize',6 );
+    plot(average_infant_mort(i),mean_temp(i,4),Markertypes{i}, 'Color','red', 'Markersize',6 );
 end
-leg = legend([citynames,'United States', 'England & Wales'],'Location','west','FontSize',6,'Color','black')
+xlim([90,170])
+ylim([230,450])
+xticks(100:20:170)
+box off
+xlabel({'Pre-pandemic infant mortality'},'Fontsize',8)
+legend([citynames,'United States', 'England & Wales'],'Location','best','FontSize',6,'Color','black')
 legend boxoff
-box off
-ylim([0.25,0.4])
-xlim([0,4000])
-ylabel({'Prob(>500 deaths/million)','maximum'},'fontsize',8)
-a = get(gca,'XTickLabel');
-set(gca,'XTickLabel',{[]})
-a = get(gca,'YTickLabel');
-set(gca,'YTickLabel',a,'fontsize',8)
-
-subplot(2,1,2)
-hold on
-for i=1:10
-    plot(mean_temp(i,3),slope_500(i,1),Markertypes{i}, 'Color','red', 'Markersize',6 );
-end
-xlabel({'Average mortality across main waves (1918-19)'},'fontsize',8)
-ylabel({'Prob(>500 deaths/million)','10-year slope'},'fontsize',8)
-
-box off
-xlim([0,4000])
 a = get(gca,'XTickLabel');
 set(gca,'XTickLabel',a,'fontsize',8)
-a = get(gca,'YTickLabel');
-set(gca,'YTickLabel',a,'fontsize',8)
-AddLetters2Plots(figure(6), {'a', 'b'}, 'HShift', -0.05, 'VShift', -0.05, 'Direction', 'TopDown','fontsize',8)
+set(gca,'yticklabel',{[]})
+
+
+AddLetters2Plots(figure(6), {'a', 'b'}, 'HShift', -0.03, 'VShift', -0.05, 'Direction', 'TopDown','fontsize',8)
 
 h = figure(6);
 

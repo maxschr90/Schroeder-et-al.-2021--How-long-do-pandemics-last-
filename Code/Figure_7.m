@@ -9,25 +9,31 @@ Markertypes = {'p','o','h','s','d','*','v','^','+','x'};
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 7  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ttt =[1:9,12];
+for n=1:10
+    i=ttt(n);
+    outbreakrisk_500(n,:)=bpareto_outbreakprob(Base_Model(i).alpha',Base_Model(i).dmax,Base_Model(i).dmin,500);
+end
+slope_500(:,1) = (outbreakrisk_500(:,10) - outbreakrisk_500(:,1))./outbreakrisk_500(:,1)/10;
+max_500 = outbreakrisk_500(:,1);
 
 figure(7)
-subplot(1,8,[1,4])
+subplot(2,1,1)
 hold on
 for i=1:10
-    plot(mean_temp(i,3),mean_temp(i,4),Markertypes{i}, 'Color','red', 'Markersize',6 );
+    plot(average_infant_mort(i),max_500(i),Markertypes{i}, 'Color','red', 'Markersize',6 );
 end
-xlabel({'Average mortality across main waves (1918-19)'},'Fontsize',8)
-ylabel({'Average mortality in', 'first post pandemic decade'},'Fontsize',8)
+ylabel({'Prob(>500 deaths/million)','maximum'},'fontsize',8)
 
 box off
-xlim([0,4000])
-ylim([230,450])
-a = get(gca,'XTickLabel');
-set(gca,'XTickLabel',a,'fontsize',8)
+xlim([90,170])
+xticks(100:20:170)
+ylim([0.25,0.4])
+set(gca,'XTickLabel',{[]})
 aa = get(gca,'YTickLabel');
 set(gca,'YTickLabel',aa,'fontsize',8)
 
-subplot(1,8,[5,8])
+subplot(2,1,2)
 
 hold on
 
@@ -37,21 +43,23 @@ end
 
 
 for i=1:10
-    plot(average_infant_mort(i),mean_temp(i,4),Markertypes{i}, 'Color','red', 'Markersize',6 );
+    plot(average_infant_mort(i),slope_500(i),Markertypes{i}, 'Color','red', 'Markersize',6 );
 end
-xlim([90,150])
-ylim([230,450])
-xticks(100:20:150)
+xlim([90,170])
+xticks(100:20:170)
 box off
 xlabel({'Pre-pandemic infant mortality'},'Fontsize',8)
+ylabel({'Prob(>500 deaths/million)','10-year slope'},'Fontsize',8)
+
 legend([citynames,'United States', 'England & Wales'],'Location','best','FontSize',6,'Color','black')
 legend boxoff
 a = get(gca,'XTickLabel');
 set(gca,'XTickLabel',a,'fontsize',8)
-set(gca,'yticklabel',{[]})
+aa = get(gca,'YTickLabel');
+set(gca,'YTickLabel',aa,'fontsize',8)
 
 
-AddLetters2Plots(figure(7), {'a', 'b'}, 'HShift', -0.03, 'VShift', -0.05, 'Direction', 'TopDown','fontsize',8)
+AddLetters2Plots(figure(7), {'a', 'b'}, 'HShift', -0.05, 'VShift', -0.05, 'Direction', 'TopDown','fontsize',8)
 
 h = figure(7);
 

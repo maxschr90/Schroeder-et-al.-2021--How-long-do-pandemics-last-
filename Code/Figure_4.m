@@ -32,12 +32,12 @@ yticks([0:0.05:0.3])
 ylim([0,0.3])
 yticklabels([0:0.05:0.3])
 a = get(gca,'XTickLabel');
-set(gca,'XTickLabel',a,'fontsize',8)
+set(gca,'XTickLabel',a,'fontsize',6)
 aa = get(gca,'YTickLabel');
-set(gca,'YTickLabel',aa,'fontsize',8)
+set(gca,'YTickLabel',aa,'fontsize',6)
 title('England & Wales 1847-48')
 box off
-ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8)
+ylabel(sprintf('Probability of exceeding threshold'),'fontsize',6)
 
 pb = subplot(2,2,2)
 
@@ -54,13 +54,13 @@ yticks([0:0.1:1])
 ylim([0,1])
 yticklabels([0:0.1:1])
 b = get(gca,'XTickLabel');
-set(gca,'XTickLabel',b,'fontsize',8)
+set(gca,'XTickLabel',b,'fontsize',6)
 bb = get(gca,'YTickLabel');
-set(gca,'YTickLabel',bb,'fontsize',8)
+set(gca,'YTickLabel',bb,'fontsize',6)
 title('England & Wales 1889-90')
 box off
 
-ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8)
+ylabel(sprintf('Probability of exceeding threshold'),'fontsize',6)
 
 pc = subplot(2,2,3)
 
@@ -76,12 +76,12 @@ yticks([0:0.05:0.35])
 ylim([0,0.35])
 yticklabels([0:0.05:0.35])
 a = get(gca,'XTickLabel');
-set(gca,'XTickLabel',a,'fontsize',8)
+set(gca,'XTickLabel',a,'fontsize',6)
 aa = get(gca,'YTickLabel');
-set(gca,'YTickLabel',aa,'fontsize',8)
+set(gca,'YTickLabel',aa,'fontsize',6)
 title('England & Wales 1918-19')
 box off
-ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8)
+ylabel(sprintf('Probability of exceeding threshold'),'fontsize',6)
 
 pd = subplot(2,2,4)
 plot(Influenza_EW(134:end,1), bpareto_outbreakprob(Base_Model(14).alpha',Base_Model(14).dmax,Base_Model(14).dmin,MainWave(4)/3*2),'-o', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
@@ -96,18 +96,18 @@ yticks([0:0.05:0.3])
 ylim([0,0.3])
 yticklabels([0:0.05:0.3])
 a = get(gca,'XTickLabel');
-set(gca,'XTickLabel',a,'fontsize',8)
+set(gca,'XTickLabel',a,'fontsize',6)
 aa = get(gca,'YTickLabel');
-set(gca,'YTickLabel',aa,'fontsize',8)
+set(gca,'YTickLabel',aa,'fontsize',6)
 title('England & Wales 1968-70')
 box off
-ylabel(sprintf('Probability of exceeding threshold'),'fontsize',8)
+ylabel(sprintf('Probability of exceeding threshold'),'fontsize',6)
 
-AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.06, 'VShift', -0.045, 'Direction', 'TopDown')
+AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.06, 'VShift', -0.045, 'Direction', 'TopDown','fontsize',6)
 
 h = figure(4);
 %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
 h.Units='centimeters';
-h.OuterPosition=[0 0 19 16];
+h.OuterPosition=[0 0 19 14];
 exportgraphics(h,'../Figures/Figure_4.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/Figure_4.emf','BackgroundColor','none','Resolution', 900)

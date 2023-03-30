@@ -64,7 +64,7 @@ hold on
 plot(temp(:,2),temp(:,1),'*','Color','black')
 plot(temp(:,2),prediction,'-','Color','black')
 xlabel({'Share of population','living in overcrowded conditions'})
-ylabel({'Infant mortality', '(deaths/1,000 births)'})
+ylabel({'Pre-pandemic infant mortality', '(deaths/1,000 births)'})
 ylim([70,180])
 
 title('London')
@@ -81,7 +81,7 @@ title('Glasgow')
 ylim([70,180])
 set(gca,'YTickLabel',{[]})
 
-AddLetters2Plots(figure(2), {'a', 'b'},'HShift', -0.07, 'VShift', -0.075, 'Direction', 'TopDown','fontsize',8)
+AddLetters2Plots(figure(2), {'a', 'b'},'HShift', -0.05, 'VShift', -0.075, 'Direction', 'TopDown','fontsize',8)
 
 h = figure(2);
 h.Units='centimeters';

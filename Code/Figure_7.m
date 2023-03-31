@@ -37,10 +37,10 @@ subplot(2,4,[4,8])
 
 hold on
 
-for i=1:10
+for i=[1:8,10]
     plot(NaN,NaN,Markertypes{i}, 'Color','black', 'Markersize',6 );
 end
-legend([citynames,'United States', 'England & Wales'],'Location','best','FontSize',6,'Color','black')
+legend([citynames, 'England & Wales'],'Location','best','FontSize',6,'Color','black')
 legend boxoff
 axis off
 
@@ -71,6 +71,6 @@ h = figure(7);
 
 %set (h, 'Units','centimeters', 'Positioff', [0 0 14.5 14.5]);
 h.Units='centimeters';
-h.OuterPosition=[0 0 19 12];
+h.OuterPosition=[0 0 10 12];
 exportgraphics(h,'../Figures/Figure_7.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/Figure_7.emf','BackgroundColor','none','Resolution', 900)

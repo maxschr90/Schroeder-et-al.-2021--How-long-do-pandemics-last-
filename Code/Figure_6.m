@@ -54,12 +54,12 @@ legend boxoff
 axis off
 
 
-AddLetters2Plots({suba  ,subb }, {'a', 'b'}, 'HShift', -0.03, 'VShift', -0.05, 'Direction', 'TopDown','fontsize',6)
+AddLetters2Plots({suba  ,subb }, {'a', 'b'}, 'HShift', -0.02, 'VShift', -0.075, 'Direction', 'TopDown','fontsize',6)
 
 h = figure(6);
 
 %set (h, 'Units','centimeters', 'Positioff', [0 0 14.5 14.5]);
 h.Units='centimeters';
-h.OuterPosition=[0 0 19 12];
+h.OuterPosition=[0 0 19 8];
 exportgraphics(h,'../Figures/Figure_6.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/Figure_6.emf','BackgroundColor','none','Resolution', 900)

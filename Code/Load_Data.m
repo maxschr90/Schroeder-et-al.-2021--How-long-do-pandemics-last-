@@ -17,6 +17,7 @@ Bronchitis = table(Belfast.Bronchitis_rate, Birmingham.Bronchitis_rate ,Cardiff.
 Bronchio_pneumonia = table(Belfast.Bronchio_pneumonia_rate, Birmingham.Bronchio_pneumonia_rate ,Cardiff.Bronchio_pneumonia_rate, Glasgow.Bronchio_pneumonia_rate, Liverpool.Bronchio_pneumonia_rate, London.Bronchio_pneumonia_rate, Manchester.Bronchio_pneumonia_rate, Sheffield.Bronchio_pneumonia_rate,'VariableNames', citynames);
 Other_respiratory = table(Belfast.Other_respiratory_rate, Birmingham.Other_respiratory_rate ,Cardiff.Other_respiratory_rate, Glasgow.Other_respiratory_rate, Liverpool.Other_respiratory_rate, London.Other_respiratory_rate, Manchester.Other_respiratory_rate, Sheffield.Other_respiratory_rate,'VariableNames', citynames);
 Infant_mortality = table(Belfast.Infant_mortality, Birmingham.Infant_mortality ,Cardiff.Infant_mortality, Glasgow.Infant_mortality, Liverpool.Infant_mortality, London.Infant_mortality, Manchester.Infant_mortality, Sheffield.Infant_mortality,'VariableNames', citynames);
+Population = table(Belfast.Population, Birmingham.Population ,Cardiff.Population, Glasgow.Population, Liverpool.Population, London.Population, Manchester.Population, Sheffield.Population,'VariableNames', citynames);
 
 %% Calculate Relative Influenza & Respiratory Diseases for outbreak years
 

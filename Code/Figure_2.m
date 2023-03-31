@@ -25,19 +25,19 @@ ylabel('Mortality rate (deaths/million)')
 box off
 xticks([1840:20:2000])
 xtickangle(0)
-xlim([1838,2000])
+xlim([1833,2000])
 ylim([-0,3500])
 a = get(gca,'XTickLabel');
 set(gca,'XTickLabel',a,'fontsize',8)
 aa = get(gca,'YTickLabel');
 set(gca,'YTickLabel',aa,'fontsize',8)
 
-axes('Position',[.65 .6 .25 .25])
+axes('Position',[.69 .45 .215 .25])
 box on
 plot(Influenza_EW(118:end,1),Influenza_EW(118:end,2),'.-', 'Linewidth', 0.5, 'Color','red', 'Markersize',6  ,'MarkerEdgeColor','red')
 yticks([0,100,200])
 
-xticks([1950:10:2000])
+xticks([1960:10:2000])
 xtickangle(0)
 xlim([1955,2000])
 a = get(gca,'XTickLabel');
@@ -45,12 +45,12 @@ set(gca,'XTickLabel',a,'fontsize',6)
 aa = get(gca,'YTickLabel');
 set(gca,'YTickLabel',aa,'fontsize',6)
 
-axes('Position',[.2 .6 .25 .25])
+axes('Position',[.155 .45 .355 .25])
 box on
 plot(Influenza_EW(1:80,1),Influenza_EW(1:80,2),'.-', 'Linewidth', 0.5, 'Color','red', 'Markersize',6  ,'MarkerEdgeColor','red')
 yticks([0,250,500])
 
-xticks([1830:20:2000])
+xticks([1840:10:1920])
 xtickangle(0)
 xlim([1838,1917])
 a = get(gca,'XTickLabel');

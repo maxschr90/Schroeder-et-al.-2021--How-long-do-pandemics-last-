@@ -39,6 +39,18 @@ Excess_Resp(6,1) = NaN;
 writematrix(Excess_Influenza,'../Data/Relative_Mortality_v2.xlsx','Sheet','Influenza','Range','B2:I7')
 writematrix(Excess_Resp,'../Data/Relative_Mortality_v2.xlsx','Sheet','Respiratory','Range','B2:I7')
 
+periods = [nan(3,1);ones(10,1);ones(10,1)*2;ones(2,1)*3;ones(10,1)*4;ones(10,1)*5;ones(10,1)*6];
+Cities_EW=[2,3,4:8];
+pop = table2array(Population);
+inflz = table2array(Influenza);
+
+for i=1:6
+    mpop = mean(pop(periods==i,:),'omitnan');
+    minfl = mean(inflz(periods==i,:),'omitnan');
+    cityaverage_EW(1,i) = sum(mpop(Cities_EW).*minfl(Cities_EW),'omitnan')/sum(mpop(Cities_EW),'omitnan');
+    cityaverage_UK(1,i) = sum(mpop(:).*minfl(:),'omitnan')/sum(mpop(:),'omitnan');
+
+end
 %% Keep Variables for Analysis
 Influenza_US = table2array(readtable('../Data/National_Mortality_Data.xls', 'Sheet', ['US'], 'Range', 'A1:B57'));
 Influenza_EW = table2array(readtable('../Data/National_Mortality_Data.xls', 'Sheet', ['England & Wales'], 'Range', 'A1:B163'));

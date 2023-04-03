@@ -1119,3 +1119,263 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 19 25];
 exportgraphics(h,'../Figures/SI_Figure_B-10.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/SI_Figure_B-10.emf','BackgroundColor','none','Resolution', 900)
+
+clear
+clc
+close all
+
+load('Fitted_Models_v1')
+Linemarkertypes = {'-p','-o','-h','-s','-d','-*','-v','-^','-+','-x'};
+Markertypes = {'p','o','h','s','d','*','v','^','+','x'};
+
+MainWave(1) = mean([285, 459]);
+MainWave(2) = mean([157, 574]);
+MainWave(3) = mean([3301.46362304688,1264.60046386719]);
+MainWave(4) = mean([95.9169845581055,97.1312026977539,148.288146972656]);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Figure B 11  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+close all
+ttt =[1:9,12];
+for n=1:10
+    i=ttt(n);
+    outbreakrisk_500(n,:)=bpareto_outbreakprob(Base_Model(i).alpha',Base_Model(i).dmax,Base_Model(i).dmin,500);
+    outbreakrisk_750(n,:)=bpareto_outbreakprob(Base_Model(i).alpha',Base_Model(i).dmax,Base_Model(i).dmin,750);
+end
+slope_500(:,1) = (outbreakrisk_500(:,10) - outbreakrisk_500(:,1))./outbreakrisk_500(:,1)/10;
+slope_500(:,2) = (outbreakrisk_500(:,20) - outbreakrisk_500(:,1))./outbreakrisk_500(:,1)/20;
+max_500 = outbreakrisk_500(:,1);
+slope_750(:,1) = (outbreakrisk_750(:,10) - outbreakrisk_750(:,1))./outbreakrisk_750(:,1)/10;
+slope_750(:,2) = (outbreakrisk_750(:,20) - outbreakrisk_750(:,1))./outbreakrisk_750(:,1)/20;
+max_750 = outbreakrisk_750(:,1);
+
+figure(13)
+subplot(2,3,1)
+hold on
+
+for i=1:10
+    plot(nan,nan,Markertypes{i}, 'Color','black', 'Markersize',6 );
+end
+leg = legend([citynames,'United States', 'England & Wales'],'Location','best','FontSize',6,'Color','black')
+legend boxoff
+axis off
+
+suba = subplot(2,3,4)
+hold on
+
+for i=1:10
+    plot(mean_temp(i,3),max_750(i,1),Markertypes{i}, 'Color','red', 'Markersize',6 );
+end
+
+box off
+% ylim([0.25,0.4])
+xlim([1000,3500])
+ylabel({'Prob(>750 deaths/million)','maximum'},'fontsize',6)
+a = get(gca,'XTickLabel');
+set(gca,'XTickLabel',{[]})
+a = get(gca,'YTickLabel');
+set(gca,'YTickLabel',a,'fontsize',6)
+
+
+subb = subplot(2,3,2)
+hold on
+for i=1:10
+    plot(mean_temp(i,3),slope_500(i,1),Markertypes{i}, 'Color','red', 'Markersize',6 );
+end
+% xlabel({'Average mortality across main waves (1918-19)'},'fontsize',6)
+ylabel({'Prob(>500 deaths/million)','10-year slope'},'fontsize',6)
+
+box off
+xlim([1000,3500])
+a = get(gca,'XTickLabel');
+set(gca,'XTickLabel',a,'fontsize',6)
+a = get(gca,'YTickLabel');
+set(gca,'YTickLabel',a,'fontsize',6)
+
+subc = subplot(2,3,3)
+hold on
+for i=1:10
+    plot(mean_temp(i,3),slope_500(i,2),Markertypes{i}, 'Color','red', 'Markersize',6 );
+end
+% xlabel({'Average mortality across main waves (1918-19)'},'fontsize',6)
+ylabel({'Prob(>500 deaths/million)','20-year slope'},'fontsize',6)
+
+box off
+xlim([1000,3500])
+a = get(gca,'XTickLabel');
+set(gca,'XTickLabel',a,'fontsize',6)
+a = get(gca,'YTickLabel');
+set(gca,'YTickLabel',a,'fontsize',6)
+
+
+
+subd = subplot(2,3,5)
+hold on
+for i=1:10
+    plot(mean_temp(i,3),slope_750(i,1),Markertypes{i}, 'Color','red', 'Markersize',6 );
+end
+% xlabel({'Average mortality across main waves (1918-19)'},'fontsize',6)
+ylabel({'Prob(>750 deaths/million)','10-year slope'},'fontsize',6)
+
+box off
+xlim([1000,3500])
+a = get(gca,'XTickLabel');
+set(gca,'XTickLabel',a,'fontsize',6)
+a = get(gca,'YTickLabel');
+set(gca,'YTickLabel',a,'fontsize',6)
+
+sube = subplot(2,3,6)
+hold on
+for i=1:10
+    plot(mean_temp(i,3),slope_750(i,2),Markertypes{i}, 'Color','red', 'Markersize',6 );
+end
+% xlabel({'Average mortality across main waves (1918-19)'},'fontsize',6)
+ylabel({'Prob(>750 deaths/million)','20-year slope'},'fontsize',6)
+
+box off
+xlim([1000,3500])
+a = get(gca,'XTickLabel');
+set(gca,'XTickLabel',a,'fontsize',6)
+a = get(gca,'YTickLabel');
+set(gca,'YTickLabel',a,'fontsize',6)
+
+AddLetters2Plots({subb,subc,suba,subd,sube}, {'a', 'b', 'c', 'd', 'e'}, 'HShift', -0.05, 'VShift', -0.05, 'Direction', 'TopDown','fontsize',6)
+
+
+
+h = figure(13);
+
+%set (h, 'Units','centimeters', 'Positioff', [0 0 14.5 14.5]);
+h.Units='centimeters';
+h.OuterPosition=[0 0 19 12];
+exportgraphics(h,'../Figures/SI_Figure_B-11.pdf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_B-11.emf','BackgroundColor','none','Resolution', 900)
+
+clear
+clc
+close all
+
+load('Fitted_Models_v1')
+Linemarkertypes = {'-p','-o','-h','-s','-d','-*','-v','-^','-+','-x'};
+Markertypes = {'p','o','h','s','d','*','v','^','+','x'};
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Figure B 12  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+close all
+ttt =[1:9,12];
+for n=1:10
+    i=ttt(n);
+    outbreakrisk_500(n,:)=bpareto_outbreakprob(Base_Model(i).alpha',Base_Model(i).dmax,Base_Model(i).dmin,500);
+    outbreakrisk_750(n,:)=bpareto_outbreakprob(Base_Model(i).alpha',Base_Model(i).dmax,Base_Model(i).dmin,750);
+end
+slope_500(:,1) = (outbreakrisk_500(:,10) - outbreakrisk_500(:,1))./outbreakrisk_500(:,1)/10;
+slope_500(:,2) = (outbreakrisk_500(:,20) - outbreakrisk_500(:,1))./outbreakrisk_500(:,1)/20;
+max_500 = outbreakrisk_500(:,1);
+slope_750(:,1) = (outbreakrisk_750(:,10) - outbreakrisk_750(:,1))./outbreakrisk_750(:,1)/10;
+slope_750(:,2) = (outbreakrisk_750(:,20) - outbreakrisk_750(:,1))./outbreakrisk_750(:,1)/20;
+max_750 = outbreakrisk_750(:,1);
+
+figure(14)
+subplot(2,3,1)
+hold on
+
+for i=[1:8,10]
+    plot(nan,nan,Markertypes{i}, 'Color','black', 'Markersize',6 );
+end
+leg = legend([citynames, 'England & Wales'],'Location','best','FontSize',6,'Color','black')
+legend boxoff
+axis off
+
+suba = subplot(2,3,4)
+hold on
+
+for i=1:10
+    plot(average_infant_mort(i),max_750(i,1),Markertypes{i}, 'Color','red', 'Markersize',6 );
+end
+
+box off
+xlim([120,170])
+xticks(125:20:170)
+ylabel({'Prob(>750 deaths/million)','maximum'},'fontsize',6)
+
+a = get(gca,'YTickLabel');
+set(gca,'YTickLabel',a,'fontsize',6)
+
+
+subb = subplot(2,3,2)
+hold on
+for i=1:10
+    plot(average_infant_mort(i),slope_500(i,1),Markertypes{i}, 'Color','red', 'Markersize',6 );
+end
+% xlabel({'Average mortality across main waves (1918-19)'},'fontsize',6)
+ylabel({'Prob(>500 deaths/million)','10-year slope'},'fontsize',6)
+
+box off
+a = get(gca,'XTickLabel');
+set(gca,'XTickLabel',{[]})
+a = get(gca,'YTickLabel');
+set(gca,'YTickLabel',a,'fontsize',6)
+
+subc = subplot(2,3,3)
+hold on
+for i=1:10
+    plot(average_infant_mort(i),slope_500(i,2),Markertypes{i}, 'Color','red', 'Markersize',6 );
+end
+% xlabel({'Average mortality across main waves (1918-19)'},'fontsize',6)
+ylabel({'Prob(>500 deaths/million)','20-year slope'},'fontsize',6)
+
+box off
+
+a = get(gca,'XTickLabel');
+set(gca,'XTickLabel',{[]})
+a = get(gca,'YTickLabel');
+set(gca,'YTickLabel',a,'fontsize',6)
+
+
+
+subd = subplot(2,3,5)
+hold on
+for i=1:10
+    plot(average_infant_mort(i),slope_750(i,1),Markertypes{i}, 'Color','red', 'Markersize',6 );
+end
+% xlabel({'Average mortality across main waves (1918-19)'},'fontsize',6)
+ylabel({'Prob(>750 deaths/million)','10-year slope'},'fontsize',6)
+
+box off
+xlim([120,170])
+xticks(125:20:170)
+a = get(gca,'XTickLabel');
+set(gca,'XTickLabel',a,'fontsize',6)
+a = get(gca,'YTickLabel');
+set(gca,'YTickLabel',a,'fontsize',6)
+
+sube = subplot(2,3,6)
+hold on
+for i=1:10
+    plot(average_infant_mort(i),slope_750(i,2),Markertypes{i}, 'Color','red', 'Markersize',6 );
+end
+% xlabel({'Average mortality across main waves (1918-19)'},'fontsize',6)
+ylabel({'Prob(>750 deaths/million)','20-year slope'},'fontsize',6)
+
+box off
+xlim([120,170])
+xticks(125:20:170)
+a = get(gca,'XTickLabel');
+set(gca,'XTickLabel',a,'fontsize',6)
+a = get(gca,'YTickLabel');
+set(gca,'YTickLabel',a,'fontsize',6)
+
+AddLetters2Plots({subb,subc,suba,subd,sube}, {'a', 'b', 'c', 'd', 'e'}, 'HShift', -0.05, 'VShift', -0.05, 'Direction', 'TopDown','fontsize',6)
+
+
+
+h = figure(14);
+
+%set (h, 'Units','centimeters', 'Positioff', [0 0 14.5 14.5]);
+h.Units='centimeters';
+h.OuterPosition=[0 0 19 12];
+exportgraphics(h,'../Figures/SI_Figure_B-12.pdf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_B-12.emf','BackgroundColor','none','Resolution', 900)

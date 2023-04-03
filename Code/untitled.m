@@ -1,20 +1,28 @@
 Markertypes = {'p','o','h','s','d','*','v','^','+','x','>'};
 close all
+outbreakyears = [1922,1924,1927,1929,1933,1937]';
+years = [1895:1956]';
+periods = NaN(size(years));
+for i=1:6
+    ind = find(years==outbreakyears(i));
+    periods(ind) = i;
+end
+
 figure(1)
 for i=2:9
     subplot(4,2,i-1)
     hold on
     for n=1:6
-        plot(n,mean(Resp(periods==n,i),'omitnan'),Markertypes{n});
+        plot(n,mean(inflz(periods==n,i-1),'omitnan')/mean(Resp(periods==n,i),'omitnan'),Markertypes{n});
     end
     title(citynames{i-1})
     xlim([0,7])
     xticks([1:6])
-    xticklabels({'1898-1907',	'1908-1917',	'1918-19',	'1920-29',	'1930-39'	,'1940-1949'})
+    xticklabels({'1922',	'1924',	'1927',	'1929',	'1933'	,'1937'})
     a = get(gca,'XTickLabel');
 set(gca,'XTickLabel',a,'fontsize',4)
     xtickangle(0)
-    ylabel({'Average respitatory', 'mortality'},'FontSize',6)
+    ylabel({'Share of influenza in', 'combined respiratory mortality'},'FontSize',6)
 end
 
 h = figure(1);

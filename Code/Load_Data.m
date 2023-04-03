@@ -49,8 +49,9 @@ for i=1:6
     minfl = mean(inflz(periods==i,:),'omitnan');
     cityaverage_EW(1,i) = sum(mpop(Cities_EW).*minfl(Cities_EW),'omitnan')/sum(mpop(Cities_EW),'omitnan');
     cityaverage_UK(1,i) = sum(mpop(:).*minfl(:),'omitnan')/sum(mpop(:),'omitnan');
-
 end
+
+
 %% Keep Variables for Analysis
 Influenza_US = table2array(readtable('../Data/National_Mortality_Data.xls', 'Sheet', ['US'], 'Range', 'A1:B57'));
 Influenza_EW = table2array(readtable('../Data/National_Mortality_Data.xls', 'Sheet', ['England & Wales'], 'Range', 'A1:B163'));

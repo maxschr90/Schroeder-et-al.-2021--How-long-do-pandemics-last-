@@ -57,7 +57,7 @@ b = get(gca,'XTickLabel');
 set(gca,'XTickLabel',b,'fontsize',6)
 bb = get(gca,'YTickLabel');
 set(gca,'YTickLabel',bb,'fontsize',6)
-title('England & Wales 1889-90')
+title('England & Wales 1890-91')
 box off
 
 ylabel(sprintf('Probability of exceeding threshold'),'fontsize',6)

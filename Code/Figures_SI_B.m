@@ -236,7 +236,7 @@ title({'United States','1918-19'},'FontSize',8,'FontWeight','bold')
 xlabel('\lambda')
 box off
 
-AddLetters2Plots({pa, pb, pc, pd, pe, pf, pg, pj, pk, pl},{'a','b','c','d','e','f','g','h','i','j'}, 'HShift', -0.05, 'VShift', -0.03, 'Direction', 'TopDown')
+AddLetters2Plots({pa, pb, pc, pd, pe, pf, pg, pj, pk, pl},{'a','b','c','d','e','f','g','h','i','j'}, 'HShift', -0.05, 'VShift', -0.03, 'Direction', 'TopDown','FontSize',8)
 
 h = figure(3);
 %set (h, 'Units','centimeters', 'Positioff', [0 0 14.5 14.5]);
@@ -244,6 +244,7 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 19 25];
 exportgraphics(h,'../Figures/SI_Figure_B-1.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/SI_Figure_B-1.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_B-1.eps','BackgroundColor','none','Resolution', 900)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 2 B  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -333,7 +334,7 @@ title({'England & Wales', '1968-70'},'FontSize',8,'FontWeight','bold')
 ylabel('\eta_{0}')
 xlabel('\lambda')
 box off
-AddLetters2Plots({pa, pb, pc, pd },{'a','b','c','d' }, 'HShift', -0.05, 'VShift', -0.03, 'Direction', 'TopDown')
+AddLetters2Plots({pa, pb, pc, pd },{'a','b','c','d' }, 'HShift', -0.05, 'VShift', -0.025, 'Direction', 'TopDown','FontSize',8)
 
 h = figure(4);
 %set (h, 'Units','centimeters', 'Positioff', [0 0 14.5 14.5]);
@@ -341,6 +342,7 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 19 25];
 exportgraphics(h,'../Figures/SI_Figure_B-2.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/SI_Figure_B-2.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_B-2.eps','BackgroundColor','none','Resolution', 900)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 3 B  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -423,6 +425,7 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 19 25];
 exportgraphics(h,'../Figures/SI_Figure_B-3.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/SI_Figure_B-3.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_B-3.eps','BackgroundColor','none','Resolution', 900)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 4 B  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -526,6 +529,7 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 19 25];
 exportgraphics(h,'../Figures/SI_Figure_B-4.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/SI_Figure_B-4.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_B-4.eps','BackgroundColor','none','Resolution', 900)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure B 5  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -631,7 +635,7 @@ set(gca,'XTickLabel',a,'fontsize',6)
 a = get(gca,'YTickLabel');
 set(gca,'YTickLabel',a,'fontsize',6)
 
-AddLetters2Plots({subb,subc,suba,subd,sube}, {'a', 'b', 'c', 'd', 'e'}, 'HShift', -0.05, 'VShift', -0.05, 'Direction', 'TopDown','fontsize',6)
+AddLetters2Plots({subb,subc,suba,subd,sube}, {'a', 'b', 'c', 'd', 'e'}, 'HShift', -0.05, 'VShift', -0.05, 'Direction', 'TopDown','fontsize',8)
 
 
 
@@ -642,6 +646,7 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 19 12];
 exportgraphics(h,'../Figures/SI_Figure_B-5.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/SI_Figure_B-5.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_B-5.eps','BackgroundColor','none','Resolution', 900)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -747,7 +752,7 @@ set(gca,'XTickLabel',a,'fontsize',6)
 a = get(gca,'YTickLabel');
 set(gca,'YTickLabel',a,'fontsize',6)
 
-AddLetters2Plots({subb,subc,suba,subd,sube}, {'a', 'b', 'c', 'd', 'e'}, 'HShift', -0.05, 'VShift', -0.05, 'Direction', 'TopDown','fontsize',6)
+AddLetters2Plots({subb,subc,suba,subd,sube}, {'a', 'b', 'c', 'd', 'e'}, 'HShift', -0.05, 'VShift', -0.05, 'Direction', 'TopDown','fontsize',8)
 
 
 
@@ -758,6 +763,7 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 19 12];
 exportgraphics(h,'../Figures/SI_Figure_B-6.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/SI_Figure_B-6.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_B-6.eps','BackgroundColor','none','Resolution', 900)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Figure 7 B %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -794,7 +800,7 @@ for n=1:8
 end
 hold on
 ylabel(sprintf('Prob(>750 deaths/million)'),'fontsize',6)
-leg = legend({ 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield'},'FontSize',6, 'Location','best', 'NumColumns',1);
+leg = legend({ 'Belfast', 'Birmingham' ,'Cardiff','Glasgow', 'Liverpool', 'London', 'Manchester', 'Sheffield'},'FontSize',6, 'Location','best', 'NumColumns',2);
 leg.ItemTokenSize = [9,4.5];
 title(leg,'UK Cities (1918-19)','fontsize',6);
 legend boxoff
@@ -856,7 +862,7 @@ yticks([0:0.05:0.45])
 ylim([0,0.5])
 yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4','0.45','0.5'})
 
-AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.06, 'VShift', -0.03, 'Direction', 'TopDown','fontsize',6)
+AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.06, 'VShift', -0.03, 'Direction', 'TopDown','fontsize',8)
 
 
 h = figure(7);
@@ -865,6 +871,7 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 19 20];
 exportgraphics(h,'../Figures/SI_Figure_B-7.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/SI_Figure_B-7.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_B-7.eps','BackgroundColor','none','Resolution', 900)
 
 
 
@@ -961,7 +968,7 @@ title('England & Wales 1968-70')
 box off
 ylabel(sprintf('Probability of exceeding threshold'),'fontsize',6)
 
-AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.05, 'VShift', -0.035, 'Direction', 'TopDown','fontsize',6)
+AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.05, 'VShift', -0.035, 'Direction', 'TopDown','fontsize',8)
 
 h = figure(8);
 %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
@@ -969,6 +976,7 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 19 20];
 exportgraphics(h,'../Figures/SI_Figure_B-8.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/SI_Figure_B-8.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_B-8.eps','BackgroundColor','none','Resolution', 900)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1067,7 +1075,7 @@ yticks([0:0.05:0.7])
 ylim([0,0.7])
 yticklabels({'0','0.05','0.1', '0.15', '0.2', '0.25','0.3','0.35','0.4','0.45','0.5','0.55','0.6','0.65','0.7'})
 
-AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.06, 'VShift', -0.03, 'Direction', 'TopDown','fontsize',6)
+AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.06, 'VShift', -0.03, 'Direction', 'TopDown','fontsize',8)
 
 
 h = figure(9);
@@ -1076,6 +1084,7 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 19 20];
 exportgraphics(h,'../Figures/SI_Figure_B-9.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/SI_Figure_B-9.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_B-9.eps','BackgroundColor','none','Resolution', 900)
 
 
 
@@ -1117,7 +1126,7 @@ plot(Influenza_EW(55:80,1), weibull_outbreakprob(Weibull_Model(11).w',MainWave(2
 plot(Influenza_EW(55:80,1), weibull_outbreakprob(Weibull_Model(11).w',MainWave(2)/3/10),'-x', 'Linewidth', 0.5, 'Markersize', 4 , 'Color', 'black')
 
 xlim([1891,1918])
-xticks([1890:5:1915])
+xticks([1895:5:1915])
 xtickangle(0)
 yticks([0:0.1:1])
 ylim([0,1])
@@ -1170,7 +1179,7 @@ set(gca,'YTickLabel',aa,'fontsize',6)
 title('England & Wales 1968-70')
 box off
 
-AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.07, 'VShift', -0.045, 'Direction', 'TopDown','fontsize',6)
+AddLetters2Plots({pa, pb, pc, pd},{'a','b','c','d'}, 'HShift', -0.07, 'VShift', -0.045, 'Direction', 'TopDown','fontsize',8)
 
 h = figure(10);
 %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
@@ -1178,6 +1187,7 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 19 20];
 exportgraphics(h,'../Figures/SI_Figure_B-10.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/SI_Figure_B-10.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_B-10.eps','BackgroundColor','none','Resolution', 900)
 
 
 
@@ -1254,7 +1264,7 @@ ax.XTickLabelRotation = 0;
 title({'United States','1918-19'},'fontsize',6,'FontWeight','bold')
 box off
 
-AddLetters2Plots(figure(11), {'a', 'b', 'c', 'd', 'e',  'f', 'g', 'h','i','j'}, 'HShift', -0.07, 'VShift', -0.07, 'Direction', 'TopDown','fontsize',6)
+AddLetters2Plots(figure(11), {'a', 'b', 'c', 'd', 'e',  'f', 'g', 'h','i','j'}, 'HShift', -0.07, 'VShift', -0.07, 'Direction', 'TopDown','fontsize',8)
 
 h = figure(11);
 %set (h, 'Units','centimeters', 'Position', [0 0 14.5 14.5]);
@@ -1262,6 +1272,7 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 19 25];
 exportgraphics(h,'../Figures/SI_Figure_B-11.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/SI_Figure_B-11.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_B-11.eps','BackgroundColor','none','Resolution', 900)
 
 
 
@@ -1361,12 +1372,13 @@ ax.FontSize =8;
 ax.XTickLabelRotation = 0;
 title({'England & Wales', '1968-70'},'fontsize',6,'FontWeight','bold')
 box off
-AddLetters2Plots(figure(12), {'a', 'b', 'c', 'd'}, 'HShift', -0.07, 'VShift', -0.07, 'Direction', 'TopDown','fontsize',6)
+AddLetters2Plots(figure(12), {'a', 'b', 'c', 'd'}, 'HShift', -0.07, 'VShift', -0.07, 'Direction', 'TopDown','fontsize',8)
 
 h = figure(12);
 h.Units='centimeters';
 h.OuterPosition=[0 0 19 25];
 exportgraphics(h,'../Figures/SI_Figure_B-12.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/SI_Figure_B-12.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_B-12.eps','BackgroundColor','none','Resolution', 900)
 
 

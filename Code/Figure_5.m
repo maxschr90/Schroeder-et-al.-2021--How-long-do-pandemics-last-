@@ -72,3 +72,4 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 10 12];
 exportgraphics(h,'../Figures/Figure_5.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/Figure_5.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/Figure_5.eps','BackgroundColor','none','Resolution', 900)

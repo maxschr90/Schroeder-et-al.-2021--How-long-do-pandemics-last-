@@ -40,6 +40,7 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 14 15];
 exportgraphics(h,'../Figures/SI_Figure_A-1.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(h,'../Figures/SI_Figure_A-1.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(h,'../Figures/SI_Figure_A-1.eps','BackgroundColor','none','Resolution', 900)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -88,3 +89,4 @@ h.Units='centimeters';
 h.OuterPosition=[0 0 18 15];
 exportgraphics(figure(2),'../Figures/SI_Figure_A-3.pdf','BackgroundColor','none','Resolution', 900)
 exportgraphics(figure(2),'../Figures/SI_Figure_A-3.emf','BackgroundColor','none','Resolution', 900)
+exportgraphics(figure(2),'../Figures/SI_Figure_A-3.eps','BackgroundColor','none','Resolution', 900)
